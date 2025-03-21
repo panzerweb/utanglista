@@ -1,7 +1,4 @@
-
-
-<!-- ========================== -->
-<!--Main Template for a footer -->
+<!-- Footer for Login and Registration -->
 <footer>
     <!-- place footer here -->
 </footer>
