@@ -1,6 +1,9 @@
 # Utanglista
  Native Php Web-based Retail Debt Management System for Advance Database System course subject
 
+### **Note:**
+> ***Folders (api, config, views) have their own ReadME File, it is recommended to read them first before contributing to the codebase***. 
+
 ---
 # Installation and Set Up
 ### Copy Github URL and clone project:
