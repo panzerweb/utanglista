@@ -1,0 +1,22 @@
+{
+  "name": "utanglista",
+  "version": "1.0.0",
+  "description": "a web-based sari-sari store debt management system.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/panzerweb/utanglista.git"
+  },
+  "author": "Panzerweb",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/panzerweb/utanglista/issues"
+  },
+  "homepage": "https://github.com/panzerweb/utanglista#readme",
+  "dependencies": {
+    "sweetalert2": "^11.17.2"
+  }
+}
