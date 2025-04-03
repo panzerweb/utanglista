@@ -14,3 +14,7 @@ The `views\layout` folder is purposely for the header and footer template of the
 
 ### Don't create new folders within `view` folder
 All view or frontend files are located in the `views` folder only, for redirecting purposes in alignment to the skill level of the developers; it is advised to **NOT** create new folders for other views such `auth` folder, `components` folder, and other templating folders.
+
+**NOTE:** 
+
+Only the Upstream Developer is authorized to create subfolders of the `view/`.

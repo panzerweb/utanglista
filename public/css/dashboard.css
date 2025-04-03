@@ -1,0 +1,5 @@
+/* CSS file for the dashboard */
+
+.statistic-wrapper{
+    background-color: var(--secondary) !important;
+}
