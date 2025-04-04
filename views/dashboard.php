@@ -23,6 +23,7 @@
                             </h2>
                         </div>
                     </div>
+                    <!-- Statistics -->
                     <div class="col-12 col-lg-12 statistic-wrapper shadow p-3 rounded-3">
                         <div class="row justify-content-around align-items-center">
                             <div class="col-6 col-lg-3">
@@ -34,7 +35,10 @@
                                     <div class="info-box-content">
                                         <h5 class="fw-semibold text-secondary">Total Customers</h5>
                                         <span class="lead fw-bold fs-2 text-center">
-                                            9,999
+                                            <!-- Echo is placeholder -->
+                                            <?php
+                                                echo "145";
+                                            ?>
                                         </span>
                                     </div>
                                 </div>
@@ -48,7 +52,10 @@
                                     <div class="info-box-content">
                                         <h5 class="fw-semibold text-secondary">Amount to Collect</h5>
                                         <span class="lead fw-bold fs-2 text-center">
-                                            9,999
+                                            <!-- Echo is placeholder -->
+                                            <?php
+                                                echo "4,500.00";
+                                            ?>
                                         </span>
                                     </div>
                                 </div>
@@ -63,7 +70,10 @@
                                     <div class="info-box-content">
                                         <h5 class="fw-semibold text-secondary">Collected Amount</h5>
                                         <span class="lead fw-bold fs-2 text-center">
-                                            9,999
+                                            <!-- Echo is placeholder -->
+                                            <?php
+                                                echo "10,500.00";
+                                            ?>
                                         </span>
                                     </div>
                                 </div>
@@ -77,13 +87,119 @@
                                     <div class="info-box-content">
                                         <h5 class="fw-semibold text-secondary">Inventory</h5>
                                         <span class="lead fw-bold fs-2 text-center">
-                                            100
+                                            <!-- Echo is placeholder -->
+                                            <?php
+                                                echo "23";
+                                            ?>
                                         </span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <!-- Action Buttons -->
+                     <div class="col-12 col-lg-12 actions-wrapper">
+                        <div class="row justify-content-between">
+                            <div class="col-12 col-lg-7 bg-light shadow my-2 rounded-3">
+                                <div class="my-3 d-flex gap-2 py-1">
+                                    <div class="entry-option">
+                                        <select
+                                            class="form-select form-select-md fs-6 flex border border-1 border-secondary rounded-3 fw-semibold"
+                                            name="entry-count"
+                                            id="entry-count"
+                                        >
+                                            <option selected>Entry</option>
+                                            <option value="5">5</option>
+                                            <option value="10">10</option>
+                                            <option value="15">15</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <div class="flex-grow-1">
+                                        <input
+                                            type="text"
+                                            class="form-control border border-1 border-secondary rounded-3 w-75"
+                                            name=""
+                                            id=""
+                                            aria-describedby="helpId"
+                                            placeholder="Search"
+                                        />
+                                    </div>
+                                    <div class="add-customer-button">
+                                        <button
+                                            type="button"
+                                            class="btn action-button"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#addCustomerModal"
+                                        >
+                                            <div class="d-flex gap-2 align-items-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+                                                    <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2"/>
+                                                </svg>
+                                                Add Customer
+                                            </div>
+                                        </button>
+                                    </div>
+
+                                    <!-- Include the Modal from components folder -->
+                                     <?php
+                                        include('./components/addcustomer_modal.php');
+                                     ?>
+                                    
+                                </div>
+                                
+                            </div>
+
+                            <div class="col-12 col-lg-4 bg-light shadow my-2 py-3 rounded-3 d-flex align-items-center justify-content-center">                                
+
+                                <div class="d-flex justify-content-around gap-3 align-items-center">
+                                    <div class="add-product-button">
+                                        <button
+                                            type="button"
+                                            class="btn action-button w-100"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#addProductModal"
+                                        >
+                                            <div class="d-flex gap-2 align-items-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart4" viewBox="0 0 16 16">
+                                                    <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5M3.14 5l.5 2H5V5zM6 5v2h2V5zm3 0v2h2V5zm3 0v2h1.36l.5-2zm1.11 3H12v2h.61zM11 8H9v2h2zM8 8H6v2h2zM5 8H3.89l.5 2H5zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0m9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0"/>
+                                                </svg>
+                                                Add Product
+                                            </div>
+                                        </button>
+                                    </div>  
+                                    
+                                    <!-- Include the Modal from components folder -->
+                                    <?php
+                                        include('./components/addproduct_modal.php');
+                                     ?>
+                                    
+
+                                    <div class="transaction-button">
+                                        <button
+                                            type="button"
+                                            class="btn action-button w-100"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#transactionModal"
+                                        >
+                                            <div class="d-flex gap-2 align-items-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-wallet2" viewBox="0 0 16 16">
+                                                    <path d="M12.136.326A1.5 1.5 0 0 1 14 1.78V3h.5A1.5 1.5 0 0 1 16 4.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 13.5v-9a1.5 1.5 0 0 1 1.432-1.499zM5.562 3H13V1.78a.5.5 0 0 0-.621-.484zM1.5 4a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5z"/>
+                                                </svg>
+                                                Transaction
+                                            </div>
+                                        </button>
+                                    </div>
+                                        <!-- Include the Modal from components folder -->
+                                        <?php
+                                            include('./components/transaction_modal.php');
+                                        ?>
+                                </div>
+        
+                            </div>
+
+                        </div>
+                     </div>
                 </div>
             </div>
         </main>

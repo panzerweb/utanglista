@@ -18,9 +18,9 @@
 
 
         <!-- CSS Links -->
-        <link rel="stylesheet" href="../../public/css/nav.css">
-        <link rel="stylesheet" href="../../public/css/style.css">
-        <link rel="stylesheet" href="../../public/css/dashboard.css">
+        <link rel="stylesheet" href="../public/css/style.css">
+        <link rel="stylesheet" href="../public/css/nav.css">
+        <link rel="stylesheet" href="../public/css/dashboard.css">
     </head>
 
         <!-- Header -->
