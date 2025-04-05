@@ -1,0 +1,35 @@
+/* CSS file for components */
+
+/* Google Web Fonts Helper */
+/* Heading */
+/* archivo-black-regular - latin */
+@font-face {
+    font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+    font-family: 'Archivo Black';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../fonts/archivo-black-v21-latin-regular.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  }
+/* Paragraphs */
+/* roboto-regular - latin */
+@font-face {
+    font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../fonts/roboto-v47-latin-regular.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* END OF Google Web Fonts Helper */
+
+/* Root Colors */
+:root{
+    --background: #F7F6FE;
+    --primary: #198754;
+    --secondary: #FFFFFF;
+    --accent: #FFCF50;
+}
+
+/* Body */
+body{
+    background: var(--background) !important;
+}

@@ -1,0 +1,27 @@
+/* CSS file for the dashboard */
+
+/* Wrapper for Statistics */
+.statistic-wrapper{
+    background-color: var(--secondary) !important;
+}
+
+/* All Buttons */
+.action-button{
+    background: var(--accent) !important; /* #ffcf50 */
+    color: #212529;
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.action-button:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transform: translateY(-1px);
+    cursor: pointer;
+}

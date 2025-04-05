@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/panzerweb/utanglista#readme",
   "dependencies": {
+    "bootstrap-icons": "^1.11.3",
     "sweetalert2": "^11.17.2"
   }
 }

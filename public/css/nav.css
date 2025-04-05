@@ -1,0 +1,15 @@
+/* A CSS File specifically for the navbars
+
+Note: Identify the purpose of a styling code blocks through comments
+
+/* navbar custom styles */
+.navbar{
+    font-family: 'Roboto';
+    background: var(--primary);
+}
+.navbar-nav .nav-link.active, .navbar-nav .nav-link.show{
+    color: yellow !important;
+}
+.navbar-nav .nav-link:hover{
+    color: yellow !important;
+}
