@@ -1,7 +1,7 @@
 <!-- Registration and Homepage View -->
 <!-- Php Code for Login -->
 <?php
-
+    // Php code
 ?>
 
 <!-- End of Php Code -->

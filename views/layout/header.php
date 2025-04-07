@@ -21,6 +21,7 @@
         <link rel="stylesheet" href="../public/css/style.css">
         <link rel="stylesheet" href="../public/css/nav.css">
         <link rel="stylesheet" href="../public/css/dashboard.css">
+        <link rel="stylesheet" href="../public/css/product.css">
 
         <!-- CSS Scripts -->
         <link rel="stylesheet" href="../../node_modules/sweetalert2/dist/sweetalert2.min.css">

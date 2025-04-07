@@ -1,9 +1,4 @@
 <!-- Dashboard View -->
-<!-- Any Php code... -->
-<?php
-
-?>
-
 <!-- End of Php Code -->
 
 <!-- place navbar here -->
@@ -225,34 +220,12 @@
                                         <tbody class="table-group-divider">
                                             <!-- Replace static table data with actual dynamic data -->
                                             <tr>
-                                            <th scope="row">1</th>
-                                            <td>Mark</td>
-                                            <td>Php 10,000</td>
-                                            </tr>
-                                            <tr>
-                                            <th scope="row">1</th>
-                                            <td>Mark</td>
-                                            <td>Php 10,000</td>
-                                            </tr>
-                                            <tr>
-                                            <th scope="row">1</th>
-                                            <td>Mark</td>
-                                            <td>Php 10,000</td>
-                                            </tr>
-                                            <tr>
-                                            <th scope="row">1</th>
-                                            <td>Mark</td>
-                                            <td>Php 10,000</td>
-                                            </tr>
-                                            <tr>
-                                            <th scope="row">1</th>
-                                            <td>Mark</td>
-                                            <td>Php 10,000</td>
-                                            </tr>
-                                            <tr>
-                                            <th scope="row">1</th>
-                                            <td>Mark</td>
-                                            <td>Php 10,000</td>
+                                                <td>
+                                                    <?php
+                                                        echo "Selwyn"
+                                                    ?>
+                                                </td>
+
                                             </tr>
                                         </tbody>
                                     </table>
