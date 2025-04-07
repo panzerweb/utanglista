@@ -33,3 +33,8 @@
 body{
     background: var(--background) !important;
 }
+
+/* All Main */
+main{
+    padding-top: 4rem !important;
+}

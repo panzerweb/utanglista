@@ -18,6 +18,7 @@
                     id="c_name"
                     aria-describedby="helpId"
                     placeholder="Enter Customer Name"
+                    required
                   />
                 </div>
                 <div class="mb-3">
@@ -29,7 +30,6 @@
                     id="c_contact"
                     aria-describedby="helpId"
                     placeholder="Enter Contact No. (Optional)"
-                    required
                   />
                 </div>
         </div>
