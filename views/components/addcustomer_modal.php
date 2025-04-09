@@ -7,7 +7,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <!-- This form CREATE a new customer -->
-      <form action="../../api/add_customer.php" method="post">
+      <form action="../api/add_customer.php" method="post">
         <div class="modal-body">
                 <div class="mb-3">
                   <label for="" class="form-label">Name</label>
