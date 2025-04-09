@@ -6,7 +6,7 @@
         <h1 class="modal-title fs-5" id="transactionModalLabel">Transaction</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <form action="../../api/transaction.php" method="post">
+      <form action="../api/transaction.php" method="post">
         <div class="modal-body">
             <!-- Select dropdown for customers -->
             <div class="mb-3">
