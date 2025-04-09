@@ -220,12 +220,34 @@
                                         <tbody class="table-group-divider">
                                             <!-- Replace static table data with actual dynamic data -->
                                             <tr>
-                                                <td>
-                                                    <?php
-                                                        echo "Selwyn"
-                                                    ?>
-                                                </td>
-
+                                                <td>1</td>
+                                                <td>John Doe</td>
+                                                <td>Php 5,000.00</td>
+                                            </tr>
+                                            <tr>
+                                                <td>2</td>
+                                                <td>John Doe</td>
+                                                <td>Php 5,000.00</td>
+                                            </tr>
+                                            <tr>
+                                                <td>3</td>
+                                                <td>John Doe</td>
+                                                <td>Php 5,000.00</td>
+                                            </tr>
+                                            <tr>
+                                                <td>4</td>
+                                                <td>John Doe</td>
+                                                <td>Php 5,000.00</td>
+                                            </tr>
+                                            <tr>
+                                                <td>5</td>
+                                                <td>John Doe</td>
+                                                <td>Php 5,000.00</td>
+                                            </tr>
+                                            <tr>
+                                                <td>6</td>
+                                                <td>John Doe</td>
+                                                <td>Php 5,000.00</td>
                                             </tr>
                                         </tbody>
                                     </table>
