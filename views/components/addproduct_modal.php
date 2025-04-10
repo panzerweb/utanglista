@@ -8,7 +8,7 @@
       </div>
       <div class="modal-body">
         <!-- This form CREATE a new customer -->
-        <form action="../../api/add_product.php" method="post">
+        <form action="../api/add_product.php" method="post">
           <div class="mb-3">
             <label for="" class="form-label">Product name</label>
             <input
