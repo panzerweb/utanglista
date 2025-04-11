@@ -1,3 +1,13 @@
 /* CSS for customer */
 /* This file contains the CSS styles for the customer section of the application */
 
+/* Leaderboard card */
+.leaderboard-card{
+    background: var(--accent-second) !important;
+}
+
+/* Divider */
+.divider{
+    height: 2px;
+    background: var(--accent) !important;
+}
