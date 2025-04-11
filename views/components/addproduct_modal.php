@@ -34,6 +34,20 @@
             />
           </div>
           <div class="mb-3">
+            <label for="" class="form-label">Category</label>
+            <select
+              class="form-select form-select-lg"
+              name="category"
+              id="category"
+            >
+              <option selected>Select one</option>
+              <option value="1">Powdered Drink</option>
+              <option value="2">Biscuits</option>
+              <option value="3">Junk Foods</option>
+            </select>
+          </div>
+          
+          <div class="mb-3">
             <label for="" class="form-label">Image</label>
             <input
               type="file"
@@ -42,6 +56,7 @@
               id="prod_image"
               placeholder="Product image"
               aria-describedby="productImage"
+              accept="image/*"
             />
             <div id="productImage" class="form-text">Select product image</div>
           </div>
@@ -49,7 +64,7 @@
           <!-- Image preview -->
           <!-- Remove border (optional) if logic is applied. -->
           <div class="image-wrapper border border-2 border-dark p-2 rounded-3">
-            <img src="#" alt="Preview product image" id="file-preview" aria-describedby="previewImage">
+            <img src="#" alt="Preview product image" id="file-preview" aria-describedby="previewImage" class="img-fluid object-fit">
           </div>
 
           <div class="modal-footer">

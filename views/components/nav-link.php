@@ -12,21 +12,25 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav align-items-center mx-auto mb-2 mb-lg-0 gap-4">
                         <li class="nav-item">
-                            <a class="nav-link fw-semibold text-light" aria-current="page" href="./dashboard.php">Dashboard</a>
+                            <a class="nav-link fw-semibold text-light active" href="./dashboard.php">Dashboard</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link fw-semibold text-light" href="#">Logs</a>
+                            <a class="nav-link fw-semibold text-light" href="./logs.php">Logs</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link fw-semibold text-light" href="#">Products</a>
+                            <a class="nav-link fw-semibold text-light" href="./transactions.php">Transactions</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link fw-semibold text-light" href="./customer.php">Customers</a>
+                            <a class="nav-link fw-semibold text-light" href="./products.php">Products</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link fw-semibold text-light" href="./customer.php">Customer</a>
+                        </li>
+                        
                     </ul>
                     <div class="d-flex align-items-center justify-content-center" role="search">
                         <div class="m-2">
-                            <a href="#" class="text-dark">
+                            <a href="./profile_page.php" class="text-dark">
                                 <!-- Icon SVG is placeholder only, replace with actual image profile -->
                                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
                                     <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>

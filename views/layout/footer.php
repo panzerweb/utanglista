@@ -8,6 +8,8 @@
 
   <!-- Scripts -->
   <script src="../node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
+  <script defer src="../public/js/navlink.js"></script>
+  <script src="../public/js/image_preview.js"></script>
 
   <!-- Bootstrap JavaScript Libraries -->
   <script src="../public/css/bootstrap/js/bootstrap.bundle.min.js"></script>
