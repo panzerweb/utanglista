@@ -1,12 +1,14 @@
-<!-- place navbar here -->
+<!-- place header here -->
 <?php 
     //Header layout
     include("./layout/header.php");
 ?>
 
-<!-- Add padding-top in css -->
+<main>
+    
+</main>
 
-<!-- place navbar here -->
+<!-- place footer here -->
 <?php 
     //Header layout
     include("./layout/footer.php");
