@@ -1,11 +1,13 @@
 <?php 
     include("./layout/header.php");
+    include("../config/config.php");
+    include("../api/get_customer.php");
 ?>
 
 <main>
     
 <div class="container">
-                <div class="row justify-content-around align-items-start mx-1 mt-4 mb-1">
+                <div class="row justify-content-around align-items-start mx-1 mt-3 mb-1">
                     <h1>
                         Customer
                     </h1>
@@ -38,16 +40,19 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <!-- ====== Search input field ======= -->
+
                                 <div class="flex-grow-1">
                                     <input
                                         type="text"
                                         class="form-control border border-1 border-secondary rounded-3 w-75"
-                                        name=""
-                                        id=""
+                                        id="livesearch"
                                         aria-describedby="helpId"
                                         placeholder="Search"
                                     />
                                 </div>
+                                <!-- ====== Add Customer Button ====== -->
                                 <div class="add-customer-button">
                                     <button
                                         type="button"
@@ -73,6 +78,9 @@
                         </div>
                         <div class="mt-4 mb-3">
                             <div class="table-responsive rounded-4 shadow p-2 border border-1" style="max-height: 400px; overflow-y: auto;">
+                                
+                                <!-- ====== Shows total Count of Customers ====== -->
+                                
                                 <div class="customer-wrapper">
                                     <div class="customer-box">
                                         <h3 class="position-sticky top-0 bg-white z-1 py-2">
@@ -83,7 +91,7 @@
                                                 Total customer
                                                 (
                                                 <?php
-                                                    echo "1"
+                                                    echo $totalCount;
                                                 ?>
                                                 )
                                             </div>
@@ -102,75 +110,100 @@
                                             <th class="text-center">Action</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <!-- Replace actual data -->
-                                        <tr>
-                                            <td>Selwyn</td>
-                                            <td>NULL</td>
-                                            <td>0.00</td>
-                                            <td>0.05</td>
-                                            <td>Paid</td>
-                                            <td>
-                                                <div class="d-flex gap-1 justify-content-center">
-                                                    <div class="d-grid gap-2">
+                                    <tbody id="live-result">
+                                        <!-- Dynamic Data -->
+                                        <?php foreach($customers as $customer) {?>
+                                            <tr>
+                                                <td>
+                                                    <?php echo htmlspecialchars($customer['c_name'] ? $customer['c_name'] : '<td class="text-center">---</td>'); ?>
+                                                </td>
+                                                <td class="text-center">
+                                                    <?php echo htmlspecialchars($customer['c_contact'] ? $customer['c_contact'] : '---'); ?>
+                                                </td>
+                                                <td class="text-center">
+                                                    <?php echo htmlspecialchars($customer['balance']); ?>
+                                                </td>
+                                                <td class="text-center">
+                                                    <?php echo htmlspecialchars($customer['monthly_interest']); ?>
+                                                </td>
+                                                <td class="text-center">
+                                                    <?php echo htmlspecialchars($customer['status']); ?>
+                                                </td>
+                                                <td>
+                                                    <div class="d-flex gap-2">
+                                                        <!-- ====== Edit button ====== -->
                                                         <button
                                                             type="button"
-                                                            name=""
-                                                            id=""
+                                                            name="edit_btn"
+                                                            id="edit_btn"
                                                             class="btn btn-warning"
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#editCustomerModal_<?php echo $customer['id']; ?>"
                                                         >
                                                             Edit
                                                         </button>
-                                                    </div>
-                                                    <div class="d-grid gap-2">
+                                                        <?php include("./components/editcustomer_modal.php") ?>
+
+                                                        <!-- ====== Payment button ====== -->
                                                         <button
                                                             type="button"
-                                                            name=""
-                                                            id=""
-                                                            class="btn btn-danger"
+                                                            name="payment_amount"
+                                                            id="payment_btn"
+                                                            class="btn btn-success"
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#paymentModal<?php echo $customer['id']; ?>"
                                                         >
-                                                            Delete
+                                                            Payment
                                                         </button>
+                                                        <!-- Include payment modal -->
+                                                        <?php include("./components/payment_modal.php") ?>
+
+                                                        <!-- ====== Delete Button ====== -->
+                                                        <a
+                                                            id="<?php echo $customer["id"]?>"
+                                                            class="btn btn-danger"
+                                                            href="../api/delete_customer.php?customer_id=<?php echo $customer['id']; ?>"
+                                                            role="button"
+                                                            >Delete</a
+                                                        >
+                                                        
                                                     </div>
-                                                </div>
-                                                
-                                            </td>
-                                        </tr>
+                                                                
+                                                </td>
+                                            </tr>
+                                        <?php } ?>
                                     </tbody>
                                 </table>
-                                <!-- <div class="pagination">
-                                    <span>Previous</span>
-                                    <span class="active">1</span>
-                                    <span>2</span>
-                                    <span>3</span>
-                                    <span>Next</span>
-                                </div> -->
                             </div>
                         </div>
                     </div>
-                    <!-- Column for ranking or leaderboards -->
+
+                    <!-- ====== Column for ranking or leaderboards ====== -->
                     <div class="col-12 col-lg-4">
                         <div class="card p-3 border-0 rounded-4 shadow leaderboard-card bg-dark text-white">
                             <h4 class="card-title fw-bold mb-3">🏆 Leaderboards</h4>
                             <hr class="border-secondary mb-2">
 
-                            <!-- Leader Entry -->
-                            <div class="leader-entry d-flex justify-content-between align-items-center py-2 px-2 rounded-3 mb-2 bg-secondary bg-opacity-25">
-                                <span class="fw-semibold fs-5">Klarence De Gracia</span>
-                                <span class="badge bg-warning text-dark fs-6 px-3 py-1">1</span>
-                            </div>
+                            <!-- Displays greatest to lowest balance-->
+                            <?php foreach($sortByBalance as $customer) { ?>
+                                <div class="leader-entry d-flex justify-content-between align-items-center py-2 px-2 rounded-3 mb-2 bg-secondary bg-opacity-25">
+                                    <span class="fw-semibold fs-5">
+                                        <?php echo htmlspecialchars($customer['c_name']) ?>
+                                    </span>
+                                    <?php if($customer['ranking'] == 1){ ?>
+                                        <span class="badge bg-warning text-dark fs-6 px-3 py-1">
+                                            <?php echo htmlspecialchars($customer['ranking']); ?>
+                                        </span>
+                                    <?php } else{ ?>
+                                        <span class="badge bg-light text-dark fs-6 px-3 py-1">
+                                            <?php echo htmlspecialchars($customer['ranking']); ?>
+                                        </span>
+                                    <?php } ?>
+    
 
-                            <div class="leader-entry d-flex justify-content-between align-items-center py-2 px-2 rounded-3 mb-2 bg-secondary bg-opacity-10">
-                                <span class="fw-semibold fs-5">Selwyn Villar</span>
-                                <span class="badge bg-light text-dark fs-6 px-3 py-1">2</span>
-                            </div>
+                                </div>
+                            <?php } ?>
 
-                            <div class="leader-entry d-flex justify-content-between align-items-center py-2 px-2 rounded-3 mb-2 bg-secondary bg-opacity-10">
-                                <span class="fw-semibold fs-5">Kurt Alric</span>
-                                <span class="badge bg-light text-dark fs-6 px-3 py-1">3</span>
-                            </div>
-
-                            <!-- You can continue adding more entries... -->
                         </div>
                     </div>
 

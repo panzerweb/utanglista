@@ -12,7 +12,7 @@ try {
 }
 
 if ($connection) {
-    echo "Connected Successfully";
+    return "Connected Successfully";
 } else {
     echo "Connection Failed!";
 }

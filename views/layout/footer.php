@@ -10,6 +10,10 @@
   <script src="../node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
   <script defer src="../public/js/navlink.js"></script>
   <script src="../public/js/image_preview.js"></script>
+  <script src="../public/js/insert_customer.js"></script>
+  <script src="../public/js/update_customer.js"></script>
+  <script src="../public/js/customer_page_livesearch.js"></script>
+  <script src="../public/js/dashboard_livesearch.js"></script>
 
   <!-- Bootstrap JavaScript Libraries -->
   <script src="../public/css/bootstrap/js/bootstrap.bundle.min.js"></script>

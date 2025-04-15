@@ -7,7 +7,12 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <!-- This form CREATE a new customer -->
-      <form action="../api/add_customer.php" method="post">
+      <!-- 
+          Disabled `form` tag to add to fetch API
+          IF Fetch API breaks, uncomment the traditional form and 
+          replace onclick button with an input-submit-button
+      -->
+      <!-- <form action="../api/add_customer.php" method="post"> -->
         <div class="modal-body">
                 <div class="mb-3">
                   <label for="" class="form-label">Name</label>
@@ -35,9 +40,9 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <input type="submit" name="submit" class="btn btn-success">
+          <button type="button" class="btn btn-success" onclick="insertCustomer()">Add</button>  
         </div>
-      </form>
+      <!-- </form> -->
     </div>
   </div>
 </div>
