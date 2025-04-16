@@ -1,10 +1,11 @@
 <!-- Dashboard View -->
-<!-- End of Php Code -->
-
 <!-- place navbar here -->
 <?php 
     //Header layout
     include("./layout/header.php");
+    include("../config/config.php");
+    include("../api/get_customer.php");
+
 ?>
 <main>
     <div class="container">
@@ -21,6 +22,9 @@
             <div class="col-12 col-lg-12 statistic-wrapper shadow p-3 rounded-3">
                 <div class="row justify-content-around align-items-center">
                     <div class="col-6 col-lg-3">
+
+                        <!-- ====== Shows total Count of Customers ====== -->
+
                         <div id="total-customer" 
                             class="d-flex justify-content-center align-items-center gap-2 info-box p-2 rounded-3">
                             <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" class="bi bi-people-fill text-success" viewBox="0 0 16 16">
@@ -29,9 +33,9 @@
                             <div class="info-box-content">
                                 <h5 class="fw-semibold text-secondary">Total Customers</h5>
                                 <span class="lead fw-bold fs-2 text-center">
-                                    <!-- Echo is placeholder -->
+                                    <!-- Displays total count of customers -->
                                     <?php
-                                        echo "145";
+                                        echo $totalCount;
                                     ?>
                                 </span>
                             </div>
@@ -91,34 +95,28 @@
                     </div>
                 </div>
             </div>
-            <!-- Action Buttons -->
+
+            <!-- ====== Action Buttons & Search section ====== -->
+
             <div class="col-12 col-lg-12 actions-wrapper">
             <div class="row justify-content-between">
                 <div class="col-12 col-lg-7 bg-light shadow my-2 rounded-3">
                     <div class="my-3 d-flex gap-2 py-1">
-                        <div class="entry-option">
-                            <select
-                                class="form-select form-select-md fs-6 flex border border-1 border-secondary rounded-3 fw-semibold"
-                                name="entry-count"
-                                id="entry-count"
-                            >
-                                <option selected>Entry</option>
-                                <option value="5">5</option>
-                                <option value="10">10</option>
-                                <option value="15">15</option>
-                            </select>
-                        </div>
-                        
+
+                        <!-- ====== Search field ====== -->
+
                         <div class="flex-grow-1">
                             <input
                                 type="text"
                                 class="form-control border border-1 border-secondary rounded-3 w-75"
-                                name=""
-                                id=""
+                                id="dash-livesearch"
                                 aria-describedby="helpId"
                                 placeholder="Search"
                             />
                         </div>
+
+                        <!-- ====== Add Customer Button ====== -->
+
                         <div class="add-customer-button">
                             <button
                                 type="button"
@@ -147,6 +145,9 @@
                 <div class="col-12 col-lg-4 bg-light shadow my-2 py-3 rounded-3 d-flex align-items-center justify-content-center">                                
 
                     <div class="d-flex justify-content-around gap-3 align-items-center">
+
+                        <!-- ====== Add Product Button ====== -->
+
                         <div class="add-product-button">
                             <button
                                 type="button"
@@ -168,6 +169,8 @@
                             include('./components/addproduct_modal.php');
                             ?>
                         
+
+                        <!-- ====== Add Transaction Button ====== -->
 
                         <div class="transaction-button">
                             <button
@@ -209,6 +212,9 @@
                                     Leaderboards
                                 </div>
                             </h3>
+
+                            <!-- ====== Leaderboard: Table for highest to lowest balance -->
+
                             <table class="table table-hover mb-0">
                                 <thead class="table-light">
                                     <tr>
@@ -217,43 +223,28 @@
                                     <th scope="col">Amount</th>
                                     </tr>
                                 </thead>
-                                <tbody class="table-group-divider">
-                                    <!-- Replace static table data with actual dynamic data -->
-                                    <tr>
-                                        <td>1</td>
-                                        <td>John Doe</td>
-                                        <td>Php 5,000.00</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>John Doe</td>
-                                        <td>Php 5,000.00</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>John Doe</td>
-                                        <td>Php 5,000.00</td>
-                                    </tr>
-                                    <tr>
-                                        <td>4</td>
-                                        <td>John Doe</td>
-                                        <td>Php 5,000.00</td>
-                                    </tr>
-                                    <tr>
-                                        <td>5</td>
-                                        <td>John Doe</td>
-                                        <td>Php 5,000.00</td>
-                                    </tr>
-                                    <tr>
-                                        <td>6</td>
-                                        <td>John Doe</td>
-                                        <td>Php 5,000.00</td>
-                                    </tr>
+                                <tbody class="table-group-divider" id="dash-live-result">
+                                    <!-- ====== Dynamic data for greatest to least balance ====== -->
+                                    <?php foreach($sortByBalance as $customer) { ?>
+                                        <tr>
+                                            <td class="fw-bold">
+                                                <?php echo htmlspecialchars($customer['ranking']); ?>
+                                            </td>
+                                            <td>
+                                                <?php echo htmlspecialchars($customer['c_name'] ? $customer['c_name'] : '<td class="text-center">---</td>'); ?>
+                                            </td>
+                                            <td>
+                                                <?php echo htmlspecialchars($customer['balance']); ?>
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
                                 </tbody>
                             </table>
                         </div>
                     </div>
-                    <!-- Calendar -->
+
+                    <!-- ====== Calendar ====== -->
+                     
                     <div class="col-12 col-lg-4 px-0">
                         <div class="card text-start mb-3">
                             <div class="card-body">                          
