@@ -16,7 +16,16 @@ liveSearch.addEventListener('keyup', () => {
             console.error(error);
         })
     } else {
-        let activeLink = window.location.pathname;
-        window.location.href = activeLink; //returns to the current page and reloads the original data
+        // Instead of reloading, we fetch just the default data
+        fetch('../../api/customer_page_livesearch.php') //GET method default
+        .then(response => response.text())
+        .then(data => {
+            liveResult.innerHTML = data; //Renders the rows echoed in the php
+        })
+        .catch(error => {
+            liveResult.innerHTML = error;
+            console.error(error);
+        })
+
     }
 })

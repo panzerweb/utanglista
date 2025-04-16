@@ -15,6 +15,9 @@
                     <div class="col-12 col-lg-8">
                         <div class="shadow p-2 border border-1 rounded-4">
                             <div class="my-3 d-flex gap-2 py-1">
+
+                                <!-- ====== Filter ====== -->
+
                                 <div class="filter-option">
                                     <div class="dropdown">
                                         <button type="button" class="btn btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
@@ -25,13 +28,19 @@
                                         <div class="dropdown-menu p-4">
                                             <div class="mb-3">
                                                 <div class="form-check">
-                                                    <input type="checkbox" class="form-check-input" id="paidCheckbox">
+                                                    <input type="checkbox" class="form-check-input" 
+                                                        id="paidCheckbox" 
+                                                        name="status" 
+                                                        value="PAID">
                                                     <label class="form-check-label" for="paidCheckbox">
                                                         Paid
                                                     </label>
                                                 </div>
                                                 <div class="form-check">
-                                                    <input type="checkbox" class="form-check-input" id="pendingCheckbox">
+                                                    <input type="checkbox" class="form-check-input" 
+                                                            id="pendingCheckbox" 
+                                                            name="status" 
+                                                            value="PENDING">
                                                     <label class="form-check-label" for="pendingCheckbox">
                                                         Pending
                                                     </label>

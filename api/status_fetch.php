@@ -1,19 +1,37 @@
-<?php
-// Backend logic for livesearch using fetch API inside customer page ONLY
-// Logic supported by customer_page_livesearch.js which uses Fetch API
+<?php 
+// Backend logic for filter search using fetch API inside customer page ONLY
+// Logic supported by status_filter.js which uses Fetch API
+
 
 require("../config/config.php");
-// Refers to the get method of the customer_page_livesearch.js uri search
-// If the search is empty, then default select query
-if (!isset($_GET["search"]) || empty($_GET["search"])) {
-    $searchquery = "SELECT * FROM customers";
+
+// If checkboxes are empty, then select default values query
+if (!isset($_GET["status"]) || empty($_GET["status"])) {
+    $statusQuery = "SELECT * FROM customers ORDER BY created_at DESC;";
 } 
+// Else, if there are checked checkboxes, perform query
 else {
-    $search = htmlspecialchars($_GET["search"]); //this is appended in the URI and we must retrieve
-    $searchquery = "SELECT * FROM customers WHERE c_name LIKE '%$search%'"; //Used LIKE and %%  to implement searching
+    $status = htmlspecialchars($_GET["status"]);
+    // Split the comma-separated string (e.g. "PAID,PENDING") into an array
+    $statuses = explode(",", $status);
+    // Result: ['PAID', 'PENDING']
+
+    // Escape each status value to prevent SQL injection, and wrap it in single quotes
+    $escapedStatus = array_map(function($stat) use ($connection){
+        return "'" . mysqli_real_escape_string($connection, $stat) . "'";
+    }, $statuses);
+    // Result: ["'PAID'", "'PENDING'"]
+
+    // Join the escaped and quoted values back into a single comma-separated string
+    $inClause = implode(",", $escapedStatus);
+    // Result: "'PAID','PENDING'" — ready to be used in a SQL IN() clause
+
+    // Query to execute
+    $statusQuery = "SELECT * FROM customers WHERE status IN ($inClause) ORDER BY created_at DESC; ";
 }
-    $result = mysqli_query($connection, $searchquery);
-    
+
+    $result = mysqli_query($connection, $statusQuery);
+
     // If there are multiple or one result, then print out a new table row
     if($result->num_rows > 0){
         while ($customer = $result->fetch_assoc()) {

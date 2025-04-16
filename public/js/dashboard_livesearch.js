@@ -17,7 +17,15 @@ dashLiveSearch.addEventListener("keyup", () => {
         })
     }
     else{
-        let activeLink = window.location.pathname;
-        window.location.href = activeLink; //Reloads the current page if no search query
+        // Instead of reloading, we fetch just the default data
+        fetch('../../api/dashboard_livesearch.php?dashsearch=') //GET method
+        .then(response => response.text())
+        .then(data => {
+            dashResult.innerHTML = data; //Renders echoed rows from php
+        })
+        .catch(error => {
+            dashResult.innerHTML = error;
+            console.log(error);
+        })
     }
 })

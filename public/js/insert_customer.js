@@ -1,5 +1,8 @@
 // Javascript file for inserting customer, bridging between User Interface and Backend server
 // Handles request from User Interface, removes traditional form method
+
+document.getElementById("insertCustomerBtn").addEventListener("click", insertCustomer);
+
 function insertCustomer(){
     let name = document.getElementById("c_name").value;
     let contact = document.getElementById("c_contact").value;
