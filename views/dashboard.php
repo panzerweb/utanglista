@@ -2,9 +2,11 @@
 <!-- place navbar here -->
 <?php 
     //Header layout
+    include("../api/auth.php");///aron d ma access if wala naka log-in
     include("./layout/header.php");
     include("../config/config.php");
     include("../api/get_customer.php");
+
 
 ?>
 <main>
