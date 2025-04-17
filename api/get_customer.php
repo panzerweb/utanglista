@@ -8,7 +8,7 @@
 require("../config/config.php");
 // FETCH ALL DATA
 try {
-    $selectCustomer = "CALL selectAllCustomer();";
+    $selectCustomer = "SELECT * FROM selectallcustomer";
     $fetchResult = mysqli_query($connection, $selectCustomer) or die(mysqli_error($connection));
 
     $customers = mysqli_fetch_all($fetchResult, MYSQLI_ASSOC);
@@ -21,7 +21,7 @@ try {
 
 // FETCH COUNT OF DATA
 try {
-    $customer_count = "CALL getCount();";
+    $customer_count = "SELECT * FROM getcustomercount";
     $countResult = mysqli_query($connection, $customer_count) or die(mysqli_error($connection));
     $count = mysqli_fetch_assoc($countResult);
 
@@ -35,7 +35,7 @@ try {
 
 // FETCH DATA BASED ON BALANCE
 try {
-    $customerByBalance = "CALL customerByBalance()";
+    $customerByBalance = "SELECT * FROM customerbybalance";
     $sortResult = mysqli_query($connection, $customerByBalance);
 
     $sortByBalance = mysqli_fetch_all($sortResult, MYSQLI_ASSOC);
