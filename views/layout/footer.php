@@ -15,6 +15,7 @@
   <script src="../public/js/customer_page_livesearch.js"></script>
   <script src="../public/js/dashboard_livesearch.js"></script>
   <script src="../public/js/status_filter.js"></script>
+  <script src="../public/js/delete_customer.js"></script>
 
   <!-- Bootstrap JavaScript Libraries -->
   <script src="../public/css/bootstrap/js/bootstrap.bundle.min.js"></script>

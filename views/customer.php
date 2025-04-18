@@ -170,14 +170,15 @@
                                                         <?php include("./components/payment_modal.php") ?>
 
                                                         <!-- ====== Delete Button ====== -->
-                                                        <a
-                                                            id="<?php echo $customer["id"]?>"
+                                                        <button
+                                                            type="button"
+                                                            name="delete_btn"
+                                                            id="delete_btn_<?php echo $customer["id"]?>"
                                                             class="btn btn-danger"
-                                                            href="../api/delete_customer.php?customer_id=<?php echo $customer['id']; ?>"
-                                                            role="button"
-                                                            >Delete</a
+                                                            onclick="deleteCustomer(<?php echo $customer['id']?>)"
                                                         >
-                                                        
+                                                            Delete
+                                                        </button>
                                                     </div>
                                                                 
                                                 </td>
@@ -220,6 +221,8 @@
 
                 </div>
 </div>
+
+
 </main>
 
 
