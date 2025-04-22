@@ -6,6 +6,8 @@
     include("./layout/header.php");
     include("../config/config.php");
     include("../api/get_customer.php");
+    include("../api/get_product.php");
+    include("../api/get_stats_dashboard.php");
 
 
 ?>
@@ -16,7 +18,7 @@
                 <div class="mt-4 mb-3">
                     <h1>Hello, 
                         <!-- Admin is placeholder, apply Session for a logged in user -->
-                        <?php echo "Admin" ?>
+                        <?php echo htmlspecialchars($_SESSION["admin_name"]) ?>
                     </h1>
                 </div>
             </div>
@@ -37,7 +39,7 @@
                                 <span class="lead fw-bold fs-2 text-center">
                                     <!-- Displays total count of customers -->
                                     <?php
-                                        echo $totalCount;
+                                        echo htmlspecialchars($totalCount);
                                     ?>
                                 </span>
                             </div>
@@ -54,7 +56,7 @@
                                 <span class="lead fw-bold fs-2 text-center">
                                     <!-- Echo is placeholder -->
                                     <?php
-                                        echo "4,500.00";
+                                        echo htmlspecialchars($totaluncollectedAmount);
                                     ?>
                                 </span>
                             </div>
@@ -72,7 +74,7 @@
                                 <span class="lead fw-bold fs-2 text-center">
                                     <!-- Echo is placeholder -->
                                     <?php
-                                        echo "10,500.00";
+                                        echo htmlspecialchars($totalCollectedAmount);
                                     ?>
                                 </span>
                             </div>
@@ -89,7 +91,7 @@
                                 <span class="lead fw-bold fs-2 text-center">
                                     <!-- Echo is placeholder -->
                                     <?php
-                                        echo "23";
+                                        echo htmlspecialchars($totalProdCount);
                                     ?>
                                 </span>
                             </div>
@@ -119,7 +121,7 @@
 
                         <!-- ====== Add Customer Button ====== -->
 
-                        <div class="add-customer-button">
+                        <div class="add-customer-button d-grid gap-2">
                             <button
                                 type="button"
                                 class="btn action-button"
@@ -150,7 +152,7 @@
 
                         <!-- ====== Add Product Button ====== -->
 
-                        <div class="add-product-button">
+                        <div class="add-product-button d-grid gap-2">
                             <button
                                 type="button"
                                 class="btn action-button w-100"
@@ -174,7 +176,7 @@
 
                         <!-- ====== Add Transaction Button ====== -->
 
-                        <div class="transaction-button">
+                        <div class="transaction-button d-grid gap-2">
                             <button
                                 type="button"
                                 class="btn action-button w-100"

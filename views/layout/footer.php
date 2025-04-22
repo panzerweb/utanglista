@@ -16,6 +16,10 @@
   <script src="../public/js/dashboard_livesearch.js"></script>
   <script src="../public/js/status_filter.js"></script>
   <script src="../public/js/delete_customer.js"></script>
+  <script src="../public/js/insert_transaction.js"></script>
+  <script src="../public/js/transaction_page_livesearch.js"></script>
+  <script src="../public/js/bydate_calendar.js"></script>
+  <script src="../public/js/payment.js"></script>
 
   <!-- Bootstrap JavaScript Libraries -->
   <script src="../public/css/bootstrap/js/bootstrap.bundle.min.js"></script>
