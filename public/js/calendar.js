@@ -1,4 +1,8 @@
 //FullCalendarJS code template
+/*
+    This calendar does not fetch data by each date.
+    Future features will be added...
+*/
 document.addEventListener('DOMContentLoaded', function() {
 var calendarEl = document.getElementById('calendar');
 var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -8,7 +12,8 @@ var calendar = new FullCalendar.Calendar(calendarEl, {
             title: "Sample Alert",
             text: "You clicked a day!",
             icon: "question"
-          });
+        });
+        // console.log(info.dateStr);
     }
 });
 calendar.render();

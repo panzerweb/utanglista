@@ -7,9 +7,9 @@
       </div>
 
       <!-- Payment form (sending ID via POST hidden input) ? Fetch : traditional Php form -->
-      <form action="" method="post">
+      <!-- <form action="../api/payment.php" method="post"> -->
         <div class="modal-body">
-            <input type="hidden" name="id" value="<?php echo $customer['id']; ?>">
+            <input type="hidden" name="id" value="<?php echo $customer['id']; ?>" id="<?php echo $customer['id']; ?>">
           
             <h3>Balance: 
                 <span class="badge text-bg-secondary">
@@ -23,7 +23,7 @@
                     type="number"
                     class="form-control"
                     name="payment_amount"
-                    id="payment_amount"
+                    id="payment_amount_<?php echo $customer['id']; ?>"
                     aria-describedby="helpId"
                     placeholder="Amount"
                 />
@@ -32,9 +32,11 @@
 
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <input type="submit" name="submit" class="btn btn-success" value="Update">
+          <button type="button" class="btn btn-success" onclick="insertPayment(<?php echo $customer['id']; ?>)">Payment</button>
+          <!-- <input type="submit" name="submit" class="btn btn-success" value="Payment"> -->
+
         </div>
-      </form>
+      <!-- </form> -->
     </div>
   </div>
 </div>
