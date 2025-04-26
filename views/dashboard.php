@@ -115,7 +115,7 @@
                                 class="form-control border border-1 border-secondary rounded-3 w-75"
                                 id="dash-livesearch"
                                 aria-describedby="helpId"
-                                placeholder="Search"
+                                placeholder="🔍Search"
                             />
                         </div>
 
@@ -219,7 +219,7 @@
 
                             <!-- ====== Leaderboard: Table for highest to lowest balance -->
 
-                            <table class="table table-hover mb-0">
+                            <table class="table table-hover mb-0 table-contain">
                                 <thead class="table-light">
                                     <tr>
                                     <th scope="col">Ranking</th>
@@ -238,7 +238,7 @@
                                                 <?php echo htmlspecialchars($customer['c_name'] ? $customer['c_name'] : '<td class="text-center">---</td>'); ?>
                                             </td>
                                             <td>
-                                                <?php echo htmlspecialchars($customer['balance']); ?>
+                                                ₱ <?php echo htmlspecialchars($customer['balance']); ?>
                                             </td>
                                         </tr>
                                     <?php } ?>

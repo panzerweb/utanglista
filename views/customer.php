@@ -65,7 +65,7 @@
                                         class="form-control border border-1 border-secondary rounded-3 w-100"
                                         id="livesearch"
                                         aria-describedby="helpId"
-                                        placeholder="Search"
+                                        placeholder="🔍Search"
                                     />
                                 </div>
                                 <!-- ====== Add Customer Button ====== -->
@@ -97,21 +97,28 @@
                                 
                                 <!-- ====== Shows total Count of Customers ====== -->
                                 
-                                <div class="customer-wrapper">
+                                <div class="customer-wrapper position-sticky bg-white top-0 z-1 py-2">
                                     <div class="customer-box">
-                                        <h3 class="position-sticky top-0 bg-white z-1 py-2">
+                                        <h3 class="position-sticky top-0 z-1 py-2">
                                             <div class="d-flex align-items-center gap-1">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
                                                     <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5.784 6A2.24 2.24 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.3 6.3 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5"/>
                                                 </svg>
                                                 Total customer
                                                 (
-                                                <?php
-                                                    echo $totalCount;
-                                                ?>
+                                                <span class="text-success">
+                                                    <?php
+                                                        echo $totalCount;
+                                                    ?>
+                                                </span>
                                                 )
                                             </div>
+                                            <span class="fs-5">
+                                                Interest Rate: 
+                                                <span class="text-success">5%</span>
+                                            </span>
                                         </h3>
+                                        
                                     </div>
                                 </div>
                                 <table class="table table-hover mb-0">
@@ -119,9 +126,10 @@
                                         <tr>
                                             <!-- <th>Id</th> -->
                                             <th>Name</th>
-                                            <th>Contact No.</th>
+                                            <!-- <th>Contact No.</th> -->
                                             <th>Balance</th>
                                             <th>Monthly Interest</th>
+                                            <!-- <th>Interest Rate</th> -->
                                             <th>Status</th>
                                             <th class="text-center">Action</th>
                                         </tr>
@@ -133,15 +141,18 @@
                                                 <td>
                                                     <?php echo htmlspecialchars($customer['c_name'] ? $customer['c_name'] : '<td class="text-center">---</td>'); ?>
                                                 </td>
-                                                <td class="text-center">
+                                                <!-- <td class="text-center">
                                                     <?php echo htmlspecialchars($customer['c_contact'] ? $customer['c_contact'] : '---'); ?>
+                                                </td> -->
+                                                <td class="text-center">
+                                                    ₱ <?php echo htmlspecialchars($customer['balance']); ?>
                                                 </td>
                                                 <td class="text-center">
-                                                    <?php echo htmlspecialchars($customer['balance']); ?>
+                                                    ₱ <?php echo number_format(htmlspecialchars($customer['monthly_interest']), 2); ?>
                                                 </td>
-                                                <td class="text-center">
-                                                    <?php echo htmlspecialchars($customer['monthly_interest']); ?>
-                                                </td>
+                                                <!-- <td class="text-center">
+                                                    <?php echo number_format($interest, 2); ?>%
+                                                </td> -->
                                                 <td class="text-center">
                                                     <?php echo htmlspecialchars($customer['status']); ?>
                                                 </td>
