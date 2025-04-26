@@ -78,5 +78,5 @@ else {
                 echo "</tr>";
         }
     } else {
-        echo "<div class='fs-4 fw-bold w-100 py-3'>No results found</div>"; // Display an empty query
+        echo "<td colspan='6'  class='text-center text-muted'>No results found</td>"; // Display an empty query
     }

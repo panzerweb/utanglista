@@ -28,6 +28,7 @@
     --secondary: #FFFFFF;
     --accent: #FFCF50;
     --accent-second: #798645;
+    --fc-today-bg-color: #0ec06d;
 }
 
 /* Body */
@@ -41,3 +42,19 @@ main{
 }
 
 /* Components */
+
+/* Full Calendar JS customization */
+.fc .fc-daygrid-day.fc-day-today  {
+    background-color: var(--fc-today-bg-color);
+    color: #ffffff;
+}
+.fc .fc-daygrid-day-number{
+    color: #121212;
+    font-weight: 500;
+}
+.fc .fc-daygrid-day-frame{
+    cursor: pointer;
+}
+.clicked-day {
+    background-color: #8dcaff !important;
+}
