@@ -1,6 +1,8 @@
 <?php 
 // Backend logic for filter search using fetch API inside customer page ONLY
 // Logic supported by status_filter.js which uses Fetch API
+// This code is specifically designed for the backend of 
+// fetching data by status (PAID, PENDING).
 
 
 require("../config/config.php");
@@ -96,5 +98,5 @@ else {
                 echo "</tr>";
         }
     } else {
-        echo "<div class='fs-4 fw-bold w-100 py-3'>No results found</div>"; // Display an empty query
+        echo "<td colspan='6'  class='text-center text-muted'>No results found</td>"; // Display an empty query
     }

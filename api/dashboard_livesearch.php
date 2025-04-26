@@ -48,7 +48,7 @@ else{
         mysqli_free_result($result);
         mysqli_next_result($connection);
     }else{
-        echo "<div class='fs-4 fw-bold w-100 py-3'>No results found</div>"; //No query row
+        echo "<td colspan='3' class='text-center text-muted'>No results found</td>"; //No query row
     }
 
 }
