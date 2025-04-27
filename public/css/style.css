@@ -24,10 +24,10 @@
 /* Root Colors */
 :root{
     --background: #F7F6FE;
-    --primary: #198754;
+    --primary: #13795b;
     --secondary: #FFFFFF;
-    --accent: #FFCF50;
-    --accent-second: #798645;
+    --accent: #ffc107;
+    --accent-second: #1aa179;
     --fc-today-bg-color: #0ec06d;
 }
 
@@ -39,6 +39,15 @@ body{
 /* All Main */
 main{
     padding-top: 4rem !important;
+}
+
+table tr td{
+    font-family: 'Roboto';
+}
+
+h1, h3{
+    font-family: 'Roboto';
+    font-weight: bold;
 }
 
 /* Components */
@@ -57,4 +66,8 @@ main{
 }
 .clicked-day {
     background-color: #8dcaff !important;
+}
+.fc .fc-col-header-cell-cushion{
+    text-decoration: none;
+    color: #121212;
 }

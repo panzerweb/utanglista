@@ -19,9 +19,10 @@ else {
         while ($customer = $result->fetch_assoc()) {
             echo "<tr>";
             echo "<td>" . htmlspecialchars($customer['c_name']) . "</td>";
-            echo "<td class='text-center'>" . htmlspecialchars($customer['c_contact'] ? $customer['c_contact'] : '---') . "</td>";
-            echo "<td class='text-center'>" . htmlspecialchars($customer['balance']) . "</td>";
-            echo "<td class='text-center'>" . htmlspecialchars($customer['monthly_interest']) . "</td>";
+            // echo "<td class='text-center'>" . htmlspecialchars($customer['c_contact'] ? $customer['c_contact'] : '---') . "</td>";
+            echo "<td class='text-center'>₱ " . htmlspecialchars($customer['balance']) . "</td>";
+            echo "<td class='text-center'>₱ " . htmlspecialchars($customer['monthly_interest']) . "</td>";
+            // echo "<td class='text-center'>" . htmlspecialchars($customer['interest_rate']) . "</td>";
             echo "<td class='text-center'>" . htmlspecialchars($customer['status']) . "</td>";
             // echo below applies the action buttons
             echo <<<HTML

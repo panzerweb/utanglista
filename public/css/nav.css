@@ -8,8 +8,8 @@ Note: Identify the purpose of a styling code blocks through comments
     background: var(--primary);
 }
 .navbar-nav .nav-link.active, .navbar-nav .nav-link.show{
-    color: yellow !important;
+    color: var(--accent) !important;
 }
 .navbar-nav .nav-link:hover{
-    color: yellow !important;
+    color: var(--accent) !important;
 }
