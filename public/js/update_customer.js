@@ -23,7 +23,7 @@ function updateCustomer(id){
     formData.append("status", status);
 
     // Use Fetch API to send to server
-    fetch(`../../api/edit_customer.php`, {
+    fetch(`../api/edit_customer.php`, {
         method: 'POST',
         body: formData,
     })

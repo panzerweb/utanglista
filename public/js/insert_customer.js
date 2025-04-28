@@ -23,7 +23,7 @@ function insertCustomer(){
     formData.append("c_name", name);
     formData.append("c_contact", contact);
     // POST method using Fetch API
-    fetch('../../api/add_customer.php', {
+    fetch('../api/add_customer.php', {
         method: 'POST',
         body: formData
     })
@@ -51,6 +51,7 @@ function insertCustomer(){
                 showConfirmButton: false,
                 timer: 1000,
             });
+            console.log(data)
         }
     })
     .catch(err => {

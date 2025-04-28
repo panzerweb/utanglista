@@ -1,7 +1,9 @@
 <!-- Registration and Homepage View -->
 <!-- Php Code for Registration -->
 <?php
-
+if (isset($_GET['error']) && $_GET['error'] === 'not_logged_in') {
+    echo "<script>alert('You must be logged in to access this page!');</script>";
+}
 ?>
         
 

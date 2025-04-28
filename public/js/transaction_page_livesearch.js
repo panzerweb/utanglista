@@ -6,7 +6,7 @@ if (transactLiveSearchInput && transactionResult) {
     transactLiveSearchInput.addEventListener('keyup', () => {
         const query = transactLiveSearchInput.value;
         if (query != '') {
-            fetch('../../api/transaction_livesearch.php?transact_search=' + encodeURIComponent(query))
+            fetch('../api/transaction_livesearch.php?transact_search=' + encodeURIComponent(query))
             .then(res => res.text())
             .then(data => {
                 transactionResult.innerHTML = data;
@@ -16,7 +16,7 @@ if (transactLiveSearchInput && transactionResult) {
                 console.log(error);
             })
         } else {
-            fetch('../../api/transaction_livesearch.php')
+            fetch('../api/transaction_livesearch.php')
             .then(res => res.text())
             .then(data => {
                 transactionResult.innerHTML = data;

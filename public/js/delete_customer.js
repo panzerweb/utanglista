@@ -11,7 +11,7 @@ function deleteCustomer(id){
         confirmButtonText: "Yes, delete it!"
       }).then((result) => {
         if (result.isConfirmed) {
-            fetch(`../../api/delete_customer.php?customer_id=${id}`, {
+            fetch(`../api/delete_customer.php?customer_id=${id}`, {
                 method: 'POST',
             })
             .then(response => response.text())

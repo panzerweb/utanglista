@@ -13,15 +13,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $check_result = mysqli_query($connection, $check);
 
     if (mysqli_num_rows($check_result) > 0) {
-        echo "email already exists"; 
+         echo "<script>alert('Email already exist');</script>";
     } else {
         $query = "INSERT INTO users (admin_name, admin_email, admin_password) VALUES ('$name', '$email', '$hashedPassword')";
         $result = mysqli_query($connection, $query);
 
         if ($result) {
-            echo "registered successfully"; 
+            header("Location: ../views/dashboard.php");
         } else {
-            echo "error"; 
+            echo "<script>alert('Incorrect password'); Location: /utanglista/index.php';</script>";
         }
     }
 

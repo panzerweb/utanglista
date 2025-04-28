@@ -7,7 +7,7 @@ if (dashLiveSearch && dashResult) {
         const dashQuery = dashLiveSearch.value;
     
         if(dashQuery !== ''){
-            fetch('../../api/dashboard_livesearch.php?dashsearch=' + encodeURIComponent(dashQuery)) //GET method
+            fetch('../api/dashboard_livesearch.php?dashsearch=' + encodeURIComponent(dashQuery)) //GET method
             .then(response => response.text())
             .then(data => {
                 dashResult.innerHTML = data; //Renders echoed rows from php
@@ -19,7 +19,7 @@ if (dashLiveSearch && dashResult) {
         }
         else{
             // Instead of reloading, we fetch just the default data
-            fetch('../../api/dashboard_livesearch.php?dashsearch=') //GET method
+            fetch('../api/dashboard_livesearch.php?dashsearch=') //GET method
             .then(response => response.text())
             .then(data => {
                 dashResult.innerHTML = data; //Renders echoed rows from php

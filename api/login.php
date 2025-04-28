@@ -23,11 +23,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_SESSION['admin_role'] = $user['admin_role'];
 
             header("Location: ../views/dashboard.php");
+            exit();
         } else {
-            echo "wrong_password";
+            echo "<script>alert('Incorrect password'); window.location.href='/utanglista/index.php';</script>";
+            exit();;
         }
     } else {
-        echo "not_found";
+        echo "<script>alert('User not found'); window.location.href='/utanglista/index.php';</script>";
+        exit();
     }
 
     mysqli_close($connection);
