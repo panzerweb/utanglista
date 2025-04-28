@@ -14,16 +14,11 @@
 
         <!-- ====== Row for search ====== -->
 
-        <div class="row justify-content-around">
-            <div class="col-12 col-lg-12">
-                <div class="mt-4 mb-3">
-                    <h1>Hello, 
-                        <!-- Admin is placeholder, apply Session for a logged in user -->
-                        <?php echo htmlspecialchars($_SESSION["admin_name"]) ?>
-                    </h1>
-                </div>
-            </div>
-            <div class="col-12 col-lg-8">
+        <div class="row justify-content-around" id="search-and-transaction">
+            <!-- Include the admin header greeting -->
+            <?php include('./components/welcome_admin.php') ?>
+
+            <div class="order-2 order-lg-1 col-12 col-lg-8">
                 <div class="shadow p-2 border border-1 rounded-4">
                     <div class="flex-grow-1">
                         <input
@@ -36,7 +31,7 @@
                     </div>
                 </div>  
             </div>
-            <div class="col-12 col-lg-4">
+            <div class="order-1 order-lg-2 col-12 col-lg-4">
                 <div class="shadow p-2 border border-1 rounded-4">
                     <div class="d-grid gap-2">
                         <button
@@ -79,7 +74,7 @@
                             
                         </div>
                     </div>
-                    <table class="table table-hover mb-0">
+                    <table class="table table-hover table-striped table-bordered mb-0">
                         <thead>
                             <tr>
                                 <!-- <th>Id</th> -->
@@ -109,7 +104,7 @@
                                             <?php echo htmlspecialchars($transaction["c_name"]) ?>
                                         </td>
                                         <td class='text-center'>
-                                            <?php echo htmlspecialchars($transaction["qty"]) ?>
+                                            <span class="badge bg-success"><?php echo htmlspecialchars($transaction["qty"]) ?></span>
                                         </td>
                                         <td class='text-center'>
                                             ₱ <?php echo htmlspecialchars($transaction["amount"]) ?>

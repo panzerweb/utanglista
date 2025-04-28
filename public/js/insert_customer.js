@@ -32,7 +32,7 @@ function insertCustomer(){
         //If the message from server echoes success, return to page
         if(data.trim() === 'success'){
             Swal.fire({
-                position: "top-end",
+                position: "center",
                 icon: "success",
                 title: "Customer added!",
                 showConfirmButton: false,

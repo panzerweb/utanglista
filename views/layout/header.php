@@ -24,6 +24,7 @@
         <link rel="stylesheet" href="../public/css/product.css">
         <link rel="stylesheet" href="../public/css/customer.css">
         <link rel="stylesheet" href="../public/css/profile.css">
+        <link rel="stylesheet" href="../public/css/transaction.css">
 
         <!-- CSS Scripts -->
         <link rel="stylesheet" href="../node_modules/sweetalert2/dist/sweetalert2.min.css">

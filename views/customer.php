@@ -10,14 +10,10 @@
     
 <div class="container">
                 <div class="row justify-content-around align-items-start mx-1 mt-3 mb-1">
-                    <div class="col-12 col-lg-12">
-                        <div class="mt-3 mb-3">
-                            <h1>Hello, 
-                                <!-- Admin is placeholder, apply Session for a logged in user -->
-                                <?php echo htmlspecialchars($_SESSION["admin_name"]) ?>
-                            </h1>
-                        </div>
-                    </div>
+                    
+                    <!-- Include the admin header greeting -->
+                    <?php include('./components/welcome_admin.php') ?>
+
                     <!-- Column for table of customers and action buttons -->
                     <div class="col-12 col-lg-8">
                         <div class="shadow p-2 border border-1 rounded-4">
@@ -121,7 +117,7 @@
                                         
                                     </div>
                                 </div>
-                                <table class="table table-hover mb-0">
+                                <table class="table table-hover table-striped table-bordered mb-0">
                                     <thead>
                                         <tr>
                                             <!-- <th>Id</th> -->
@@ -154,7 +150,15 @@
                                                     <?php echo number_format($interest, 2); ?>%
                                                 </td> -->
                                                 <td class="text-center">
-                                                    <?php echo htmlspecialchars($customer['status']); ?>
+                                                    <?php if($customer["status"] == 'PENDING') { ?>
+                                                        <span class="badge rounded-pill text-bg-danger">
+                                                            <?php echo htmlspecialchars($customer['status']); ?>
+                                                        </span>
+                                                    <?php } else { ?>
+                                                        <span class="badge rounded-pill text-bg-success">
+                                                            <?php echo htmlspecialchars($customer['status']); ?>
+                                                        </span>
+                                                    <?php } ?>
                                                 </td>
                                                 <td>
                                                     <div class="d-flex gap-2">
@@ -222,22 +226,48 @@
 
                             <!-- Displays greatest to lowest balance-->
                             <?php foreach($sortByBalance as $customer) { ?>
-                                <div class="leader-entry d-flex justify-content-between align-items-center py-2 px-2 rounded-3 mb-2 bg-secondary bg-opacity-25">
-                                    <span class="fw-semibold fs-5">
+                                <?php if($customer["ranking"] == 1) {?>
+                                <div class="leader-entry d-flex justify-content-between align-items-center py-2 px-2 rounded-3 mb-2 bg-warning bg-opacity-50">        
+                                    <span class="fw-semibold fs-5 d-flex align-items-center">
+                                        <span class="fs-3">🥇</span>
                                         <?php echo htmlspecialchars($customer['c_name']) ?>
                                     </span>
-                                    <?php if($customer['ranking'] == 1){ ?>
-                                        <span class="badge bg-warning text-dark fs-6 px-3 py-1">
-                                            <?php echo htmlspecialchars($customer['ranking']); ?>
+                                    
+                                    <span class="badge bg-warning text-dark fs-6 px-3 py-1">
+                                        <?php echo htmlspecialchars($customer['ranking']); ?>
+                                    </span>
+                                </div>
+                                <?php } else if($customer["ranking"] == 2) { ?>
+                                    <div class="leader-entry d-flex justify-content-between align-items-center py-2 px-2 rounded-3 mb-2 bg-info bg-opacity-50">
+                                        <span class="fw-semibold fs-5 d-flex align-items-center">
+                                            <span class="fs-3">🥈</span>
+                                            <?php echo htmlspecialchars($customer['c_name']) ?>
                                         </span>
-                                    <?php } else{ ?>
                                         <span class="badge bg-light text-dark fs-6 px-3 py-1">
                                             <?php echo htmlspecialchars($customer['ranking']); ?>
                                         </span>
-                                    <?php } ?>
-    
-
-                                </div>
+                                    </div>
+                                <?php } else if($customer["ranking"] == 3) { ?>
+                                    <div class="leader-entry d-flex justify-content-between align-items-center py-2 px-2 rounded-3 mb-2 bg-light bg-opacity-25">
+                                        <span class="fw-semibold fs-5 d-flex align-items-center">
+                                            <span class="fs-3">🥉</span>
+                                            <?php echo htmlspecialchars($customer['c_name']) ?>
+                                        </span>
+                                        <span class="badge bg-light text-dark fs-6 px-3 py-1">
+                                            <?php echo htmlspecialchars($customer['ranking']); ?>
+                                        </span>
+                                    </div>
+                                <?php } else { ?>
+                                    <div class="leader-entry d-flex justify-content-between align-items-center py-2 px-2 rounded-3 mb-2 bg-secondary bg-opacity-25">
+                                        <span class="fw-semibold fs-5 d-flex align-items-center">
+                                            <span class="fs-3">🏵️</span>
+                                            <?php echo htmlspecialchars($customer['c_name']) ?>
+                                        </span>
+                                        <span class="badge bg-light text-dark fs-6 px-3 py-1">
+                                            <?php echo htmlspecialchars($customer['ranking']); ?>
+                                        </span>
+                                    </div>
+                                <?php } ?>
                             <?php } ?>
 
                         </div>
