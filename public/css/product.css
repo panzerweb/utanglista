@@ -1,1 +1,153 @@
 /* CSS for Product */
+.main-content {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+
+
+.admin-header {
+    background-color: #94B98E;
+    padding: 10px 20px;
+    border-radius: 0 0 20px 20px;
+    color: #000;
+    font-weight: bold;
+    font-size: 24px;
+}
+
+
+.store-title {
+    text-align: center;
+    margin: 30px 0;
+}
+
+.store-title h1 {
+    font-size: 32px;
+}
+
+
+.categories {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+
+.category-card {
+    background-color: #ccc;
+    width: 200px;
+    height: 120px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+
+.actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.add-product, .edit-product {
+    background-color: #94B98E;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.add-product:hover, .edit-product:hover {
+    background-color: #789c74;
+}
+
+
+.all-products {
+    margin-top: 30px;
+}
+
+.products-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.filter-search {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.search-input {
+    padding: 5px 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+.search-btn {
+    background-color: #94B98E;
+    border: none;
+    padding: 7px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.search-btn:hover {
+    background-color: #789c74;
+}
+
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 20px;
+}
+
+
+.product-card {
+    background-color: #ccc;
+    padding: 10px;
+    border-radius: 15px;
+    position: relative;
+    text-align: center;
+}
+
+
+.discount-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: #333;
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 12px;
+}
+
+
+.product-image {
+    width: 100%;
+    height: 120px;
+    background-color: #aaa;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+
+.product-name {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+/* product info */
+.product-info {
+    font-size: 14px;
+    color: #555;
+}
