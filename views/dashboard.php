@@ -11,17 +11,16 @@
 
 
 ?>
+<!-- Tutorial Added -->
+<script defer src="../public/js/dashboard_tutorial.js"></script>
+
 <main>
     <div class="container">
         <div class="row justify-content-center mx-1">
-            <div class="col-12 col-lg-12">
-                <div class="mt-4 mb-3">
-                    <h1>Hello, 
-                        <!-- Admin is placeholder, apply Session for a logged in user -->
-                        <?php echo htmlspecialchars($_SESSION["admin_name"]) ?>
-                    </h1>
-                </div>
-            </div>
+            
+            <!-- Include the admin header greeting -->
+            <?php include('./components/welcome_admin.php') ?>
+
             <!-- Statistics -->
             <div class="col-12 col-lg-12 statistic-wrapper shadow p-3 rounded-3">
                 <div class="row justify-content-around align-items-center">
@@ -135,7 +134,19 @@
                                     Add Customer
                                 </div>
                             </button>
+                            
                         </div>
+                        <!-- Tutorial Button -->
+                        <button
+                            type="button"
+                            class="btn btn-dark"
+                            id="dash-tutorial-btn"
+                        >
+                            <span class="fs-5">
+                            📙Tutorial
+                            </span>
+                        </button>
+                        
 
                         <!-- Include the Modal from components folder -->
                             <?php
@@ -219,7 +230,7 @@
 
                             <!-- ====== Leaderboard: Table for highest to lowest balance -->
 
-                            <table class="table table-hover mb-0 table-contain">
+                            <table class="table table-hover table-striped table-bordered mb-0 table-contain">
                                 <thead class="table-light">
                                     <tr>
                                     <th scope="col">Ranking</th>
@@ -232,7 +243,11 @@
                                     <?php foreach($sortByBalance as $customer) { ?>
                                         <tr>
                                             <td class="fw-bold">
-                                                <?php echo htmlspecialchars($customer['ranking']); ?>
+                                                <?php if($customer["ranking"] == 1) { ?>
+                                                    <span class="badge bg-warning text-dark fs-6"><?php echo htmlspecialchars($customer['ranking']); ?></span>
+                                                <?php } else { ?>
+                                                    <span class="badge bg-secondary text-light fs-6"><?php echo htmlspecialchars($customer['ranking']); ?></span>
+                                                <?php } ?>
                                             </td>
                                             <td>
                                                 <?php echo htmlspecialchars($customer['c_name'] ? $customer['c_name'] : '<td class="text-center">---</td>'); ?>

@@ -40,7 +40,14 @@ else{
     if($result->num_rows > 0){
         while ($customer = $result->fetch_assoc()) {
             echo "<tr>";
-            echo "<td class='fw-bold'>" . htmlspecialchars($customer['ranking']) . "</td>";
+            
+            if($customer["ranking"] == 1){
+                echo "<td class='fw-bold'>" . "<span class='badge bg-warning text-dark fs-6'>" . htmlspecialchars($customer['ranking']) . "</span>" . "</td>";
+            }
+            else{
+                echo "<td class='fw-bold'>" . "<span class='badge bg-secondary text-light fs-6'>" . htmlspecialchars($customer['ranking']) . "</span>" . "</td>";
+            }
+
             echo "<td>" . htmlspecialchars($customer['c_name']) . "</td>";
             echo "<td>" . htmlspecialchars($customer['balance']) . "</td>";
             echo "<tr>";
