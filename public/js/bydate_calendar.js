@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             console.log(clickedDate);
             // Sample syntax: SELECT * FROM transaction WHERE created_at LIKE '2025-04-2%';
-            fetch('../../api/fetch_by_date.php?fetchdate=' + encodeURIComponent(clickedDate))
+            fetch('../api/fetch_by_date.php?fetchdate=' + encodeURIComponent(clickedDate))
             .then(response => response.text())
             .then(data => {
                 transactionResult.innerHTML = data;

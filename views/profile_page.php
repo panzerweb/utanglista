@@ -51,13 +51,13 @@
                         </div>
                         <div class="d-flex justify-content-between mt-4">
                             <button type="submit" class="btn btn-primary-custom">Update Profile</button>
-                            <button type="button" class="btn btn-logout">Log Out</button>
-                        </div>
+                            <a href="../api/logout.php" class="btn btn-logout">Log Out</a>
+                         </div>
                     </form>
                 </div>
             </div>
         </div>
-    </div>
+    </div>  
 </main>
 <!-- place footer here -->
 <?php 

@@ -15,7 +15,7 @@ statusCheckBoxes.forEach(checkbox => {
         console.log(enabledStatus); //prints the checked status
 
         if (enabledStatus.length > 0) {
-            fetch('../../api/status_fetch.php?status=' + enabledStatus)
+            fetch('../api/status_fetch.php?status=' + enabledStatus)
             .then(response => response.text())
             .then(data => {
                 liveResult.innerHTML = data;
@@ -25,7 +25,7 @@ statusCheckBoxes.forEach(checkbox => {
                 console.log(error);
             })
         } else {
-            fetch('../../api/status_fetch.php')
+            fetch('../api/status_fetch.php')
             .then(response => response.text())
             .then(data => {
                 liveResult.innerHTML = data;
