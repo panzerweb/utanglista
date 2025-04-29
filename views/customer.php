@@ -6,6 +6,9 @@
 
 ?>
 
+<!-- Tutorial Added -->
+<script defer src="../public/js/tutorial/customer_tutorial.js"></script>
+
 <main>
     
 <div class="container">
@@ -89,7 +92,7 @@
                         
                         </div>
                         <div class="mt-4 mb-3">
-                            <div class="table-responsive rounded-4 shadow p-2 border border-1" style="max-height: 400px; overflow-y: auto;">
+                            <div class="table-responsive rounded-4 shadow p-2 pt-0 border border-1" style="max-height: 400px; overflow-y: auto;">
                                 
                                 <!-- ====== Shows total Count of Customers ====== -->
                                 

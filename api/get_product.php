@@ -39,3 +39,18 @@ try {
 } catch (\Throwable $th) {
     throw $th;
 }
+//FETCH ALL PRODUCTS WITH THE JOIN TABLE OF CATEGORY
+try {
+    $fetchWithCategory = "SELECT prod_name, prod_price, category_name, prod_image
+                        FROM products
+                        INNER JOIN category
+                        ON products.category_id = category.id;"
+                    ;
+    $result = mysqli_query($connection, $fetchWithCategory);
+    $productsWithCategory = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+    mysqli_free_result($result);
+    mysqli_next_result($connection); //Prepares next query
+} catch (\Throwable $th) {
+    throw $th;
+}

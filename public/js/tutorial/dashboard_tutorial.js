@@ -132,7 +132,7 @@ function loadDashTutorial(){
             });
         }
     });
-    sessionStorage.setItem('preload', 'true'); // Un-comment to prevent repeat tutorials
+    sessionStorage.setItem('preload', 'true'); // Un-comment to prevent repeat tutorial
 }
 
 let reopenTutorialBtn = document.getElementById("dash-tutorial-btn");

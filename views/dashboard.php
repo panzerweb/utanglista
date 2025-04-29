@@ -12,12 +12,11 @@
 
 ?>
 <!-- Tutorial Added -->
-<script defer src="../public/js/dashboard_tutorial.js"></script>
+<script defer src="../public/js/tutorial/dashboard_tutorial.js"></script>
 
 <main>
     <div class="container">
         <div class="row justify-content-center mx-1">
-            
             <!-- Include the admin header greeting -->
             <?php include('./components/welcome_admin.php') ?>
 
@@ -136,18 +135,6 @@
                             </button>
                             
                         </div>
-                        <!-- Tutorial Button -->
-                        <button
-                            type="button"
-                            class="btn btn-dark"
-                            id="dash-tutorial-btn"
-                        >
-                            <span class="fs-5">
-                            📙Tutorial
-                            </span>
-                        </button>
-                        
-
                         <!-- Include the Modal from components folder -->
                             <?php
                             include('./components/addcustomer_modal.php');
@@ -182,7 +169,7 @@
                         <!-- Include the Modal from components folder -->
                         <?php
                             include('./components/addproduct_modal.php');
-                            ?>
+                        ?>
                         
 
                         <!-- ====== Add Transaction Button ====== -->

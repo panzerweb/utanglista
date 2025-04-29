@@ -22,7 +22,7 @@ if(isset($_GET["fetchdate"])){
             echo "<tr>";
                 echo "<td>" . htmlspecialchars($transaction['prod_name']) . "</td>";
                 echo "<td class='text-center'>" . htmlspecialchars($transaction['c_name']) . "</td>";
-                echo "<td class='text-center'>" . htmlspecialchars($transaction['qty']) . "</td>";
+                echo "<td class='text-center'><span class='badge bg-success'>" . htmlspecialchars($transaction['qty']) . "</span></td>";
                 echo "<td class='text-center'>" . htmlspecialchars($transaction['amount']) . "</td>";
                 echo "<td class='text-center'>" . date_format($date, "Y/m/d H:i:s A") . "</td>";
             echo "</tr>";

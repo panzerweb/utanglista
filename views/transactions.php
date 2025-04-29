@@ -9,6 +9,9 @@
     include("../api/get_transaction.php");
 ?>
 
+<!-- Tutorial Added -->
+<script defer src="../public/js/tutorial/transaction_tutorial.js"></script>
+
 <main>
     <div class="container">
 
