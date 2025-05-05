@@ -21,29 +21,16 @@
 
         <!-- Row for Select dropdown filter by months -->
         <div class="row">
+            <!-- Select for year and month -->
             <div class="col-3">
-                <!-- Select for months -->
-                <div class="mb-3">
-                    <select
-                        class="form-select form-select-lg"
-                        name=""
-                        id=""
-                    >
-                        <option selected>Select one</option>
-                        <option value="">January</option>
-                        <option value="">February</option>
-                        <option value="">March</option>
-                        <option value="">April</option>
-                        <option value="">May</option>
-                        <option value="">June</option>
-                        <option value="">July</option>
-                        <option value="">August</option>
-                        <option value="">September</option>
-                        <option value="">October</option>
-                        <option value="">November</option>
-                        <option value="">December</option>
-                    </select>
-                </div>
+                <label for="month-year-select" class="form-label fw-semibold text-start">Year and Month</label>
+                <input type="month" 
+                    name="month-year" 
+                    id="month-year-select" 
+                    class="form-control" 
+                    value=""
+                    onchange="filterByYearMonth()"
+                >
             </div>
         </div>
 
@@ -59,7 +46,7 @@
                     </svg>
                     <div class="info-box-content">
                         <h5 class="fw-semibold text-secondary">Total Customers</h5>
-                        <span class="lead fw-bold fs-2 text-center">
+                        <span class="lead fw-bold fs-2 text-center display-stats">
                             <!-- Displays total count of customers -->
                             <?php
                                 echo htmlspecialchars($totalCount);
@@ -76,7 +63,7 @@
                     </svg>
                     <div class="info-box-content">
                         <h5 class="fw-semibold text-secondary">Amount to Collect</h5>
-                        <span class="lead fw-bold fs-2 text-center">
+                        <span class="display-stats lead fw-bold fs-2 text-center">
                             <!-- Echo is placeholder -->
                             <?php
                                 echo htmlspecialchars($totaluncollectedAmount);
@@ -94,7 +81,7 @@
                     </svg>
                     <div class="info-box-content">
                         <h5 class="fw-semibold text-secondary">Collected Amount</h5>
-                        <span class="lead fw-bold fs-2 text-center">
+                        <span class="display-stats lead fw-bold fs-2 text-center">
                             <!-- Echo is placeholder -->
                             <?php
                                 echo htmlspecialchars($totalCollectedAmount);
@@ -111,7 +98,7 @@
                     </svg>
                     <div class="info-box-content">
                         <h5 class="fw-semibold text-secondary">Inventory</h5>
-                        <span class="lead fw-bold fs-2 text-center">
+                        <span class="display-stats lead fw-bold fs-2 text-center">
                             <!-- Echo is placeholder -->
                             <?php
                                 echo htmlspecialchars($totalProdCount);
