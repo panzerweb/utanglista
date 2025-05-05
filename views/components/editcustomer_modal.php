@@ -43,6 +43,9 @@
             <!-- Status field-->
             <div class="mb-3">
                 <label for="" class="form-label fw-bold">Status</label>
+                <span class="text-danger text-decoration-underline">
+                  (Highly recommended to not edit this field!)
+                </span>
                 <select
                     class="form-select form-select-lg"
                     name="status"
@@ -60,6 +63,21 @@
                 </select>
             </div>
           
+
+            <!-- Non-editable personal details -->
+            <span class="fs-5 text-muted">Details</span>
+            <div class="my-2 d-flex justify-content-evenly">
+              <div class="">
+                <p>Name:</p>
+                <p>Contact:</p>
+                <p>Balance:</p>
+              </div>
+              <div class="">
+                <p>Monthly Interest:</p>
+                <p>Interest Rate:</p>
+                <p>Status:</p>
+              </div>
+            </div>
         </div>
 
         <div class="modal-footer">

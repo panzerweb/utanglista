@@ -6,14 +6,28 @@
 
 require("../config/config.php");
 
+// PREPARE JSON KEY-VALUE PAIRS
+$statistics = [
+    "totalCount" => 0,
+    "totaluncollectedAmount" => 0,
+    "totalCollectedAmount" => 0,
+    "totalProdCount" => 0,
+];
+
 // FETCH ALL CUSTOMER COUNT
+if (isset($_GET["year_month"])) {
+    $year_month = htmlspecialchars($_GET["year_month"]);
+    $customer_count = "SELECT count(0) AS `totalCount` from `customers` WHERE created_at LIKE '$year_month%';";
+} else {
+   $customer_count = "CALL getCount()";
+}
 try {
-    $customer_count = "SELECT * FROM getcustomercount";
     $countResult = mysqli_query($connection, $customer_count) or die(mysqli_error($connection));
     $count = mysqli_fetch_assoc($countResult);
 
     $totalCount = $count['totalCount'] ? $count['totalCount'] : 0;
-
+    $statistics["totalCount"] = $count['totalCount'] ? $count['totalCount'] : 0;
+    // echo json_encode($totalCount);
     mysqli_free_result($countResult);
     mysqli_next_result($connection); //Prepares next query
 } catch (\Throwable $th) {
@@ -22,26 +36,40 @@ try {
 
 //AMOUNT TO COLLECT
 //FETCH THE TOTAL UNCOLLECTED AMOUNT
-try {
+if (isset($_GET["year_month"])) {
+    $year_month = htmlspecialchars($_GET["year_month"]);
+    $uncollectedQuery = "SELECT SUM(balance) AS uncollectedAmount FROM `customers` WHERE is_deleted=0 AND created_at LIKE '$year_month%';";
+} else {
     $uncollectedQuery = "CALL getTotalUncollectedAmount();"; //Stored Procedure
+}
+try {
     $uncollectedResult = mysqli_query($connection, $uncollectedQuery);
     $uncollectedAmount = mysqli_fetch_assoc($uncollectedResult);
 
     $totaluncollectedAmount = $uncollectedAmount["uncollectedAmount"] ? $uncollectedAmount["uncollectedAmount"] : 0;
+    $statistics["totaluncollectedAmount"] = $uncollectedAmount["uncollectedAmount"] ? $uncollectedAmount["uncollectedAmount"] : 0;
+    // echo json_encode($totaluncollectedAmount);
     mysqli_free_result($uncollectedResult);
     mysqli_next_result($connection);
 } catch (\Throwable $th) {
     throw $th;
 }
 
+
 //COLLECTED AMOUNT
 //FETCH THE TOTAL COLLECTED PAYMENTS
-try {
+if (isset($_GET["year_month"])) {
+    $year_month = htmlspecialchars($_GET["year_month"]);
+    $collectAmountQuery = "SELECT SUM(payment_amount) AS total_collected_amount FROM payment WHERE paid_at LIKE '$year_month%';"; //Stored Procedure
+} else {
     $collectAmountQuery = "CALL getTotalCollectedPayments();"; //Stored Procedure
+}
+try {
     $collectResult = mysqli_query($connection, $collectAmountQuery);
     $collectAmount = mysqli_fetch_assoc($collectResult);
 
     $totalCollectedAmount = $collectAmount["total_collected_amount"] ? $collectAmount["total_collected_amount"] : 0;
+    $statistics["totalCollectedAmount"] = $collectAmount["total_collected_amount"] ? $collectAmount["total_collected_amount"] : 0;
     mysqli_free_result($collectResult);
     mysqli_next_result($connection);
 } catch (\Throwable $th) {
@@ -50,12 +78,19 @@ try {
 
 //INVENTORY
 //FETCH THE TOTAL COUNT OF HOW MANY PRODUCTS
+if (isset($_GET["year_month"])) {
+    $year_month = htmlspecialchars($_GET["year_month"]);
+    $getProductCount = "select count(0) AS `totalInventory` from `products` where (`products`.`is_deleted` = 0) AND created_at LIKE '$year_month%';"; //Views
+} else {
+    $getProductCount = "CALL getProdCount()"; //Views
+
+}
 try {
-    $getProductCount = "SELECT * FROM getproductcount"; //Views
     $countResult = mysqli_query($connection, $getProductCount) or die(mysqli_error($connection));
     $prodCount = mysqli_fetch_assoc($countResult);
 
     $totalProdCount = $prodCount['totalInventory'] ? $prodCount['totalInventory'] : 0;
+    $statistics["totalProdCount"] = $prodCount['totalInventory'] ? $prodCount['totalInventory'] : 0;
     mysqli_free_result($countResult);
     mysqli_next_result($connection); //Prepares next query
 
@@ -63,6 +98,7 @@ try {
     throw $th;
 }
 
+//QUERY FOR TYPE OF PRODUCTS SOLD
 //PRODUCTS SOLD
 try {
     $getProductSold = "SELECT COUNT(DISTINCT prod_id) AS products_sold
@@ -79,6 +115,7 @@ try {
     throw $th;
 }
 
+//QUERY FOR QTY OF SOLD PRODUCTS
 //QTY OF PRODUCTS SOLD
 try {
     $fetchQuantityProducts = "SELECT SUM(qty) AS qty_products_sold
@@ -94,6 +131,7 @@ try {
     throw $th;
 }
 
+//QUERY FOR AMOUNT OF PRODUCTS SOLD
 //PRODUCT AMOUNT SOLD
 try {
     $productsAmountSoldQuery = "SELECT SUM(amount) AS products_amount_sold
@@ -109,6 +147,8 @@ try {
     throw $th;
 }
 
+
+//RETRIEVE COUNT OF TRANSACTIONS
 //FETCH COUNT OF TRANSACTIONS
 try {
     $transactionQuery = "SELECT COUNT(*) AS totalTransactions
@@ -123,3 +163,9 @@ try {
 } catch (\Throwable $th) {
     throw $th;
 }
+
+
+
+// ENCODE THE JSON
+
+echo json_encode($statistics);
