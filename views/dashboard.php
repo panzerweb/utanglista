@@ -205,15 +205,20 @@
             <div class="col-12 col-lg-12 table-and-calendar">
                 <div class="row justify-content-between">
                     <div class="col-12 col-lg-7 my-1 px-0">
-                        <div class="table-responsive rounded-4 overflow-x-hidden overflow-y-auto shadow p-2 border border-1" style="height: 95%; max-height: fit-content;">
-                            <h3 class="position-sticky top-0 bg-white z-1 py-2">
-                                <div class="d-flex align-items-center gap-1">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-bar-chart-line-fill" viewBox="0 0 16 16">
-                                        <path d="M11 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h1V7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7h1z"/>
-                                    </svg>
-                                    Leaderboards
+                        <div class="table-responsive rounded-4 overflow-x-hidden overflow-y-auto shadow border border-1" style="height: 95%; max-height: fit-content;">
+                            <div class="leaderboard-wrapper position-sticky bg-success text-light top-0 z-1 py-2">
+                                <div class="leaderboard-box px-2">
+                                    <h3 class="position-sticky top-0 z-1 py-2">
+                                        <div class="d-flex align-items-center gap-1 fw-light">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-bar-chart-line-fill" viewBox="0 0 16 16">
+                                                <path d="M11 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h1V7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7h1z"/>
+                                            </svg>
+                                            Leaderboards
+                                        </div>
+                                    </h3>
+                                    
                                 </div>
-                            </h3>
+                            </div>
 
                             <!-- ====== Leaderboard: Table for highest to lowest balance -->
 

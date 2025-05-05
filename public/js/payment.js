@@ -41,8 +41,8 @@ function insertPayment(id){
             }, 1000);
         } else {
             Swal.fire({
-                title: "Error",
-                text: "Payment Failed!",
+                title: "Transaction Failed",
+                text: `${data}`,
                 icon: "question",
                 showConfirmButton: false,
                 timer: 1000,

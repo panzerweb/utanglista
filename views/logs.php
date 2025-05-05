@@ -243,17 +243,26 @@
                             See All
                         </button>
                     </div>
-                    <div class="card-body p-0">
-                        <div class="d-flex px-3 justify-content-between align-items-center border-bottom py-2">
-                            <div class="mb-2">
-                                <span class="fw-semibold text-primary">Admin</span>
-                                <span class="text-muted">added</span>
-                                <span class="fw-semibold text-dark">Milo</span>
+                    <div class="card-body p-0" style="max-height: 300px; overflow-y: auto;">
+                        <?php foreach($product_logs as $product_log) { ?>
+                            <div class="px-3 py-2 border-bottom">
+                                <div class="fw-semibold text-primary">
+                                    <?php echo htmlspecialchars($product_log["admin_name"]); ?>
+                                </div>
+                                <div class="text-muted">
+                                    <?php echo htmlspecialchars($product_log["message"]); ?>
+                                    <span class="fw-semibold text-dark">
+                                        Name: 
+                                        <span class="text-primary">
+                                        <?php echo htmlspecialchars($product_log["prod_name"]); ?>
+                                        </span>
+                                    </span>
+                                </div>
+                                <div class="text-end text-muted small mt-1">
+                                    Created at: <?php echo htmlspecialchars($product_log["created_at"]); ?>
+                                </div>
                             </div>
-                            <div class="text-muted small">
-                            Created at: 2025-04-28 10:32 AM
-                            </div>
-                        </div>
+                        <?php } ?>
                     </div>
                 </div>
             </div>
@@ -267,15 +276,24 @@
                         </button>
                     </div>
                     <div class="card-body p-0">
+                        <?php foreach($transact_logs as $transact_log) { ?>
                         <div class="d-flex px-3 justify-content-between align-items-center border-bottom py-2">
                             <div class="mb-2">
-                                <span class="fw-semibold text-primary">Customer</span>
-                                <span class="text-muted">purchased</span>
+                                <span class="fw-semibold text-primary">
+                                    <?php echo htmlspecialchars($transact_log["c_name"]) ?>
+                                </span>
+                                <span class="text-muted">
+                                    <?php echo htmlspecialchars($transact_log["message"]) ?>
+                                </span>
+                                <span class="fw-semibold">
+                                    <?php echo htmlspecialchars($transact_log["prod_name"]) ?>
+                                </span>
                             </div>
                             <div class="text-muted small">
-                            Created at: 2025-04-28 10:32 AM
+                                <?php echo htmlspecialchars($transact_log["created_at"]) ?>
                             </div>
                         </div>
+                        <?php } ?>
                     </div>
                 </div>
             </div>
@@ -289,15 +307,23 @@
                         </button>
                     </div>
                     <div class="card-body p-0">
+                        <?php foreach($payment_logs as $payment_log) { ?>
                         <div class="d-flex px-3 justify-content-between align-items-center border-bottom py-2">
                             <div class="mb-2">
-                                <span class="fw-semibold text-primary">Customer</span>
+                                <span class="fw-semibold text-primary">
+                                    <?php echo htmlspecialchars($payment_log["c_name"]) ?>
+                                </span>
                                 <span class="text-muted">paid</span>
+                                <span class="fw-bold">
+                                    Php
+                                    <?php echo htmlspecialchars($payment_log["payment_amount"]) ?>
+                                </span>
                             </div>
                             <div class="text-muted small">
-                            Created at: 2025-04-28 10:32 AM
+                            <?php echo htmlspecialchars($payment_log["created_at"]) ?>
                             </div>
                         </div>
+                        <?php } ?>
                     </div>
                 </div>
             </div>

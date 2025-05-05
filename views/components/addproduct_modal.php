@@ -11,7 +11,7 @@
          <!-- Comment this if you'll use Fetch API -->
         <!-- <form action="../api/add_product.php" method="post" enctype="multipart/form-data"> -->
           <div class="mb-3">
-            <label for="" class="form-label">Product name</label>
+            <label for="" class="form-label fw-bold">Product name</label>
             <input
               type="text"
               class="form-control"
@@ -23,7 +23,7 @@
             />
           </div>
           <div class="mb-3">
-            <label for="" class="form-label">Price</label>
+            <label for="" class="form-label fw-bold">Price</label>
             <input
               type="number"
               class="form-control"
@@ -35,7 +35,7 @@
             />
           </div>
           <div class="mb-3">
-            <label for="" class="form-label">Category</label>
+            <label for="" class="form-label fw-bold">Category</label>
             <select
               class="form-select form-select-lg"
               name="category"
@@ -51,7 +51,7 @@
           </div>
           
           <div class="mb-3">
-            <label for="" class="form-label">Image</label>
+            <label for="" class="form-label fw-bold">Image</label>
             <input
               type="file"
               class="form-control"

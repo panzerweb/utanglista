@@ -1,4 +1,5 @@
 // Javascript file for deleting customer, bridging between User Interface and Backend server
+// Implements Soft Deletion to prevent violating referential integrity
 
 function deleteCustomer(id){
     Swal.fire({

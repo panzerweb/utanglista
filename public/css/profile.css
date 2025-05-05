@@ -1,2 +1,11 @@
 /* CSS for Profile page */
 
+/* Logout button */
+.logout{
+    transition: 0.1s linear;
+}
+
+.logout:hover{
+    background-color: #121212 !important;
+    transform: translateY(-2px);
+}

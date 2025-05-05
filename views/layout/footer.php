@@ -35,6 +35,8 @@
   <script src="../public/js/bydate_calendar.js"></script>
   <script src="../public/js/payment.js"></script>
   <script src="../public/js/insert_product.js"></script>
+  <script src="../public/js/update_product.js"></script>
+  <script src="../public/js/delete_product.js"></script>
 
   <!-- Bootstrap JavaScript Libraries -->
   <script src="../public/css/bootstrap/js/bootstrap.bundle.min.js"></script>

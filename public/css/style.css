@@ -29,6 +29,7 @@
     --accent: #ffc107;
     --accent-second: #1aa179;
     --fc-today-bg-color: #0ec06d;
+    --red-color: #dc3545;
 }
 
 /* Body */
@@ -51,7 +52,46 @@ h1, h3{
 }
 
 /* Components */
+/* All Buttons */
+.action-button{
+    background: var(--accent) !important; /* #ffcf50 */
+    color: #212529;
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.action-button:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transform: translateY(-1px);
+    cursor: pointer;
+}
 
+
+.action-delete-button{
+    background: var(--red-color) !important; /* #ffcf50 */
+    color: #ffffff;
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.action-delete-button:hover{
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transform: translateY(-1px);
+    cursor: pointer;
+}
 /* Full Calendar JS customization */
 .fc .fc-daygrid-day.fc-day-today  {
     background-color: var(--fc-today-bg-color);

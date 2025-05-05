@@ -1,3 +1,5 @@
+// Insertion of products through Fetch API with POST Method
+
 let insertProductBtn = document.getElementById("insertProductBtn").addEventListener('click', insertProduct);
 
 function insertProduct(){

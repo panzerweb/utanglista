@@ -18,7 +18,7 @@
             </h3>
 
             <div class="mb-3">
-                <label for="" class="form-label">Payment Amount</label>
+                <label for="" class="form-label fw-bold">Payment Amount</label>
                 <input
                     type="number"
                     class="form-control"
