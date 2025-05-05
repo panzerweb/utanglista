@@ -15,7 +15,7 @@
 require("../config/config.php");
 
 try {
-    $getTransactions = "SELECT * FROM transaction_view;";
+    $getTransactions = "CALL transaction_view_procedure();";
     $result = mysqli_query($connection, $getTransactions);
     
     $transactions = mysqli_fetch_all($result, MYSQLI_ASSOC);

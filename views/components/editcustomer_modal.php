@@ -17,7 +17,7 @@
             <input type="hidden" name="id" value="<?php echo $customer['id']; ?>" id="customer_id_<?php echo $customer["id"] ?>">
             <!-- Customer Name field -->
             <div class="mb-3">
-                <label for="c_name_<?php echo $customer['id']; ?>" class="form-label">Name</label>
+                <label for="c_name_<?php echo $customer['id']; ?>" class="form-label fw-bold">Name</label>
                 <input
                     type="text"
                     class="form-control"
@@ -30,7 +30,7 @@
             </div>
             <!-- Contact Number field-->
             <div class="mb-3">
-                <label for="c_contact_<?php echo $customer['id']; ?>" class="form-label">Contact No.</label>
+                <label for="c_contact_<?php echo $customer['id']; ?>" class="form-label fw-bold">Contact No.</label>
                 <input
                     type="tel"
                     class="form-control"
@@ -42,7 +42,7 @@
             </div>
             <!-- Status field-->
             <div class="mb-3">
-                <label for="" class="form-label">Status</label>
+                <label for="" class="form-label fw-bold">Status</label>
                 <select
                     class="form-select form-select-lg"
                     name="status"

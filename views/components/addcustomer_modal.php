@@ -15,7 +15,7 @@
       <!-- <form action="../api/add_customer.php" method="post"> -->
         <div class="modal-body">
                 <div class="mb-3">
-                  <label for="" class="form-label">Name</label>
+                  <label for="" class="form-label fw-bold">Name</label>
                   <input
                     type="text"
                     class="form-control"
@@ -27,7 +27,7 @@
                   />
                 </div>
                 <div class="mb-3">
-                  <label for="" class="form-label">Contact No.</label>
+                  <label for="" class="form-label fw-bold">Contact No.</label>
                   <input
                     type="tel"
                     class="form-control"

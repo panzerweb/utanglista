@@ -11,7 +11,7 @@
             <!-- Select dropdown for customers -->
             
               <div class="mb-3">
-                <label for="" class="form-label">Customer</label>
+                <label for="" class="form-label fw-bold">Customer</label>
                 <select
                   class="form-select form-select-lg"
                   name="c_name"
@@ -32,17 +32,18 @@
             
             <!-- Select dropdown for products -->
             <div class="mb-3">
-              <label for="" class="form-label">Products</label>
+              <label for="" class="form-label fw-bold">Products</label>
               <select
                 class="form-select form-select-lg"
                 name="prod_name"
                 id="product_name_select"
+                onchange="displayPrice()"
               >
                 <option disabled selected>Select one</option>
                 <!-- Display all products -->
                 <?php foreach($products as $product) { ?>
 
-                  <option value="<?php echo htmlspecialchars($product["id"]) ?>">
+                  <option value="<?php echo htmlspecialchars($product["id"]) ?>" data-price="<?php echo htmlspecialchars($product["prod_price"]) ?>">
                     <?php echo htmlspecialchars($product["prod_name"]) ?>
                   </option>
 
@@ -50,17 +51,25 @@
 
               </select>
             </div>
+            
             <!-- Quantity and Price -->
             <div class="mb-3">
-            <label for="" class="form-label">Quantity</label>
-            <input
-              type="number"
-              class="form-control"
-              name="qty"
-              id="qty"
-              aria-describedby="QuantityID"
-              placeholder="Quantity"
-            />
+              <label for="" class="form-label fw-bold">Price</label>
+              <div class="border border-1 py-3 px-2 rounded-3">
+                  <h5 id="priceField" class="p-0 m-0"></h5>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="" class="form-label fw-bold">Quantity</label>
+              <input
+                type="number"
+                class="form-control"
+                name="qty"
+                id="qty"
+                aria-describedby="QuantityID"
+                placeholder="Quantity"
+              />
             </div>
         </div>
         <div class="modal-footer">
@@ -72,3 +81,12 @@
     </div>
   </div>
 </div>
+
+<script>
+  function displayPrice() {
+    const select = document.getElementById("product_name_select");
+    const selectedOption = select.options[select.selectedIndex];
+    const price = selectedOption.getAttribute("data-price");
+    document.getElementById("priceField").innerHTML = price || "";
+  }
+</script>

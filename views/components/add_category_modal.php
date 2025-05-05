@@ -11,7 +11,7 @@
          <!-- Comment this if you'll use Fetch API -->
         <form action="../api/category.php" method="post">
           <div class="mb-3">
-            <label for="" class="form-label text-start">Category</label>
+            <label for="" class="form-label text-start fw-bold">Category</label>
             <input
               type="text"
               class="form-control"
