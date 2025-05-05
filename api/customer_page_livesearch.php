@@ -34,7 +34,7 @@ else {
             // echo below applies the action buttons
             echo <<<HTML
                 <td>
-                    <div class="d-flex gap-2">
+                        <div class="d-flex gap-2">
                         <button
                             type="button"
                             name="edit_btn"
