@@ -1,7 +1,7 @@
 //show password toggle functionality
 document.addEventListener("DOMContentLoaded", function () {
   const toggleBtn = document.getElementById("togglePassword");
-  const passwordInput = document.getElementById("password");
+  const passwordInput = document.getElementById("admin_password");
 
   if (toggleBtn && passwordInput) {
     toggleBtn.addEventListener("click", function () {

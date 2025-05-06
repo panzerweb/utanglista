@@ -12,6 +12,10 @@ $statistics = [
     "totaluncollectedAmount" => 0,
     "totalCollectedAmount" => 0,
     "totalProdCount" => 0,
+    "productSold" => 0,
+    "qtyProducts" => 0,
+    "productAmountSold" => 0,
+    "transactionCount" => 0,
 ];
 
 // FETCH ALL CUSTOMER COUNT
@@ -100,14 +104,21 @@ try {
 
 //QUERY FOR TYPE OF PRODUCTS SOLD
 //PRODUCTS SOLD
-try {
+if(isset($_GET["year_month"])){
+    $year_month = htmlspecialchars($_GET["year_month"]);
     $getProductSold = "SELECT COUNT(DISTINCT prod_id) AS products_sold
-                     FROM transaction;"
-                ;
+    FROM transaction WHERE created_at LIKE '$year_month%';";
+}
+else{
+    $getProductSold = "SELECT COUNT(DISTINCT prod_id) AS products_sold
+    FROM transaction;";
+}
+try {
     $productSoldResult = mysqli_query($connection, $getProductSold) or die(mysqli_error($connection));
     $prodSold = mysqli_fetch_assoc($productSoldResult);
 
     $productSold = $prodSold['products_sold'] ? $prodSold['products_sold'] : 0;
+    $statistics["productSold"] = $prodSold['products_sold'] ? $prodSold['products_sold'] : 0;
     mysqli_free_result($productSoldResult);
     mysqli_next_result($connection); //Prepares next query
 
@@ -117,14 +128,22 @@ try {
 
 //QUERY FOR QTY OF SOLD PRODUCTS
 //QTY OF PRODUCTS SOLD
-try {
+if (isset($_GET["year_month"])) {
+    $year_month = htmlspecialchars($_GET["year_month"]);
     $fetchQuantityProducts = "SELECT SUM(qty) AS qty_products_sold
-                        FROM transaction;"
-                    ;
+    FROM transaction WHERE created_at LIKE '$year_month%';"
+;
+} else {
+    $fetchQuantityProducts = "SELECT SUM(qty) AS qty_products_sold
+    FROM transaction;";
+}
+
+try {
     $qtyProdResult = mysqli_query($connection, $fetchQuantityProducts);
     $qtyProdCount = mysqli_fetch_assoc($qtyProdResult);
 
     $qtyProducts = $qtyProdCount["qty_products_sold"] ? $qtyProdCount["qty_products_sold"] : 0;
+    $statistics["qtyProducts"] = $qtyProdCount["qty_products_sold"] ? $qtyProdCount["qty_products_sold"] : 0;
     mysqli_free_result($qtyProdResult);
     mysqli_next_result($connection); //Prepares next query
 } catch (\Throwable $th) {
@@ -133,14 +152,20 @@ try {
 
 //QUERY FOR AMOUNT OF PRODUCTS SOLD
 //PRODUCT AMOUNT SOLD
-try {
+if (isset($_GET["year_month"])) {
+    $year_month = htmlspecialchars($_GET["year_month"]);
     $productsAmountSoldQuery = "SELECT SUM(amount) AS products_amount_sold
-                        FROM transaction;"
-                    ;
+                    FROM transaction WHERE created_at LIKE '$year_month%';";
+} else {
+    $productsAmountSoldQuery = "SELECT SUM(amount) AS products_amount_sold
+                        FROM transaction;";
+}
+try {          
     $prodAmountSoldResult = mysqli_query($connection, $productsAmountSoldQuery);
     $prodSoldAmount = mysqli_fetch_assoc($prodAmountSoldResult);
 
     $productAmountSold = $prodSoldAmount["products_amount_sold"] ? $prodSoldAmount["products_amount_sold"] : 0;
+    $statistics["productAmountSold"] = $prodSoldAmount["products_amount_sold"] ? $prodSoldAmount["products_amount_sold"] : 0;
     mysqli_free_result($prodAmountSoldResult);
     mysqli_next_result($connection); //Prepares next query
 } catch (\Throwable $th) {
@@ -150,14 +175,21 @@ try {
 
 //RETRIEVE COUNT OF TRANSACTIONS
 //FETCH COUNT OF TRANSACTIONS
-try {
+if (isset($_GET["year_month"])) {
+    $year_month = htmlspecialchars($_GET["year_month"]);
     $transactionQuery = "SELECT COUNT(*) AS totalTransactions
-                        FROM `transaction`;"
-                ;
+    FROM `transaction` WHERE created_at LIKE '$year_month%';";
+} else {
+    $transactionQuery = "SELECT COUNT(*) AS totalTransactions
+    FROM `transaction`;"
+;
+}
+try {
     $qtyTransactResult = mysqli_query($connection, $transactionQuery);
     $transactAssoc = mysqli_fetch_assoc($qtyTransactResult);
 
     $transactionCount = $transactAssoc["totalTransactions"] ? $transactAssoc["totalTransactions"] : 0;
+    $statistics["transactionCount"] = $transactAssoc["totalTransactions"] ? $transactAssoc["totalTransactions"] : 0;
     mysqli_free_result($qtyTransactResult);
     mysqli_next_result($connection);
 } catch (\Throwable $th) {

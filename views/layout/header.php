@@ -31,6 +31,11 @@
         <!-- FullCalendar script-->
         <script src="../public/js/fullcalendar-6.1.17/dist/index.global.min.js"></script>
         <script src="../public/js/calendar.js"></script>
+
+        <!-- SplideJS Link -->
+        <!-- Link to the file hosted on your server, -->
+        <link rel="stylesheet" href="../public/js/splide-4.1.3/dist/css/splide.min.css">
+
     </head>
 
         <!-- Navbar -->

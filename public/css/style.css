@@ -76,7 +76,7 @@ h1, h3{
 .action-delete-button{
     background: var(--red-color) !important; /* #ffcf50 */
     color: #ffffff;
-    padding: 0.6rem 1.2rem;
+    padding: 0.6rem 1rem;
     border: none;
     border-radius: 8px;
     font-weight: 500;
@@ -92,6 +92,16 @@ h1, h3{
     transform: translateY(-1px);
     cursor: pointer;
 }
+
+.dark-button{
+    transition: all 0.3s ease;
+}
+.dark-button:hover{
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transform: translateY(-1px);
+    cursor: pointer;
+}
+
 /* Full Calendar JS customization */
 .fc .fc-daygrid-day.fc-day-today  {
     background-color: var(--fc-today-bg-color);

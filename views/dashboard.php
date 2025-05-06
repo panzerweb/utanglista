@@ -6,6 +6,7 @@
     include("./layout/header.php");
     include("../config/config.php");
     include("../api/get_customer.php");
+    include("../api/get_categories.php");
     include("../api/get_product.php");
     include("../api/get_stats_dashboard.php");
 

@@ -36,7 +36,16 @@ else{
     $search = htmlspecialchars($_GET["dashsearch"]); //Appended in the URI
 
     // Get the sorted list by balance but not the Stored Procedure
-    $dashSearchQuery = "SELECT @rank := @rank + 1 AS ranking, c_name, balance FROM customers, (SELECT @rank := 0) r WHERE c_name LIKE '%$search%' AND is_deleted=0 ORDER BY balance DESC;"; 
+    $dashSearchQuery = "SELECT ranking, c_name, balance
+                        FROM (
+                            SELECT @rank := @rank + 1 AS ranking, c_name, balance
+                            FROM customers, (SELECT @rank := 0) r
+                            WHERE is_deleted = 0 AND balance > 0
+                            ORDER BY balance DESC
+                        ) AS ranked_customers
+                        WHERE c_name LIKE '%$search%';
+                        "
+                    ; 
     //Used LIKE and %%  to implement searching
 
     $result = mysqli_query($connection, $dashSearchQuery);

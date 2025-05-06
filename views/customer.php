@@ -170,7 +170,7 @@
                                                             type="button"
                                                             name="edit_btn"
                                                             id="edit_btn"
-                                                            class="btn btn-warning"
+                                                            class="btn btn-outline-dark border border-2 border-dark dark-button"
                                                             data-bs-toggle="modal"
                                                             data-bs-target="#editCustomerModal_<?php echo $customer['id']; ?>"
                                                         >
@@ -186,7 +186,7 @@
                                                             type="button"
                                                             name="payment_amount"
                                                             id="payment_btn"
-                                                            class="btn btn-success"
+                                                            class="btn btn-success payment-button"
                                                             data-bs-toggle="modal"
                                                             data-bs-target="#paymentModal<?php echo $customer['id']; ?>"
                                                         >
@@ -202,7 +202,7 @@
                                                             type="button"
                                                             name="delete_btn"
                                                             id="delete_btn_<?php echo $customer["id"]?>"
-                                                            class="btn btn-danger"
+                                                            class="btn btn-danger action-delete-button"
                                                             onclick="deleteCustomer(<?php echo $customer['id']?>)"
                                                         >
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
