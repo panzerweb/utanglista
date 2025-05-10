@@ -2,90 +2,89 @@
 <!-- Php Code for Registration -->
 <?php
 
-?>
-        
 
-<!-- End of Php Code -->
+include("./views/layout/guestheader.php");
+
+?>    
+<link rel="stylesheet" href="./public/css/bootstrap/css/bootstrap.min.css">
 
         <!-- place navbar here -->
-      
-        <main>
-        <!-- links -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-        <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
-        <link rel="stylesheet" href="./public/css/log&register.css" />
+ <main>
+        <section class="py-5" style="background-color: #F7F6FE;">
+            <div class="container">
+              <div class="row justify-content-center">
+                  <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5 col-xxl-4">
 
-        <div class="container" id="container"> 
-    
-                <!-- Register Form -->
-                <div class="form-container register-container">
-                <form action="./api/register.php" method="POST" class="text-center">
-                    <h1 class="mb-3">Register here.</h1>
-                    <div class="mb-2 w-100">
-                    <input type="text" class="form-control" name = "name" placeholder="Name" required />
-                    </div>
-                    <div class="mb-2 w-100">
-                    <input type="email" class="form-control" name = "email" placeholder="Email" required />
-                    </div>
-                    <div class="mb-2 w-100">
-                    <input type="password" class="form-control" name = "password" placeholder="Password" required />
-                    </div> 
-                    <input type="submit" name = "register" class="btn btn-primary w-100">Register</input>
-                    <span>or use your account</span>
-                    <div class="social-container d-flex justify-content-center mt-3">
-                    <a href="#" class="social"><i class="lni lni-facebook-fill"></i></a>
-                    <a href="#" class="social"><i class="lni lni-google"></i></a>
-                    </div>
-                </form>
+                <!-- Logo -->
+                <div class="text-center mb-4">
+                <a href="#!">
+                    <img src="./public/images/logo/logo2.png" alt="Logo" class="img-fluid" style="width: 100px; height: auto;">
+                    </a>
                 </div>
 
-                <!-- Login Form -->
-                <div class="form-container login-container">
-                <form action="./api/login.php" method="POST" class="text-center">
-                    <h1 class="mb-3">Login here.</h1>
-                    <div class="mb-2 w-100">
-                    <input type="email" class="form-control" name = "email" placeholder="Email" required />
-                    </div>
-                    <div class="mb-2 w-100">
-                    <input type="password" class="form-control" name = "password" placeholder="Password" required />
-                    </div>
-                    <div class="content d-flex justify-content-between align-items-center w-100 mb-3">
-                    <div class="form-check checkbox">
-                        <input type="checkbox" class="form-check-input" id="rememberMe" />
-                        <label class="form-check-label" for="rememberMe">Remember me</label>
-                    </div>
-                    <div class="pass-link">
-                        <a href="#">Forgot password?</a>
-                    </div>
-                    </div>
-                    <input type="submit" name = "login" class="btn btn-primary w-100">Login</input>
-                    <span>or use your account</span>
-                    <div class="social-container d-flex justify-content-center mt-3">
-                    <a href="#" class="social"><i class="lni lni-facebook-fill"></i></a>
-                    <a href="#" class="social"><i class="lni lni-google"></i></a>
-                    </div>
-                </form>
-                </div>
+                <!-- Card -->
+                <div class="card border-0 shadow-sm rounded-4">
+                <div class="card-body p-4">
+                    <h5 class="text-center mb-4" style="color: #13795b;">Welcome to Utang Lista</h5>
 
-                <!-- Overlay Panels -->
-                <div class="overlay-container">
-                <div class="overlay">
-                    <div class="overlay-panel overlay-left">
-                    <button class="login" id="login">Login
-                        <i class="lni lni-arrow-left login"></i>
-                    </button>
+                    <!-- Login Form -->
+                    <!-- <form action="./api/login.php" method="POST"> -->
+                    <!-- Email with Icon -->
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email address</label>
+                        <div class="input-group">
+                        <span class="input-group-text rounded-start border-0 bg-light" style="color: #13795b;">
+                            <i class="bi bi-envelope-fill"></i>
+                        </span>
+                        <input type="email" class="form-control border-start-0 rounded-end" id="admin_email" name="admin_email" placeholder="name@gmail.com" required>
+                        </div>
                     </div>
-                    <div class="overlay-panel overlay-right">
-                    <button class="register" id="register">Register
-                        <i class="lni lni-arrow-right register"></i>
-                    </button>
+
+                    <!-- Password with Icon and Show/Hide -->
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <div class="input-group">
+                        <span class="input-group-text rounded-start border-0 bg-light" style="color: #13795b;">
+                            <i class="bi bi-shield-lock-fill"></i>
+                        </span>
+                        <input type="password" class="form-control border-start-0" id="admin_password" name="admin_password" placeholder="Password" required>
+                        <button class="btn btn-light border-0" type="button" id="togglePassword">
+                            <i class="bi bi-eye"></i>
+                        </button>
+                        </div>
+                    </div>
+
+                    <!-- Remember Me -->
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox" name="remember_me" id="remember_me">
+                        <label class="form-check-label" for="remember_me">Keep me logged in</label>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="d-grid">
+                        <button type="button" class="btn" onclick="login()" style="background-color: #13795b; color: white;">Log In</button>
+                    </div>
+                    <!-- </form> -->
+
+                    <!-- Forgot password -->
+                    <div class="text-center mt-4">
+                    <a href="#!" class="text-decoration-none" style="color: #13795b;">Forgot password?</a>
                     </div>
                 </div>
                 </div>
 
             </div>
-            <script src="./public/js/log&register.js"></script>
-         </main>
+            </div>
+        </div>
+        </section> 
+</main>
 
-       
+<script src="./public/js/login.js"></script>
+
+<?php
+include("./views//layout/guestfooter.php")
+?>
+
+ 
+
       

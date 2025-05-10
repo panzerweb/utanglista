@@ -22,7 +22,7 @@ function insertPayment(id){
     // console.log(paymentField);
     // console.log(formData);
 
-    fetch('../../api/payment.php', {
+    fetch('../api/payment.php', {
         method: 'POST',
         body: formData,
     })
@@ -30,7 +30,7 @@ function insertPayment(id){
     .then(data => {
         if (data.trim() === 'success') {
             Swal.fire({
-                position: "top-end",
+                position: "center",
                 icon: "success",
                 title: "Payment successful!",
                 showConfirmButton: false,
@@ -41,8 +41,8 @@ function insertPayment(id){
             }, 1000);
         } else {
             Swal.fire({
-                title: "Error",
-                text: "Payment Failed!",
+                title: "Transaction Failed",
+                text: `${data}`,
                 icon: "question",
                 showConfirmButton: false,
                 timer: 1000,

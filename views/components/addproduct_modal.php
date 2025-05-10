@@ -8,9 +8,10 @@
       </div>
       <div class="modal-body">
         <!-- This form CREATE a new customer -->
-        <form action="../api/add_product.php" method="post">
+         <!-- Comment this if you'll use Fetch API -->
+        <!-- <form action="../api/add_product.php" method="post" enctype="multipart/form-data"> -->
           <div class="mb-3">
-            <label for="" class="form-label">Product name</label>
+            <label for="" class="form-label fw-bold">Product name</label>
             <input
               type="text"
               class="form-control"
@@ -22,7 +23,7 @@
             />
           </div>
           <div class="mb-3">
-            <label for="" class="form-label">Price</label>
+            <label for="" class="form-label fw-bold">Price</label>
             <input
               type="number"
               class="form-control"
@@ -34,21 +35,23 @@
             />
           </div>
           <div class="mb-3">
-            <label for="" class="form-label">Category</label>
+            <label for="" class="form-label fw-bold">Category</label>
             <select
               class="form-select form-select-lg"
               name="category"
-              id="category"
+              id="category-select"
             >
-              <option selected>Select one</option>
-              <option value="1">Powdered Drink</option>
-              <option value="2">Biscuits</option>
-              <option value="3">Junk Foods</option>
+              <option disabled selected>Select one</option>
+              <?php foreach($categories as $category) { ?>
+                <option value="<?php echo htmlspecialchars($category["id"]) ?>">
+                  <?php echo htmlspecialchars($category["category_name"]) ?>
+                </option>
+              <?php } ?>
             </select>
           </div>
           
           <div class="mb-3">
-            <label for="" class="form-label">Image</label>
+            <label for="" class="form-label fw-bold">Image</label>
             <input
               type="file"
               class="form-control"
@@ -69,9 +72,10 @@
 
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <input type="submit" name="submit" class="btn btn-success">
+            <button type="button" class="btn btn-success" id="insertProductBtn">Add Product</button>
+            <!-- <input type="submit" name="submit" class="btn btn-success"> -->
           </div>
-        </form>
+        <!-- </form> -->
       </div>
     </div>
   </div>

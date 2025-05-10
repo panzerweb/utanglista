@@ -24,7 +24,6 @@
         <link rel="stylesheet" href="../public/css/product.css">
         <link rel="stylesheet" href="../public/css/customer.css">
         <link rel="stylesheet" href="../public/css/profile.css">
-        <link rel="stylesheet" href="../public/css/transaction.css">
 
         <!-- CSS Scripts -->
         <link rel="stylesheet" href="../node_modules/sweetalert2/dist/sweetalert2.min.css">
@@ -32,6 +31,11 @@
         <!-- FullCalendar script-->
         <script src="../public/js/fullcalendar-6.1.17/dist/index.global.min.js"></script>
         <script src="../public/js/calendar.js"></script>
+
+        <!-- SplideJS Link -->
+        <!-- Link to the file hosted on your server, -->
+        <link rel="stylesheet" href="../public/js/splide-4.1.3/dist/css/splide.min.css">
+
     </head>
 
         <!-- Navbar -->

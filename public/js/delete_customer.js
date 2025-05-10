@@ -1,4 +1,5 @@
 // Javascript file for deleting customer, bridging between User Interface and Backend server
+// Implements Soft Deletion to prevent violating referential integrity
 
 function deleteCustomer(id){
     Swal.fire({
@@ -11,7 +12,7 @@ function deleteCustomer(id){
         confirmButtonText: "Yes, delete it!"
       }).then((result) => {
         if (result.isConfirmed) {
-            fetch(`../../api/delete_customer.php?customer_id=${id}`, {
+            fetch(`../api/delete_customer.php?customer_id=${id}`, {
                 method: 'POST',
             })
             .then(response => response.text())

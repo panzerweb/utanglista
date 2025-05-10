@@ -23,11 +23,18 @@ else {
             echo "<td class='text-center'>₱ " . htmlspecialchars($customer['balance']) . "</td>";
             echo "<td class='text-center'>₱ " . htmlspecialchars($customer['monthly_interest']) . "</td>";
             // echo "<td class='text-center'>" . htmlspecialchars($customer['interest_rate']) . "</td>";
-            echo "<td class='text-center'>" . htmlspecialchars($customer['status']) . "</td>";
+            
+            if($customer["status"] == 'PENDING'){
+                echo "<td class='text-center'><span class='badge rounded-pill text-bg-danger'>" . htmlspecialchars($customer["status"]) . "</span></td>";
+            }
+            else{
+                echo "<td class='text-center'><span class='badge rounded-pill text-bg-success'>" . htmlspecialchars($customer["status"]) . "</span></td>";
+            }
+            
             // echo below applies the action buttons
             echo <<<HTML
                 <td>
-                    <div class="d-flex gap-2">
+                        <div class="d-flex gap-2">
                         <button
                             type="button"
                             name="edit_btn"

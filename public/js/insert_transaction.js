@@ -41,7 +41,7 @@ function insertTransaction(){
     formData.append("qty", qtyInput);
 
     // Use Fetch API to handle POST method
-    fetch('../../api/transaction.php', {
+    fetch('../api/transaction.php', {
         method: 'POST',
         body: formData,
     })

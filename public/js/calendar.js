@@ -37,7 +37,7 @@ var calendar = new FullCalendar.Calendar(calendarEl, {
         console.log(formattedDate); // e.g., "April 26, 2025"
         
         //Fetch the overview data
-        fetch('../../api/date_overviews.php?overview=' + encodeURIComponent(clickedDate))
+        fetch('../api/date_overviews.php?overview=' + encodeURIComponent(clickedDate))
         .then(response => response.json())
         .then(data => {
             console.log(data);
@@ -73,8 +73,9 @@ var calendar = new FullCalendar.Calendar(calendarEl, {
                                 </li>
                                 <li class="list-group-item d-flex justify-content-between">
                                     <strong class='d-flex align-items-center gap-1'>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-basket2-fill" viewBox="0 0 16 16">
-                                        <path d="M5.929 1.757a.5.5 0 1 0-.858-.514L2.217 6H.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h.623l1.844 6.456A.75.75 0 0 0 3.69 15h8.622a.75.75 0 0 0 .722-.544L14.877 8h.623a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1.717L10.93 1.243a.5.5 0 1 0-.858.514L12.617 6H3.383zM4 10a1 1 0 0 1 2 0v2a1 1 0 1 1-2 0zm3 0a1 1 0 0 1 2 0v2a1 1 0 1 1-2 0zm4-1a1 1 0 0 1 1 1v2a1 1 0 1 1-2 0v-2a1 1 0 0 1 1-1"/>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-basket2" viewBox="0 0 16 16">
+                                        <path d="M4 10a1 1 0 0 1 2 0v2a1 1 0 0 1-2 0zm3 0a1 1 0 0 1 2 0v2a1 1 0 0 1-2 0zm3 0a1 1 0 1 1 2 0v2a1 1 0 0 1-2 0z"/>
+                                        <path d="M5.757 1.071a.5.5 0 0 1 .172.686L3.383 6h9.234L10.07 1.757a.5.5 0 1 1 .858-.514L13.783 6H15.5a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-.623l-1.844 6.456a.75.75 0 0 1-.722.544H3.69a.75.75 0 0 1-.722-.544L1.123 8H.5a.5.5 0 0 1-.5-.5v-1A.5.5 0 0 1 .5 6h1.717L5.07 1.243a.5.5 0 0 1 .686-.172zM2.163 8l1.714 6h8.246l1.714-6z"/>
                                         </svg>
                                         Qty of Products Sold:
                                     </strong> 

@@ -7,7 +7,7 @@ if (liveResult && liveSearch) {
         const query = liveSearch.value;
     
         if (query !== '') {
-            fetch('../../api/customer_page_livesearch.php?search=' + encodeURIComponent(query)) //GET method default
+            fetch('../api/customer_page_livesearch.php?search=' + encodeURIComponent(query)) //GET method default
             .then(response => response.text())
             .then(data => {
                 liveResult.innerHTML = data; //Renders the rows echoed in the php
@@ -18,7 +18,7 @@ if (liveResult && liveSearch) {
             })
         } else {
             // Instead of reloading, we fetch just the default data
-            fetch('../../api/customer_page_livesearch.php') //GET method default
+            fetch('../api/customer_page_livesearch.php') //GET method default
             .then(response => response.text())
             .then(data => {
                 liveResult.innerHTML = data; //Renders the rows echoed in the php

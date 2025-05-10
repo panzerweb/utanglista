@@ -1,0 +1,43 @@
+body {
+    background: url('https://source.unsplash.com/1600x900/?urban,photography') no-repeat center center fixed;
+    background-size: cover;
+    font-family: 'Segoe UI', sans-serif;
+  }
+
+  .form-section {
+    background-color: rgba(0, 0, 0, 0.75);
+    color: #fff;
+    min-height: 100vh;
+  }
+
+  .left-panel {
+    background-color: #1a1a1a;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-family: 'Cursive', sans-serif;
+  }
+
+  .form-control {
+    background: transparent;
+    border: 1px solid #ccc;
+    color: #fff;
+  }
+
+  .form-control::placeholder {
+    color: #aaa;
+  }
+
+  .btn-custom {
+    background-color: #ccc;
+    color: black;
+    border: none;
+  }
+
+  .btn-google {
+    background-color: #fff;
+    color: black;
+    border: none;
+  }

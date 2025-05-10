@@ -4,6 +4,20 @@
 <!--Main Template for a footer -->
 <footer>
     <!-- place footer here -->
+    <div class="position-relative">
+        <div class="position-absolute bottom-0 start-0 m-2">
+            <!-- Tutorial Button -->
+            <button
+                type="button"
+                class="btn btn-dark"
+                id="dash-tutorial-btn"
+            >
+                <span class="fs-5">
+                📙Tutorial
+                </span>
+            </button>
+        </div>
+    </div>
 </footer>
 
   <!-- Scripts -->
@@ -20,6 +34,12 @@
   <script src="../public/js/transaction_page_livesearch.js"></script>
   <script src="../public/js/bydate_calendar.js"></script>
   <script src="../public/js/payment.js"></script>
+  <script src="../public/js/insert_product.js"></script>
+  <script src="../public/js/update_product.js"></script>
+  <script src="../public/js/delete_product.js"></script>
+  <script src="../public/js/stats_by_year-month.js"></script>
+
+  <script src="../public/js/splide-4.1.3/dist/js/splide.min.js"></script>
 
   <!-- Bootstrap JavaScript Libraries -->
   <script src="../public/css/bootstrap/js/bootstrap.bundle.min.js"></script>
