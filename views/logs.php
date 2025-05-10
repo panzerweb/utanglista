@@ -116,7 +116,7 @@
                     </svg>
                     <div class="info-box-content">
                         <h5 class="fw-semibold text-secondary">Products Sold</h5>
-                        <span class="lead fw-bold fs-2 text-center">
+                        <span class="display-stats lead fw-bold fs-2 text-center">
                             <!-- Echo is placeholder -->
                             <?php
                                 echo htmlspecialchars($productSold); // Placeholder for products sold count
@@ -135,7 +135,7 @@
                     </svg>
                     <div class="info-box-content">
                         <h5 class="fw-semibold text-secondary">Qty of Products Sold</h5>
-                        <span class="lead fw-bold fs-2 text-center">
+                        <span class="display-stats lead fw-bold fs-2 text-center">
                             <!-- Echo is placeholder -->
                             <?php
                                 echo htmlspecialchars($qtyProducts); // Placeholder for quantity of products sold
@@ -153,7 +153,7 @@
                     </svg>
                     <div class="info-box-content">
                         <h5 class="fw-semibold text-secondary">Products Amount Sold</h5>
-                        <span class="lead fw-bold fs-2 text-center">
+                        <span class="display-stats lead fw-bold fs-2 text-center">
                             <!-- Echo is placeholder -->
                             <?php
                                 echo htmlspecialchars($productAmountSold); // Placeholder for products amount sold
@@ -171,7 +171,7 @@
                     </svg>
                     <div class="info-box-content">
                         <h5 class="fw-semibold text-secondary">Total Transactions</h5>
-                        <span class="lead fw-bold fs-2 text-center">
+                        <span class="display-stats lead fw-bold fs-2 text-center">
                             <!-- Echo is placeholder -->
                             <?php
                                 echo htmlspecialchars($transactionCount); // Placeholder for total transactions
