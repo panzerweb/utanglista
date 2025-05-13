@@ -372,7 +372,21 @@
         </div>
     </div>   
 </main>
-
+<!-- Tutorial -->
+<div class="position-relative">
+    <div class="position-absolute bottom-0 start-0 m-2">
+        <!-- Tutorial Button -->
+        <button
+            type="button"
+            class="btn btn-dark"
+            id="dash-tutorial-btn"
+        >
+            <span class="fs-5">
+            📙Tutorial
+            </span>
+        </button>
+    </div>
+</div>
 <!-- place footer here -->
 <?php 
     //Header layout
