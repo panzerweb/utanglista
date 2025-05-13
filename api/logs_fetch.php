@@ -6,12 +6,13 @@ require("../config/config.php");
 
 // FETCH CUSTOMER LOGS
 try {
-    $retrieveCustomerQuery = "SELECT users.admin_name, customer_logs.message, customers.c_name, customer_logs.created_at
+    $retrieveCustomerQuery = "SELECT users.admin_name, customer_logs.message, customers.c_name, customer_logs.old_name, customer_logs.new_name, customer_logs.created_at
                             FROM customers
                             INNER JOIN customer_logs
                             ON customers.id=customer_logs.customer_id
                             INNER JOIN users
-                            ON customer_logs.admin_id=users.id;"
+                            ON customer_logs.admin_id=users.id
+                            ORDER BY created_at DESC;"
                         ;
     $result = mysqli_query($connection, $retrieveCustomerQuery);
     $customer_logs = mysqli_fetch_all($result, MYSQLI_ASSOC);
@@ -24,12 +25,14 @@ try {
 
 //FETCH PRODUCT LOGS
 try {
-    $retrieveProductQuery = "SELECT users.admin_name, product_logs.message, products.prod_name, products.created_at
+    $retrieveProductQuery = "SELECT users.admin_name, product_logs.message, products.prod_name, product_logs.old_name, product_logs.new_name, products.created_at
                             FROM products
                             INNER JOIN product_logs
                             ON products.id = product_logs.product_id
                             INNER JOIN users
-                            ON product_logs.admin_id=users.id;";
+                            ON product_logs.admin_id=users.id
+                            ORDER BY created_at DESC;"
+                        ;
     $prodresult = mysqli_query($connection, $retrieveProductQuery);
     $product_logs = mysqli_fetch_all($prodresult, MYSQLI_ASSOC);
 

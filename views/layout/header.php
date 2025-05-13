@@ -28,13 +28,22 @@
         <!-- CSS Scripts -->
         <link rel="stylesheet" href="../node_modules/sweetalert2/dist/sweetalert2.min.css">
 
-        <!-- FullCalendar script-->
-        <script src="../public/js/fullcalendar-6.1.17/dist/index.global.min.js"></script>
-        <script src="../public/js/calendar.js"></script>
-
         <!-- SplideJS Link -->
         <!-- Link to the file hosted on your server, -->
         <link rel="stylesheet" href="../public/js/splide-4.1.3/dist/css/splide.min.css">
+
+
+        <!-- Fun console script -->
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                console.log("%c👋 Welcome, curious developer!", "color: #4CAF50; font-size: 16px; font-weight: bold;");
+                console.log("%c📘 You’ve just uncovered UtangLista — A Small Retail Debt Management System!", "color: #2196F3; font-size: 14px;");
+                console.log("%c💻 Crafted with care by: Panzerweb, Klarence, Gian, Sinnedun, Denniela", "color: #FF9800; font-size: 13px;");
+                console.log("%c📚 Project Purpose: Built for our course — Advance Database Systems", "color: #9C27B0; font-size: 13px;");
+                console.log("%c🎓 Proud BSIT Students on a coding journey!", "color: #3F51B5; font-size: 13px;");
+                console.log("%c💬 \"Talk is cheap. Show me the code.\" – Linus Torvalds", "color: #E91E63; font-style: italic;");
+            })
+        </script>
 
     </head>
 
