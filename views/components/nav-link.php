@@ -27,8 +27,10 @@
                             <a class="nav-link fw-semibold text-light" href="./customer.php">Customer</a>
                         </li>
                         
+                        
                     </ul>
                     <div class="d-flex align-items-center justify-content-center" role="search">
+                        <?php include("welcome_admin.php") ?>
                         <div class="m-2">
                             <a href="./profile_page.php" class="text-dark">
                                 <!-- Icon SVG is placeholder only, replace with actual image profile -->

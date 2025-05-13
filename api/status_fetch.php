@@ -56,7 +56,7 @@ else {
                             type="button"
                             name="edit_btn"
                             id="edit_btn"
-                            class="btn btn-warning"
+                            class="btn btn-outline-dark border border-2 border-dark dark-button"
                             data-bs-toggle="modal"
                             data-bs-target="#editCustomerModal_{$customer['id']}"
                         >
@@ -73,7 +73,7 @@ else {
                             type="button"
                             name="payment_amount"
                             id="payment_btn"
-                            class="btn btn-success"
+                            class="btn btn-success payment-button"
                             data-bs-toggle="modal"
                             data-bs-target="#paymentModal{$customer['id']}"
                         >
@@ -87,7 +87,7 @@ else {
                 echo <<<HTML
                         <a
                             id="{$customer['id']}"
-                            class="btn btn-danger"
+                            class="btn btn-danger action-delete-button"
                             href="../api/delete_customer.php?customer_id={$customer['id']}"
                             role="button"
                         >

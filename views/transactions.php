@@ -8,7 +8,9 @@
     include("../api/get_product.php");
     include("../api/get_transaction.php");
 ?>
-
+<!-- FullCalendar script-->
+<script src="../public/js/fullcalendar-6.1.17/dist/index.global.min.js"></script>
+<script src="../public/js/bydate_calendar.js"></script>
 <!-- Tutorial Added -->
 <script defer src="../public/js/tutorial/transaction_tutorial.js"></script>
 
@@ -18,8 +20,6 @@
         <!-- ====== Row for search ====== -->
 
         <div class="row justify-content-around" id="search-and-transaction">
-            <!-- Include the admin header greeting -->
-            <?php include('./components/welcome_admin.php') ?>
 
             <div class="order-2 order-lg-1 col-12 col-lg-8">
                 <div class="shadow p-2 border border-1 rounded-4">
@@ -29,7 +29,7 @@
                             class="form-control border border-1 border-secondary rounded-3 w-100"
                             id="transaction-livesearch"
                             aria-describedby="helpId"
-                            placeholder="🔍Search"
+                            placeholder="🔍Search (Product or Customer)"
                         />
                     </div>
                 </div>  

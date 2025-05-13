@@ -12,15 +12,16 @@
 
 
 ?>
+<!-- FullCalendar script-->
+<script src="../public/js/fullcalendar-6.1.17/dist/index.global.min.js"></script>
+<script src="../public/js/calendar.js"></script>
 <!-- Tutorial Added -->
 <script defer src="../public/js/tutorial/dashboard_tutorial.js"></script>
 
 <main>
     <div class="container">
         <div class="row justify-content-center mx-1">
-            <!-- Include the admin header greeting -->
-            <?php include('./components/welcome_admin.php') ?>
-
+        
             <!-- Statistics -->
             <div class="col-12 col-lg-12 statistic-wrapper shadow p-3 rounded-3">
                 <div class="row justify-content-around align-items-center">

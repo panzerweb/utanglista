@@ -3,19 +3,16 @@
     include("./layout/header.php");
     include("../config/config.php");
     include("../api/get_customer.php");
+    include("../api/get_stats_dashboard.php");
 
 ?>
 
 <!-- Tutorial Added -->
 <script defer src="../public/js/tutorial/customer_tutorial.js"></script>
-
 <main>
     
 <div class="container">
                 <div class="row justify-content-around align-items-start mx-1 mt-3 mb-1">
-                    
-                    <!-- Include the admin header greeting -->
-                    <?php include('./components/welcome_admin.php') ?>
 
                     <!-- Column for table of customers and action buttons -->
                     <div class="col-12 col-lg-8">
@@ -127,7 +124,7 @@
                                             <th>Name</th>
                                             <!-- <th>Contact No.</th> -->
                                             <th>Balance</th>
-                                            <th>Monthly Interest</th>
+                                            <th>Interest</th>
                                             <!-- <th>Interest Rate</th> -->
                                             <th>Status</th>
                                             <th class="text-center">Action</th>
@@ -136,18 +133,18 @@
                                     <tbody id="live-result">
                                         <!-- Dynamic Data -->
                                         <?php foreach($customers as $customer) {?>
-                                            <tr>
+                                            <tr data-customer-id="<?= $customer['id'] ?>">
                                                 <td>
                                                     <?php echo htmlspecialchars($customer['c_name'] ? $customer['c_name'] : '<td class="text-center">---</td>'); ?>
                                                 </td>
                                                 <!-- <td class="text-center">
                                                     <?php echo htmlspecialchars($customer['c_contact'] ? $customer['c_contact'] : '---'); ?>
                                                 </td> -->
-                                                <td class="text-center">
-                                                    ₱ <?php echo htmlspecialchars($customer['balance']); ?>
+                                                <td class="text-center balance-cell">
+                                                    ₱ <?php echo number_format(htmlspecialchars($customer["balance"]), 2); ?>
                                                 </td>
-                                                <td class="text-center">
-                                                    ₱ <?php echo number_format(htmlspecialchars($customer['monthly_interest']), 2); ?>
+                                                <td class="text-center interest-cell">
+                                                    ₱ <?php echo number_format(htmlspecialchars($customer["monthly_interest"]), 2); ?>
                                                 </td>
                                                 <!-- <td class="text-center">
                                                     <?php echo number_format($interest, 2); ?>%
@@ -281,7 +278,6 @@
 
 
 </main>
-
 
 <?php 
     include("./layout/footer.php");

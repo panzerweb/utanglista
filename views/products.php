@@ -5,14 +5,13 @@
     include("./layout/header.php");
     include("../api/get_categories.php");
     include("../api/get_product.php");
+    include("../api/get_stats_dashboard.php");
+
 ?>
 
 <main>
     <div class="container py-1 mb-5">
         <div class="row justify-content-center">
-            
-            <!-- Include the admin header greeting -->
-            <?php include('./components/welcome_admin.php') ?>
 
             <!-- Add Category modal -->
             <div class="shadow p-3 row justify-content-center border border-1 rounded-4">
@@ -84,7 +83,15 @@
 
             <!-- All product section -->
             <section class="shadow p-3 border border-1 rounded-4 mt-5">
-                <h1>Product</h1>
+                <h1>
+                    Product
+                    (                    
+                        <span>
+                            <?php echo htmlspecialchars($totalProdCount) ?>
+                        </span>
+                    )
+
+                </h1>
                 <!-- Testing -->
                 <div class="shadow p-3 border border-1 rounded-4 mt-2 splide" role="group" aria-label="Splide Basic HTML Example">
                     <div class="row justify-content-center align-items-center">
