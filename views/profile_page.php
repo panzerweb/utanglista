@@ -91,8 +91,8 @@
                             <input
                                 type="email"
                                 class="form-control form-control-sm"
-                                name="admin_name"
-                                id="admin_name"
+                                name="admin_email"
+                                id="admin_email"
                                 aria-describedby="helpId"
                                 placeholder=""
                                 value="<?php echo $_SESSION["admin_email"] ?>"
@@ -130,6 +130,20 @@
                             <label for="" class="form-label fw-bold">Description</label>
                             <textarea class="form-control" name="admin_bio" id="admin_bio" rows="3"></textarea>
                         </div>
+
+                        <!-- Image File -->
+                         <div class="mb-3">
+                            <label for="admin_image" class="form-label fw-bold">Profile Pic</label>
+                            <input
+                                type="file"
+                                class="form-control"
+                                name="admin_image"
+                                id="admin_image"
+                                placeholder=""
+                                aria-describedby="adminFileId"
+                            />
+                         </div>
+                         
                         
 
                         <div class="d-flex justify-content-end mt-5">

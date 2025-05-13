@@ -26,6 +26,32 @@ try {
 } catch (\Throwable $th) {
     throw $th;
 }
+// FETCH COUNT OF DATA
+try {
+    $customer_count = "CALL getCount()";
+    $countResult = mysqli_query($connection, $customer_count) or die(mysqli_error($connection));
+    $count = mysqli_fetch_assoc($countResult);
+
+    $totalCount = $count['totalCount'] ? $count['totalCount'] : 0;
+
+    mysqli_free_result($countResult);
+    mysqli_next_result($connection); //Prepares next query
+} catch (\Throwable $th) {
+    echo $th;
+}
+//FETCH THE TOTAL COUNT OF HOW MANY PRODUCTS
+try {
+    $getProductCount = "CALL getProdCount()"; //Views
+    $countResult = mysqli_query($connection, $getProductCount) or die(mysqli_error($connection));
+    $prodCount = mysqli_fetch_assoc($countResult);
+
+    $totalProdCount = $prodCount['totalInventory'] ? $prodCount['totalInventory'] : 0;
+    mysqli_free_result($countResult);
+    mysqli_next_result($connection); //Prepares next query
+
+} catch (\Throwable $th) {
+    throw $th;
+}
 //FETCH THE TOTAL UNCOLLECTED AMOUNT
 try {
     $uncollectedQuery = "CALL getTotalUncollectedAmount();"; //Stored Procedure
