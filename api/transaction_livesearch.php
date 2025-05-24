@@ -5,8 +5,30 @@
 require("../config/config.php");
 // Refers to the get method of the transaction_page_livesearch.js uri search
 // If the search is empty, then default select query
+
+// Includes the pagination template
+include("../includes/pagination.php");
+
 if(!isset($_GET["transact_search"]) || empty($_GET["transact_search"])){
-    $transactSearchQuery = "SELECT * FROM transaction_view;";
+    $transactSearchQuery = "SELECT 
+                        p.prod_name,
+                        c.c_name,
+                        t.qty,
+                        t.amount,
+                        t.created_at
+                        FROM 
+                            `transaction` t
+                        JOIN 
+                            products p ON t.prod_id = p.id
+                        JOIN 
+                            customers c ON t.c_id = c.id
+                        WHERE 
+                            c.is_deleted = 0
+                            AND t.created_at >= CURDATE()
+                            AND t.created_at < CURDATE() + INTERVAL 1 DAY
+                        ORDER BY 
+                            t.created_at DESC
+                        LIMIT $startFrom, $limitPerPage;";
 }
 else{
     $search = htmlspecialchars($_GET["transact_search"]);
@@ -16,8 +38,8 @@ else{
                     ON transaction.prod_id=products.id
                     INNER JOIN customers
                     ON transaction.c_id=customers.id
-                    WHERE customers.is_deleted = 0 AND customers.c_name LIKE '%$search%' 
-                    OR customers.is_deleted= 0 AND products.prod_name LIKE '%$search%'
+                    WHERE customers.is_deleted = 0 AND customers.c_name LIKE '$search%' 
+                    OR customers.is_deleted= 0 AND products.prod_name LIKE '$search%'
                     ORDER BY created_at DESC;
     ";
 }

@@ -10,7 +10,7 @@ if (!isset($_GET["search"]) || empty($_GET["search"])) {
 } 
 else {
     $search = htmlspecialchars($_GET["search"]); //this is appended in the URI and we must retrieve
-    $searchquery = "SELECT * FROM customers WHERE c_name LIKE '%$search%' AND is_deleted=0"; //Used LIKE and %%  to implement searching
+    $searchquery = "SELECT * FROM customers WHERE c_name LIKE '$search%' AND is_deleted=0"; //Used LIKE and %%  to implement searching
 }
     $result = mysqli_query($connection, $searchquery);
     

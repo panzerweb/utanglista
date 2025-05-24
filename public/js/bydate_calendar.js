@@ -6,6 +6,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     var calendarEl = document.getElementById('calendar-transact');
     let transactionResult = document.getElementById("transaction-result");
+    let pagination = document.querySelector(".pagination");
     var calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: 'dayGridMonth',
         dateClick:function(info){ 
@@ -17,6 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(response => response.text())
             .then(data => {
                 transactionResult.innerHTML = data;
+                pagination.classList.add('d-none');
                 console.log(data);
             })
             .catch(error => {

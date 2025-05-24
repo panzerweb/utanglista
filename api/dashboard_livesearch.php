@@ -43,7 +43,7 @@ else{
                             WHERE is_deleted = 0 AND balance > 0
                             ORDER BY balance DESC
                         ) AS ranked_customers
-                        WHERE c_name LIKE '%$search%';
+                        WHERE c_name LIKE '$search%';
                         "
                     ; 
     //Used LIKE and %%  to implement searching
