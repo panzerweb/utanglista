@@ -26,6 +26,9 @@
                         <li class="nav-item">
                             <a class="nav-link fw-semibold text-light" href="./customer.php">Customer</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link fw-semibold text-light" href="./trash.php">Trash</a>
+                        </li>
                         
                         
                     </ul>
