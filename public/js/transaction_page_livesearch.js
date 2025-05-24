@@ -1,6 +1,7 @@
 // Javascript file using Fetch API to handle response from database server
 let transactionResult = document.getElementById("transaction-result");
 let transactLiveSearchInput = document.getElementById("transaction-livesearch");
+let pagination = document.querySelector(".pagination");
 
 if (transactLiveSearchInput && transactionResult) {
     transactLiveSearchInput.addEventListener('keyup', () => {
@@ -10,6 +11,7 @@ if (transactLiveSearchInput && transactionResult) {
             .then(res => res.text())
             .then(data => {
                 transactionResult.innerHTML = data;
+                pagination.classList.add('d-none');
                 // console.log(data);
             })
             .catch(error => {
@@ -20,6 +22,7 @@ if (transactLiveSearchInput && transactionResult) {
             .then(res => res.text())
             .then(data => {
                 transactionResult.innerHTML = data;
+                pagination.classList.remove('d-none');
                 // console.log(data);
             })
             .catch(error => {

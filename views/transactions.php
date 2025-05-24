@@ -121,8 +121,29 @@
                             <?php } ?>
 
                         </tbody>
-                    </table>
+                    </table>                
                 </div>
+
+                <!-- Pagination -->
+                <nav aria-label="Page navigation" id="pagination" class="d-flex justify-content-center mt-4">
+                    <ul class="pagination pagination-md">
+                        <?php for ($pagination = 1; $pagination <= $total_pages; $pagination++) : ?>
+                            <?php
+                                $isActive = isset($_GET['page']) ? ($_GET['page'] == $pagination) : ($pagination == 1);
+                            ?>
+                            <li class="page-item <?= $isActive ? 'active' : ''; ?>">
+                                <a 
+                                    class="page-link <?= $isActive ? 'bg-success border-success text-white' : 'bg-dark text-success border-success'; ?> fw-semibold px-4 mx-1"
+                                    href="./transactions.php?page=<?= $pagination; ?>"
+                                >
+                                    <?= $pagination ?>
+                                </a>
+                            </li>
+                        <?php endfor; ?>
+                    </ul>
+                </nav>
+
+
             </div>
             <div class="col-12 col-lg-4">
                 <div class="card text-start mb-3">
