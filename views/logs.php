@@ -10,7 +10,7 @@
     include("../api/logs_statistics.php"); //All statistics are here
     include("../api/logs_fetch.php"); //All statistics are here
 ?>
-
+<script defer src="../public/js/tutorial/logs_tutorial.js"></script>
 <script src="../public/js/logs.js"></script>
 
 <main>
