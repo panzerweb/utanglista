@@ -92,7 +92,7 @@
                     )
 
                 </h1>
-                <!-- Testing -->
+                <!-- Product Cards -->
                 <div class="shadow p-3 border border-1 rounded-4 mt-2 splide" role="group" aria-label="Splide Basic HTML Example">
                     <div class="row justify-content-center align-items-center">
                         <div class="splide__track">
@@ -101,8 +101,10 @@
                             
                                 <div class="card mx-2 splide__slide">
                                     <!-- Display all product details -->
-                                    <img src="../public/<?php echo htmlspecialchars($product["prod_image"]) ?>" class="card-img-top img-thumbnail w-100 h-100" alt="Product Image">
-                                    <div class="card-body">
+                                    <img src="../public/<?php echo htmlspecialchars($product["prod_image"]) ?>" 
+                                        class="card-img-top img-thumbnail" 
+                                        alt="Product Image"
+                                        style="max-height: 200px; object-fit: cover; width: 100%;">                                    <div class="card-body">
                                         <h5 class="card-title text-center">
                                             <?php echo htmlspecialchars($product["prod_name"]); ?>
                                         </h5>

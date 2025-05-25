@@ -5,12 +5,14 @@
 require("../config/config.php");
 // Refers to the get method of the customer_page_livesearch.js uri search
 // If the search is empty, then default select query
+// Includes the pagination template
+include("../includes/pagination.php");
 if (!isset($_GET["search"]) || empty($_GET["search"])) {
-    $searchquery = "SELECT * FROM customers WHERE is_deleted=0";
+    $searchquery = "SELECT * FROM customers WHERE is_deleted=0 LIMIT $startFrom, $limitPerPage;";
 } 
 else {
     $search = htmlspecialchars($_GET["search"]); //this is appended in the URI and we must retrieve
-    $searchquery = "SELECT * FROM customers WHERE c_name LIKE '$search%' AND is_deleted=0"; //Used LIKE and %%  to implement searching
+    $searchquery = "SELECT * FROM customers WHERE c_name LIKE '$search%' AND is_deleted=0 LIMIT $startFrom, $limitPerPage;"; //Used LIKE and %%  to implement searching
 }
     $result = mysqli_query($connection, $searchquery);
     
@@ -84,6 +86,31 @@ else {
                 </td>
                 HTML;
                 echo "</tr>";
+        }
+        // Get total number of rows for pagination
+        $totalQuery = empty($_GET["search"])
+        ? "SELECT COUNT(*) FROM customers WHERE is_deleted=0;"
+        : "SELECT COUNT(*) FROM customers WHERE c_name LIKE '$search%' AND is_deleted=0";
+
+        $totalResult = mysqli_query($connection, $totalQuery);
+        $totalRows = mysqli_fetch_row($totalResult)[0];
+        $total_pages = ceil($totalRows/$limitPerPage);
+
+        if ($total_pages > 1) {
+            echo '<nav aria-label="Page navigation" id="pagination" class="d-flex justify-content-center mt-4">';
+            echo '<ul class="pagination pagination-md">';
+
+            for ($pagination = 1; $pagination <= $total_pages; $pagination++) {
+                $isActive = isset($_GET['page']) ? ($_GET['page'] == $pagination) : ($pagination == 1);
+                echo '<li class="page-item ' . ($isActive ? 'active' : '') . '">';
+                echo '<a href="#" class="pagination-link page-link ' 
+                    . ($isActive ? 'bg-success border-success text-white' : 'bg-dark text-success border-success') 
+                    . ' fw-semibold px-4 mx-1" data-page="' . $pagination . '">'
+                    . $pagination . '</a>';
+                echo '</li>';
+            }
+
+            echo '</ul></nav>';
         }
     } else {
         echo "<td colspan='6'  class='text-center text-muted'>No results found</td>"; // Display an empty query

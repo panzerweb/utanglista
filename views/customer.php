@@ -89,7 +89,7 @@
                         
                         </div>
                         <div class="mt-4 mb-3">
-                            <div class="table-responsive rounded-4 shadow pt-0 border border-1" style="max-height: 400px; overflow-y: auto;">
+                            <div class="table-responsive rounded-4 shadow pt-0 border border-1" id="customer-table">
                                 
                                 <!-- ====== Shows total Count of Customers ====== -->
                                 
@@ -214,6 +214,30 @@
                                         <?php } ?>
                                     </tbody>
                                 </table>
+                                <!-- Pagination -->
+                                <!-- Pagination -->
+                                <?php if ($total_pages > 1): ?>
+                                    <nav aria-label="Page navigation" class="pagination-nav d-flex justify-content-end mt-3 mx-2">
+                                        <ul class="pagination pagination-md justify-content-end">
+
+                                            <?php for ($pagination = 1; $pagination <= $total_pages; $pagination++): ?>
+                                                <?php
+                                                    $isActive = isset($_GET['page']) ? ((int)$_GET['page'] === $pagination) : ($pagination === 1);
+                                                ?>
+                                                <li class="page-item <?= $isActive ? 'active' : ''; ?>">
+                                                    <a 
+                                                        href="?page=<?= $pagination; ?>" 
+                                                        class="pagination-link page-link <?= $isActive ? 'bg-success border-success text-white' : 'bg-dark text-success border-success'; ?> fw-semibold px-4 mx-1"
+                                                        data-page="<?= $pagination; ?>"
+                                                    >
+                                                        <?= $pagination ?>
+                                                    </a>
+                                                </li>
+                                            <?php endfor; ?>
+
+                                        </ul>
+                                    </nav>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>
