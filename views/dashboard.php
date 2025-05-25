@@ -255,6 +255,7 @@
                             </table>
                             <!-- Pagination -->
                             <?php if ($total_pages > 1): ?>
+                                <tr><td colspan="5" class="text-center">
                                 <nav aria-label="Page navigation" class="pagination-nav d-flex justify-content-end mt-3 mx-2">
                                     <ul class="pagination pagination-md justify-content-end">
 
@@ -275,6 +276,7 @@
 
                                     </ul>
                                 </nav>
+                                </td></tr>
                             <?php endif; ?>
 
 

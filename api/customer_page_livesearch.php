@@ -97,6 +97,7 @@ else {
         $total_pages = ceil($totalRows/$limitPerPage);
 
         if ($total_pages > 1) {
+            echo '<tr><td colspan="5" class="text-center">';
             echo '<nav aria-label="Page navigation" id="pagination" class="d-flex justify-content-center mt-4">';
             echo '<ul class="pagination pagination-md">';
 
@@ -111,6 +112,7 @@ else {
             }
 
             echo '</ul></nav>';
+            echo '</td></tr>';
         }
     } else {
         echo "<td colspan='6'  class='text-center text-muted'>No results found</td>"; // Display an empty query
