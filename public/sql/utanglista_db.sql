@@ -342,13 +342,16 @@ INSERT INTO `users` (`id`, `admin_name`, `admin_email`, `admin_password`, `creat
 SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 DELIMITER //
 CREATE TRIGGER `customers__log_after_update` AFTER UPDATE ON `customers` FOR EACH ROW BEGIN
-	IF OLD.is_deleted = 0 AND NEW.is_deleted = 1 THEN
-		INSERT INTO customer_logs(message, admin_id, customer_id, old_name, new_name)
-		VALUES ('Has deleted a customer!', OLD.admin_id, OLD.id, NULL, NULL);
-	ELSE
-		INSERT INTO customer_logs(message, admin_id, customer_id, old_name, new_name) 
-		VALUES ('Has updated a customer!', NEW.admin_id, NEW.id, OLD.c_name, NEW.c_name);
-	END IF;
+    -- Log only when customer is marked as deleted
+    IF OLD.is_deleted = 0 AND NEW.is_deleted = 1 THEN
+        INSERT INTO customer_logs(message, admin_id, customer_id, old_name, new_name)
+        VALUES ('Has deleted a customer!', OLD.admin_id, OLD.id, NULL, NULL);
+    
+    -- Log only when the name actually changes (and it's not a deletion)
+    ELSEIF OLD.c_name != NEW.c_name THEN
+        INSERT INTO customer_logs(message, admin_id, customer_id, old_name, new_name)
+        VALUES ('Has updated a customer!', NEW.admin_id, NEW.id, OLD.c_name, NEW.c_name);
+    END IF;
 END//
 DELIMITER ;
 SET SQL_MODE=@OLDTMP_SQL_MODE;
@@ -357,8 +360,8 @@ SET SQL_MODE=@OLDTMP_SQL_MODE;
 SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 DELIMITER //
 CREATE TRIGGER `customer_log_after_insert` AFTER INSERT ON `customers` FOR EACH ROW BEGIN
-	INSERT INTO customer_logs(message, admin_id, customer_id) VALUES ('A customer has been added!', NEW.admin_id, NEW.id);
-END//
+	  INSERT INTO customer_logs(message, admin_id, customer_id, old_name, new_name)
+    VALUES ('Has added a customer!', NEW.admin_id, NEW.id, NULL, NEW.c_name);END//
 DELIMITER ;
 SET SQL_MODE=@OLDTMP_SQL_MODE;
 
