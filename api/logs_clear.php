@@ -1,10 +1,14 @@
 <?php 
+include("../config/config.php");
 
 if (isset($_GET["customer_logs"])) {
     $customerLogs = $_GET["customer_logs"];
     
-    if(isset($customerLogs)){
-        echo "success";
+    $clearCustomerLogs = "DELETE FROM customer_logs;";
+    $result = mysqli_query($connection, $clearCustomerLogs);
+
+    if ($result) {
+        echo 'success';
     }
     else{
         echo 'error';

@@ -48,7 +48,7 @@ try {
     echo $th;
 }
 
-// FETCH DATA BASED ON BALANCE
+// FETCH DATA BASED ON BALANCE - Pagination
 try {
     $customerByBalance = "SELECT c_name, balance, DENSE_RANK() 
                         OVER (ORDER BY balance DESC) 
@@ -67,6 +67,18 @@ try {
     $sortByBalance = mysqli_query($connection, $paginatedSort);
     $total_pages = ceil($totalSort / $limitPerPage);
 
+    mysqli_free_result($sortResult);
+    mysqli_next_result($connection); //Prepares next query
+} catch (\Throwable $th) {
+    echo $th;
+}
+
+// FETCH DATA BASED ON BALANCE
+try {
+    $customerByBalance = "CALL customerByBalance()";
+    $sortResult = mysqli_query($connection, $customerByBalance);
+
+    $leaderboardByBalance = mysqli_fetch_all($sortResult, MYSQLI_ASSOC);
     mysqli_free_result($sortResult);
     mysqli_next_result($connection); //Prepares next query
 } catch (\Throwable $th) {
