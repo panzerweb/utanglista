@@ -207,7 +207,7 @@
             <div class="col-12 col-lg-12 table-and-calendar">
                 <div class="row justify-content-between">
                     <div class="col-12 col-lg-7 my-1 px-0">
-                        <div class="table-responsive rounded-4 overflow-x-hidden overflow-y-auto shadow border border-1" style="height: 95%; max-height: fit-content;">
+                        <div class="table-responsive rounded-4 overflow-x-hidden overflow-y-auto shadow border border-1">
                             <div class="leaderboard-wrapper position-sticky bg-success text-light top-0 z-1 py-2">
                                 <div class="leaderboard-box px-2">
                                     <h3 class="position-sticky top-0 z-1 py-2">
@@ -224,7 +224,7 @@
 
                             <!-- ====== Leaderboard: Table for highest to lowest balance -->
 
-                            <table class="table table-hover table-striped table-bordered mb-0 table-contain">
+                            <table class="table table-sm table-hover table-striped table-bordered mb-0 table-contain">
                                 <thead class="table-light">
                                     <tr>
                                     <th scope="col">Ranking</th>
@@ -253,6 +253,33 @@
                                     <?php } ?>
                                 </tbody>
                             </table>
+                            <!-- Pagination -->
+                            <?php if ($total_pages > 1): ?>
+                                <tr><td colspan="5" class="text-center">
+                                <nav aria-label="Page navigation" class="pagination-nav d-flex justify-content-end mt-3 mx-2">
+                                    <ul class="pagination pagination-md justify-content-end">
+
+                                        <?php for ($pagination = 1; $pagination <= $total_pages; $pagination++): ?>
+                                            <?php
+                                                $isActive = isset($_GET['page']) ? ((int)$_GET['page'] === $pagination) : ($pagination === 1);
+                                            ?>
+                                            <li class="page-item <?= $isActive ? 'active' : ''; ?>">
+                                                <a 
+                                                    href="?page=<?= $pagination; ?>" 
+                                                    class="pagination-link page-link <?= $isActive ? 'bg-success border-success text-white' : 'bg-dark text-success border-success'; ?> fw-semibold px-4 mx-1"
+                                                    data-page="<?= $pagination; ?>"
+                                                >
+                                                    <?= $pagination ?>
+                                                </a>
+                                            </li>
+                                        <?php endfor; ?>
+
+                                    </ul>
+                                </nav>
+                                </td></tr>
+                            <?php endif; ?>
+
+
                         </div>
                     </div>
 

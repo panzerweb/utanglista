@@ -89,7 +89,7 @@
                         
                         </div>
                         <div class="mt-4 mb-3">
-                            <div class="table-responsive rounded-4 shadow pt-0 border border-1" style="max-height: 400px; overflow-y: auto;">
+                            <div class="table-responsive rounded-4 shadow pt-0 border border-1" id="customer-table">
                                 
                                 <!-- ====== Shows total Count of Customers ====== -->
                                 
@@ -117,7 +117,7 @@
                                         
                                     </div>
                                 </div>
-                                <table class="table table-hover table-striped table-bordered mb-0">
+                                <table class="table table-sm table-hover table-striped table-bordered mb-0">
                                     <thead>
                                         <tr>
                                             <!-- <th>Id</th> -->
@@ -224,52 +224,56 @@
                             <h4 class="card-title fw-bold mb-3">🏆 Leaderboards</h4>
                             <hr class="border-secondary mb-2">
 
-                            <!-- Displays greatest to lowest balance-->
-                            <?php foreach($sortByBalance as $customer) { ?>
-                                <?php if($customer["ranking"] == 1) {?>
-                                <div class="leader-entry d-flex justify-content-between align-items-center py-2 px-2 rounded-3 mb-2 bg-warning bg-opacity-50">        
-                                    <span class="fw-semibold fs-5 d-flex align-items-center">
-                                        <span class="fs-3">🥇</span>
-                                        <?php echo htmlspecialchars($customer['c_name']) ?>
-                                    </span>
-                                    
-                                    <span class="badge bg-warning text-dark fs-6 px-3 py-1">
-                                        <?php echo htmlspecialchars($customer['ranking']); ?>
-                                    </span>
-                                </div>
-                                <?php } else if($customer["ranking"] == 2) { ?>
-                                    <div class="leader-entry d-flex justify-content-between align-items-center py-2 px-2 rounded-3 mb-2 bg-info bg-opacity-50">
+                            <div class="card-body">
+                                <div class="px-2" style="max-height: 400px; overflow-y: auto;">
+                                    <!-- Displays greatest to lowest balance-->
+                                <?php foreach($leaderboardByBalance as $customer) { ?>
+                                    <?php if($customer["ranking"] == 1) {?>
+                                    <div class="leader-entry d-flex justify-content-between align-items-center py-2 px-2 rounded-3 mb-2 bg-warning bg-opacity-50">        
                                         <span class="fw-semibold fs-5 d-flex align-items-center">
-                                            <span class="fs-3">🥈</span>
+                                            <span class="fs-3">🥇</span>
                                             <?php echo htmlspecialchars($customer['c_name']) ?>
                                         </span>
-                                        <span class="badge bg-light text-dark fs-6 px-3 py-1">
+                                        
+                                        <span class="badge bg-warning text-dark fs-6 px-3 py-1">
                                             <?php echo htmlspecialchars($customer['ranking']); ?>
                                         </span>
                                     </div>
-                                <?php } else if($customer["ranking"] == 3) { ?>
-                                    <div class="leader-entry d-flex justify-content-between align-items-center py-2 px-2 rounded-3 mb-2 bg-light bg-opacity-25">
-                                        <span class="fw-semibold fs-5 d-flex align-items-center">
-                                            <span class="fs-3">🥉</span>
-                                            <?php echo htmlspecialchars($customer['c_name']) ?>
-                                        </span>
-                                        <span class="badge bg-light text-dark fs-6 px-3 py-1">
-                                            <?php echo htmlspecialchars($customer['ranking']); ?>
-                                        </span>
-                                    </div>
-                                <?php } else { ?>
-                                    <div class="leader-entry d-flex justify-content-between align-items-center py-2 px-2 rounded-3 mb-2 bg-secondary bg-opacity-25">
-                                        <span class="fw-semibold fs-5 d-flex align-items-center">
-                                            <span class="fs-3">🏵️</span>
-                                            <?php echo htmlspecialchars($customer['c_name']) ?>
-                                        </span>
-                                        <span class="badge bg-light text-dark fs-6 px-3 py-1">
-                                            <?php echo htmlspecialchars($customer['ranking']); ?>
-                                        </span>
-                                    </div>
+                                    <?php } else if($customer["ranking"] == 2) { ?>
+                                        <div class="leader-entry d-flex justify-content-between align-items-center py-2 px-2 rounded-3 mb-2 bg-info bg-opacity-50">
+                                            <span class="fw-semibold fs-5 d-flex align-items-center">
+                                                <span class="fs-3">🥈</span>
+                                                <?php echo htmlspecialchars($customer['c_name']) ?>
+                                            </span>
+                                            <span class="badge bg-light text-dark fs-6 px-3 py-1">
+                                                <?php echo htmlspecialchars($customer['ranking']); ?>
+                                            </span>
+                                        </div>
+                                    <?php } else if($customer["ranking"] == 3) { ?>
+                                        <div class="leader-entry d-flex justify-content-between align-items-center py-2 px-2 rounded-3 mb-2 bg-light bg-opacity-25">
+                                            <span class="fw-semibold fs-5 d-flex align-items-center">
+                                                <span class="fs-3">🥉</span>
+                                                <?php echo htmlspecialchars($customer['c_name']) ?>
+                                            </span>
+                                            <span class="badge bg-light text-dark fs-6 px-3 py-1">
+                                                <?php echo htmlspecialchars($customer['ranking']); ?>
+                                            </span>
+                                        </div>
+                                    <?php } else { ?>
+                                        <div class="leader-entry d-flex justify-content-between align-items-center py-2 px-2 rounded-3 mb-2 bg-secondary bg-opacity-25">
+                                            <span class="fw-semibold fs-5 d-flex align-items-center">
+                                                <span class="fs-3">🏵️</span>
+                                                <?php echo htmlspecialchars($customer['c_name']) ?>
+                                            </span>
+                                            <span class="badge bg-light text-dark fs-6 px-3 py-1">
+                                                <?php echo htmlspecialchars($customer['ranking']); ?>
+                                            </span>
+                                        </div>
+                                    <?php } ?>
                                 <?php } ?>
-                            <?php } ?>
+                                </div>
 
+                            </div>
                         </div>
                     </div>
 

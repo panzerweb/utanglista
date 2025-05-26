@@ -7,9 +7,11 @@
 
 require("../config/config.php");
 
+// Includes the pagination template
+include("../includes/pagination.php");
 // If checkboxes are empty, then select default values query
 if (!isset($_GET["status"]) || empty($_GET["status"])) {
-    $statusQuery = "SELECT * FROM customers WHERE is_deleted=0 ORDER BY created_at DESC;";
+    $statusQuery = "SELECT * FROM customers WHERE is_deleted=0 ORDER BY created_at DESC LIMIT $startFrom, $limitPerPage;";
 } 
 // Else, if there are checked checkboxes, perform query
 else {

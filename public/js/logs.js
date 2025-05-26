@@ -15,6 +15,9 @@ function clearCustomerLogs(){
                 showConfirmButton: false,
                 timer: 1000
             });
+            setTimeout(() => {
+                window.location.href = '../views/logs.php';
+            }, 1000);
             console.log(data);
         } else {
             Swal.fire({
