@@ -14,10 +14,16 @@
 */
 require("../config/config.php");
 
+// USE LIMIT FOR PAGINATION
 try {
-    $getTransactions = "SELECT * FROM transaction_view"; //Restored the view - MySQL
+    $getTransactions = "SELECT * FROM transaction_view"; // Restored the view - MySQL
     $result = mysqli_query($connection, $getTransactions);
-    
+
+    // Check if the query was successful
+    if (!$result) {
+        throw new Exception("Query failed: " . mysqli_error($connection));
+    }
+
     $totalTransactions = mysqli_num_rows($result);
 
     // Includes the pagination template
@@ -42,17 +48,15 @@ try {
                             AND t.created_at < CURDATE() + INTERVAL 1 DAY
                         ORDER BY 
                             t.created_at DESC
-                            
                         LIMIT $startFrom, $limitPerPage;"
     ;
 
     $transactions = mysqli_query($connection, $paginationQuery);
-    $total_pages = ceil($totalTransactions /  $limitPerPage);
-
+    $total_pages = ceil($totalTransactions / $limitPerPage);
 
     mysqli_free_result($result);
-    mysqli_next_result($connection); //Prepares next query
+    mysqli_next_result($connection); // Prepares next query
 
 } catch (\Throwable $th) {
-    echo $th;
+    echo "<tr><td colspan='5' class='text-danger text-center'>Error: {$th->getMessage()}</td></tr>";
 }

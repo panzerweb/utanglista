@@ -20,7 +20,7 @@
 
                   <option disabled selected>Select one</option>
                   <!-- Display all customers -->
-                  <?php foreach($customers as $customer) { ?>
+                  <?php foreach($allcustomers as $customer) { ?>
 
                     <option value="<?php echo htmlspecialchars($customer["id"]) ?>">
                       <?php echo htmlspecialchars($customer["c_name"]) ?>

@@ -196,6 +196,7 @@
 
                     <!-- Single scrollable body -->
                     <div class="card-body p-0" style="max-height: 300px; overflow-y: auto;">
+                        <?php if(!empty($customer_logs)) { ?>
                         <?php foreach($customer_logs as $customer_log) { ?>
                             <div class="px-3 py-2 border-bottom">
                                 <div class="fw-semibold text-dark">                                 
@@ -230,6 +231,11 @@
                                     </span>
                                     Created at: <?php echo htmlspecialchars($customer_log["created_at"]); ?>
                                 </div>
+                            </div>
+                        <?php } ?>
+                        <?php } else { ?>
+                            <div class="text-center text-muted p-3">
+                                No customer logs available.
                             </div>
                         <?php } ?>
                     </div>
