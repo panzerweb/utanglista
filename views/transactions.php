@@ -77,7 +77,7 @@
                             
                         </div>
                     </div>
-                    <table class="table table-hover table-striped table-bordered mb-0">
+                    <table class="table table-sm table-hover table-striped table-bordered mb-0">
                         <thead>
                             <tr>
                                 <!-- <th>Id</th> -->
@@ -121,7 +121,8 @@
                             <?php } ?>
 
                         </tbody>
-                    </table>                
+                    </table>     
+                               
                 </div>
 
 

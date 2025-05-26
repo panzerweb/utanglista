@@ -7,7 +7,7 @@
 
 require("../config/config.php");
 
-// FETCH ALL DATA
+// FETCH ALL DATA - NOT FOR PAGINATION
 try {
     $selectCustomer = "CALL selectAllCustomer()";
     $fetchResult = mysqli_query($connection, $selectCustomer) or die(mysqli_error($connection));
@@ -20,7 +20,7 @@ try {
     echo $th;
 }
 
-// FETCH ALL DATA for pagination
+// FETCH ALL DATA FOR PAGINATION
 try {
     $selectCustomer = "SELECT * FROM customers
                     WHERE is_deleted = 0
@@ -74,6 +74,7 @@ try {
 }
 
 // FETCH DATA BASED ON BALANCE
+// SAME LOGIC BUT NOT FOR PAGINATION
 try {
     $customerByBalance = "CALL customerByBalance()";
     $sortResult = mysqli_query($connection, $customerByBalance);

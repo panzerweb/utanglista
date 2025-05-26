@@ -224,7 +224,7 @@
 
                             <!-- ====== Leaderboard: Table for highest to lowest balance -->
 
-                            <table class="table table-hover table-striped table-bordered mb-0 table-contain">
+                            <table class="table table-sm table-hover table-striped table-bordered mb-0 table-contain">
                                 <thead class="table-light">
                                     <tr>
                                     <th scope="col">Ranking</th>

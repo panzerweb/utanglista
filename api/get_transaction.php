@@ -14,6 +14,7 @@
 */
 require("../config/config.php");
 
+// USE LIMIT FOR PAGINATION
 try {
     $getTransactions = "SELECT * FROM transaction_view"; // Restored the view - MySQL
     $result = mysqli_query($connection, $getTransactions);

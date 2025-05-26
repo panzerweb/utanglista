@@ -74,7 +74,7 @@ else{
             for ($pagination = 1; $pagination <= $total_pages; $pagination++) {
                 $isActive = isset($_GET['page']) ? ($_GET['page'] == $pagination) : ($pagination == 1);
                 echo '<li class="page-item ' . ($isActive ? 'active' : '') . '">';
-                echo '<a href="<?= $pagination ?>" class="pagination-link page-link ' 
+                echo '<a href="#" class="pagination-link page-link ' 
                     . ($isActive ? 'bg-success border-success text-white' : 'bg-dark text-success border-success') 
                     . ' fw-semibold px-4 mx-1" data-page="' . $pagination . '">'
                     . $pagination . '</a>';
