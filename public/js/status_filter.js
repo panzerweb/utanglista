@@ -3,6 +3,8 @@
 // Status filter, multiple checkbox template from https://stackoverflow.com/questions/14544104/checkbox-check-event-listener
 let statusCheckBoxes = document.querySelectorAll("input[type=checkbox][name=status]");
 let enabledStatus = [];
+// let pagination = document.querySelector(".pagination-nav");
+let customerTable = document.getElementById("customer-table");
 
 statusCheckBoxes.forEach(checkbox => {
     const liveResult = document.getElementById("live-result");
@@ -19,16 +21,22 @@ statusCheckBoxes.forEach(checkbox => {
             .then(response => response.text())
             .then(data => {
                 liveResult.innerHTML = data;
-                // console.log(data);
+                // pagination.classList.add('d-none');
+                customerTable.style.maxHeight = '400px';
+                customerTable.style.overflowY = "auto";
+                console.log(data);
             })
             .catch(error => {
                 console.log(error);
             })
         } else {
-            fetch('../api/status_fetch.php')
+            fetch('../api/customer_page_livesearch.php')
             .then(response => response.text())
             .then(data => {
                 liveResult.innerHTML = data;
+                // pagination.classList.remove('d-none');
+                customerTable.style.maxHeight = '';
+                customerTable.style.overflowY = "";
                 // console.log(data);
             })
             .catch(error => {

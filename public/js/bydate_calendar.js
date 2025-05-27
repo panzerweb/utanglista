@@ -6,6 +6,8 @@
 document.addEventListener('DOMContentLoaded', function() {
     var calendarEl = document.getElementById('calendar-transact');
     let transactionResult = document.getElementById("transaction-result");
+    let transactionTable = document.getElementById("transaction-table");
+    let pagination = document.querySelector(".pagination");
     var calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: 'dayGridMonth',
         dateClick:function(info){ 
@@ -17,6 +19,9 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(response => response.text())
             .then(data => {
                 transactionResult.innerHTML = data;
+
+                transactionTable.style.maxHeight = '400px';
+                pagination.classList.add('d-none');
                 console.log(data);
             })
             .catch(error => {
@@ -31,4 +36,3 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     calendar.render();
     });
-    

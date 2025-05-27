@@ -1,0 +1,3 @@
+#Excludes all content from uploads folder, but upload folder isn't removed
+/public/uploads/*
+!/public/uploads/.gitkeep

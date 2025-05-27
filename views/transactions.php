@@ -8,7 +8,9 @@
     include("../api/get_product.php");
     include("../api/get_transaction.php");
 ?>
-
+<!-- FullCalendar script-->
+<script src="../public/js/fullcalendar-6.1.17/dist/index.global.min.js"></script>
+<script src="../public/js/bydate_calendar.js"></script>
 <!-- Tutorial Added -->
 <script defer src="../public/js/tutorial/transaction_tutorial.js"></script>
 
@@ -18,8 +20,6 @@
         <!-- ====== Row for search ====== -->
 
         <div class="row justify-content-around" id="search-and-transaction">
-            <!-- Include the admin header greeting -->
-            <?php include('./components/welcome_admin.php') ?>
 
             <div class="order-2 order-lg-1 col-12 col-lg-8">
                 <div class="shadow p-2 border border-1 rounded-4">
@@ -29,7 +29,7 @@
                             class="form-control border border-1 border-secondary rounded-3 w-100"
                             id="transaction-livesearch"
                             aria-describedby="helpId"
-                            placeholder="🔍Search"
+                            placeholder="🔍Search (Product or Customer)"
                         />
                     </div>
                 </div>  
@@ -63,7 +63,7 @@
 
         <div class="row justify-content-around mt-3">
             <div class="col-12 col-lg-8">
-                <div class="table-responsive rounded-4 shadow border border-1" style="max-height: 400px; overflow-y: auto;">
+                <div class="table-responsive rounded-4 shadow border border-1" id="transaction-table">
                     <div class="customer-wrapper position-sticky bg-success text-light top-0 z-1 py-2">
                         <div class="customer-box px-2">
                             <h3 class="position-sticky top-0 z-1 py-2">
@@ -77,7 +77,7 @@
                             
                         </div>
                     </div>
-                    <table class="table table-hover table-striped table-bordered mb-0">
+                    <table class="table table-sm table-hover table-striped table-bordered mb-0">
                         <thead>
                             <tr>
                                 <!-- <th>Id</th> -->
@@ -121,8 +121,12 @@
                             <?php } ?>
 
                         </tbody>
-                    </table>
+                    </table>     
+                               
                 </div>
+
+
+
             </div>
             <div class="col-12 col-lg-4">
                 <div class="card text-start mb-3">
@@ -135,7 +139,21 @@
         </div>
     </div>
 </main>
-
+<!-- Tutorial -->
+<div class="position-relative">
+    <div class="position-absolute bottom-0 start-0 m-2">
+        <!-- Tutorial Button -->
+        <button
+            type="button"
+            class="btn btn-dark"
+            id="dash-tutorial-btn"
+        >
+            <span class="fs-5">
+            📙Tutorial
+            </span>
+        </button>
+    </div>
+</div>
 <!-- place footer here -->
 <?php 
     //Header layout

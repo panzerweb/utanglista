@@ -6,9 +6,16 @@ require("../config/config.php");
 
 // Code to retrieve all data for a live search
 // If query is empty, default select query
+// Includes the pagination template
+include("../includes/pagination.php");
 if (!isset($_GET["dashsearch"]) || empty($_GET["dashsearch"])) {
     // Get the sorted list by balance
-    $dashSearchQuery = "CALL customerByBalance()";
+    $dashSearchQuery = "SELECT c_name, balance, DENSE_RANK() 
+                        OVER (ORDER BY balance DESC) 
+                        AS ranking
+                        FROM customers
+                        WHERE is_deleted = 0 AND balance > 0
+                        LIMIT $startFrom, $limitPerPage;";
     $result = mysqli_query($connection, $dashSearchQuery);
 
     // If there are multiple or one result, then print out a new table row
@@ -25,6 +32,17 @@ if (!isset($_GET["dashsearch"]) || empty($_GET["dashsearch"])) {
             echo "<td>" . htmlspecialchars($customer['balance']) . "</td>";
             echo "<tr>";
         }
+        $totalQuery = "SELECT COUNT(*) AS total_count
+            FROM (
+                SELECT c_name, balance, DENSE_RANK() OVER (ORDER BY balance DESC) AS ranking
+                FROM customers
+                WHERE is_deleted = 0 AND balance > 0
+            ) AS ranked_customers;
+            ";
+        $totalResult = mysqli_query($connection, $totalQuery);
+        $totalRows = mysqli_fetch_row($totalResult)[0];
+        $total_pages = ceil($totalRows/$limitPerPage);
+        
         mysqli_free_result($result);
         mysqli_next_result($connection);
     }else{
@@ -43,7 +61,8 @@ else{
                             WHERE is_deleted = 0 AND balance > 0
                             ORDER BY balance DESC
                         ) AS ranked_customers
-                        WHERE c_name LIKE '%$search%';
+                        WHERE c_name LIKE '$search%'
+                        LIMIT $startFrom, $limitPerPage;
                         "
                     ; 
     //Used LIKE and %%  to implement searching
@@ -66,6 +85,17 @@ else{
             echo "<td>" . htmlspecialchars($customer['balance']) . "</td>";
             echo "<tr>";
         }
+        $totalQuery = "SELECT COUNT(*) AS total_count
+                    FROM (
+                        SELECT c_name, balance, DENSE_RANK() OVER (ORDER BY balance DESC) AS ranking
+                        FROM customers
+                        WHERE is_deleted = 0 AND balance > 0
+                    ) AS ranked_customers;
+                    ";
+        $totalResult = mysqli_query($connection, $totalQuery);
+        $totalRows = mysqli_fetch_row($totalResult)[0];
+        $total_pages = ceil($totalRows/$limitPerPage);
+        
         mysqli_free_result($result);
         mysqli_next_result($connection);
     }else{

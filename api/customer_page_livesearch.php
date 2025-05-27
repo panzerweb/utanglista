@@ -5,12 +5,14 @@
 require("../config/config.php");
 // Refers to the get method of the customer_page_livesearch.js uri search
 // If the search is empty, then default select query
+// Includes the pagination template
+include("../includes/pagination.php");
 if (!isset($_GET["search"]) || empty($_GET["search"])) {
-    $searchquery = "SELECT * FROM customers WHERE is_deleted=0";
+    $searchquery = "SELECT * FROM customers WHERE is_deleted=0 LIMIT $startFrom, $limitPerPage;";
 } 
 else {
     $search = htmlspecialchars($_GET["search"]); //this is appended in the URI and we must retrieve
-    $searchquery = "SELECT * FROM customers WHERE c_name LIKE '%$search%' AND is_deleted=0"; //Used LIKE and %%  to implement searching
+    $searchquery = "SELECT * FROM customers WHERE c_name LIKE '$search%' AND is_deleted=0 LIMIT $startFrom, $limitPerPage;"; //Used LIKE and %%  to implement searching
 }
     $result = mysqli_query($connection, $searchquery);
     
@@ -39,7 +41,7 @@ else {
                             type="button"
                             name="edit_btn"
                             id="edit_btn"
-                            class="btn btn-warning"
+                            class="btn btn-outline-dark border border-2 border-dark dark-button"
                             data-bs-toggle="modal"
                             data-bs-target="#editCustomerModal_{$customer['id']}"
                         >
@@ -56,7 +58,7 @@ else {
                             type="button"
                             name="payment_amount"
                             id="payment_btn"
-                            class="btn btn-success"
+                            class="btn btn-success payment-button"
                             data-bs-toggle="modal"
                             data-bs-target="#paymentModal{$customer['id']}"
                         >
@@ -68,22 +70,49 @@ else {
                 include("../views/components/payment_modal.php");
 
                 echo <<<HTML
-                        <a
-                            id="{$customer['id']}"
-                            class="btn btn-danger"
-                            href="../api/delete_customer.php?customer_id={$customer['id']}"
-                            role="button"
+                        <button
+                            type="button"
+                            name="delete_btn"
+                            id="delete_btn_{$customer['id']}"
+                            class="btn btn-danger action-delete-button"
+                            onclick="deleteCustomer({$customer['id']})"
                         >
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
                                 <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
                                 <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
                             </svg>
-
-                        </a>
+                        </button>
                     </div>
                 </td>
                 HTML;
                 echo "</tr>";
+        }
+        // Get total number of rows for pagination
+        $totalQuery = empty($_GET["search"])
+        ? "SELECT COUNT(*) FROM customers WHERE is_deleted=0;"
+        : "SELECT COUNT(*) FROM customers WHERE c_name LIKE '$search%' AND is_deleted=0";
+
+        $totalResult = mysqli_query($connection, $totalQuery);
+        $totalRows = mysqli_fetch_row($totalResult)[0];
+        $total_pages = ceil($totalRows/$limitPerPage);
+
+        if ($total_pages > 1) {
+            echo '<tr><td colspan="5" class="text-center">';
+            echo '<nav aria-label="Page navigation" id="pagination" class="d-flex justify-content-center mt-4">';
+            echo '<ul class="pagination pagination-md">';
+
+            for ($pagination = 1; $pagination <= $total_pages; $pagination++) {
+                $isActive = isset($_GET['page']) ? ($_GET['page'] == $pagination) : ($pagination == 1);
+                echo '<li class="page-item ' . ($isActive ? 'active' : '') . '">';
+                echo '<a href="#" class="pagination-link page-link ' 
+                    . ($isActive ? 'bg-success border-success text-white' : 'bg-dark text-success border-success') 
+                    . ' fw-semibold px-4 mx-1" data-page="' . $pagination . '">'
+                    . $pagination . '</a>';
+                echo '</li>';
+            }
+
+            echo '</ul></nav>';
+            echo '</td></tr>';
         }
     } else {
         echo "<td colspan='6'  class='text-center text-muted'>No results found</td>"; // Display an empty query

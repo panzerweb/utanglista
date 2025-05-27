@@ -67,7 +67,7 @@ function insertTransaction(){
                 showConfirmButton: false,
                 timer: 1000,
             });
-            
+            console.log(data);
         }
     })
     .catch(err => {

@@ -5,18 +5,17 @@
     include("./layout/header.php");
     include("../api/get_categories.php");
     include("../api/get_product.php");
+    include("../api/get_stats_dashboard.php");
+
 ?>
 
 <main>
     <div class="container py-1 mb-5">
         <div class="row justify-content-center">
-            
-            <!-- Include the admin header greeting -->
-            <?php include('./components/welcome_admin.php') ?>
 
             <!-- Add Category modal -->
             <div class="shadow p-3 row justify-content-center border border-1 rounded-4">
-                <div class="d-flex gap-2 align-items-center mx-auto">
+                <div class="d-flex gap-2 align-items-center mx-auto mb-3">
                     <h1>Category</h1>
                     <button class="btn btn-success"
                         data-bs-toggle="modal"
@@ -32,16 +31,28 @@
                 </div>
 
                 <!-- Display all categories -->
+                <!-- Allows to press the cards to show all products -->
                 
-                <?php foreach($categories as $category) { ?>
-                    <div class="col-md-4 my-2">
-                        <div class="bg-secondary rounded d-flex align-items-end p-3" style="height: 200px;">
-                            <span class="text-white">
+                <div class="d-flex flex-wrap gap-2 justify-content-start flex-wrap">
+                    <?php foreach($categories as $category) { 
+                        // Get products for this category
+                        $category_id = $category["id"];
+                        $productList = $productByCategory[$category_id] ?? [];
+                    ?>
+                        <div>
+                            <div class="bg-secondary rounded-pill px-4 py-2 text-white" 
+                                style="cursor: pointer;"
+                                data-bs-toggle="modal" 
+                                data-id="<?php echo htmlspecialchars($category_id); ?>"
+                                data-bs-target="#showProductsByCat<?php echo htmlspecialchars($category_id) ?>">
                                 <?php echo htmlspecialchars($category["category_name"]); ?>
-                            </span>
+                            </div>
                         </div>
-                    </div>
-                <?php } ?>
+                        <!-- Include the modal for showing all products -->
+                        <?php include('./components/show_products_category.php') ?>
+                    <?php } ?>
+                </div>
+
             </div>
             
             <!-- Interactive button sections -->
@@ -84,8 +95,16 @@
 
             <!-- All product section -->
             <section class="shadow p-3 border border-1 rounded-4 mt-5">
-                <h1>Product</h1>
-                <!-- Testing -->
+                <h1>
+                    Product
+                    (                    
+                        <span>
+                            <?php echo htmlspecialchars($totalProdCount) ?>
+                        </span>
+                    )
+
+                </h1>
+                <!-- Product Cards -->
                 <div class="shadow p-3 border border-1 rounded-4 mt-2 splide" role="group" aria-label="Splide Basic HTML Example">
                     <div class="row justify-content-center align-items-center">
                         <div class="splide__track">
@@ -94,8 +113,10 @@
                             
                                 <div class="card mx-2 splide__slide">
                                     <!-- Display all product details -->
-                                    <img src="../public/<?php echo htmlspecialchars($product["prod_image"]) ?>" class="card-img-top img-thumbnail w-100 h-100" alt="Product Image">
-                                    <div class="card-body">
+                                    <img src="../public/<?php echo htmlspecialchars($product["prod_image"]) ?>" 
+                                        class="card-img-top img-thumbnail" 
+                                        alt="Product Image"
+                                        style="max-height: 200px; object-fit: cover; width: 100%;">                                    <div class="card-body">
                                         <h5 class="card-title text-center">
                                             <?php echo htmlspecialchars($product["prod_name"]); ?>
                                         </h5>
@@ -171,7 +192,21 @@
     splide.mount();
     } );
 </script>
-
+<!-- Tutorial -->
+<div class="position-relative">
+    <div class="position-absolute bottom-0 start-0 m-2">
+        <!-- Tutorial Button -->
+        <button
+            type="button"
+            class="btn btn-dark"
+            id="dash-tutorial-btn"
+        >
+            <span class="fs-5">
+            📙Tutorial
+            </span>
+        </button>
+    </div>
+</div>
 <!-- place footer here -->
 <?php 
     //Header layout

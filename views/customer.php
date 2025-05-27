@@ -3,19 +3,16 @@
     include("./layout/header.php");
     include("../config/config.php");
     include("../api/get_customer.php");
+    include("../api/get_stats_dashboard.php");
 
 ?>
 
 <!-- Tutorial Added -->
 <script defer src="../public/js/tutorial/customer_tutorial.js"></script>
-
 <main>
     
 <div class="container">
                 <div class="row justify-content-around align-items-start mx-1 mt-3 mb-1">
-                    
-                    <!-- Include the admin header greeting -->
-                    <?php include('./components/welcome_admin.php') ?>
 
                     <!-- Column for table of customers and action buttons -->
                     <div class="col-12 col-lg-8">
@@ -92,7 +89,7 @@
                         
                         </div>
                         <div class="mt-4 mb-3">
-                            <div class="table-responsive rounded-4 shadow pt-0 border border-1" style="max-height: 400px; overflow-y: auto;">
+                            <div class="table-responsive rounded-4 shadow pt-0 border border-1" id="customer-table">
                                 
                                 <!-- ====== Shows total Count of Customers ====== -->
                                 
@@ -120,14 +117,14 @@
                                         
                                     </div>
                                 </div>
-                                <table class="table table-hover table-striped table-bordered mb-0">
+                                <table class="table table-sm table-hover table-striped table-bordered mb-0">
                                     <thead>
                                         <tr>
                                             <!-- <th>Id</th> -->
                                             <th>Name</th>
                                             <!-- <th>Contact No.</th> -->
                                             <th>Balance</th>
-                                            <th>Monthly Interest</th>
+                                            <th>Interest</th>
                                             <!-- <th>Interest Rate</th> -->
                                             <th>Status</th>
                                             <th class="text-center">Action</th>
@@ -136,18 +133,18 @@
                                     <tbody id="live-result">
                                         <!-- Dynamic Data -->
                                         <?php foreach($customers as $customer) {?>
-                                            <tr>
+                                            <tr data-customer-id="<?= $customer['id'] ?>">
                                                 <td>
                                                     <?php echo htmlspecialchars($customer['c_name'] ? $customer['c_name'] : '<td class="text-center">---</td>'); ?>
                                                 </td>
                                                 <!-- <td class="text-center">
                                                     <?php echo htmlspecialchars($customer['c_contact'] ? $customer['c_contact'] : '---'); ?>
                                                 </td> -->
-                                                <td class="text-center">
-                                                    ₱ <?php echo htmlspecialchars($customer['balance']); ?>
+                                                <td class="text-center balance-cell">
+                                                    ₱ <?php echo number_format(htmlspecialchars($customer["balance"]), 2); ?>
                                                 </td>
-                                                <td class="text-center">
-                                                    ₱ <?php echo number_format(htmlspecialchars($customer['monthly_interest']), 2); ?>
+                                                <td class="text-center interest-cell">
+                                                    ₱ <?php echo number_format(htmlspecialchars($customer["monthly_interest"]), 2); ?>
                                                 </td>
                                                 <!-- <td class="text-center">
                                                     <?php echo number_format($interest, 2); ?>%
@@ -227,52 +224,56 @@
                             <h4 class="card-title fw-bold mb-3">🏆 Leaderboards</h4>
                             <hr class="border-secondary mb-2">
 
-                            <!-- Displays greatest to lowest balance-->
-                            <?php foreach($sortByBalance as $customer) { ?>
-                                <?php if($customer["ranking"] == 1) {?>
-                                <div class="leader-entry d-flex justify-content-between align-items-center py-2 px-2 rounded-3 mb-2 bg-warning bg-opacity-50">        
-                                    <span class="fw-semibold fs-5 d-flex align-items-center">
-                                        <span class="fs-3">🥇</span>
-                                        <?php echo htmlspecialchars($customer['c_name']) ?>
-                                    </span>
-                                    
-                                    <span class="badge bg-warning text-dark fs-6 px-3 py-1">
-                                        <?php echo htmlspecialchars($customer['ranking']); ?>
-                                    </span>
-                                </div>
-                                <?php } else if($customer["ranking"] == 2) { ?>
-                                    <div class="leader-entry d-flex justify-content-between align-items-center py-2 px-2 rounded-3 mb-2 bg-info bg-opacity-50">
+                            <div class="card-body">
+                                <div class="px-2" style="max-height: 400px; overflow-y: auto;">
+                                    <!-- Displays greatest to lowest balance-->
+                                <?php foreach($leaderboardByBalance as $customer) { ?>
+                                    <?php if($customer["ranking"] == 1) {?>
+                                    <div class="leader-entry d-flex justify-content-between align-items-center py-2 px-2 rounded-3 mb-2 bg-warning bg-opacity-50">        
                                         <span class="fw-semibold fs-5 d-flex align-items-center">
-                                            <span class="fs-3">🥈</span>
+                                            <span class="fs-3">🥇</span>
                                             <?php echo htmlspecialchars($customer['c_name']) ?>
                                         </span>
-                                        <span class="badge bg-light text-dark fs-6 px-3 py-1">
+                                        
+                                        <span class="badge bg-warning text-dark fs-6 px-3 py-1">
                                             <?php echo htmlspecialchars($customer['ranking']); ?>
                                         </span>
                                     </div>
-                                <?php } else if($customer["ranking"] == 3) { ?>
-                                    <div class="leader-entry d-flex justify-content-between align-items-center py-2 px-2 rounded-3 mb-2 bg-light bg-opacity-25">
-                                        <span class="fw-semibold fs-5 d-flex align-items-center">
-                                            <span class="fs-3">🥉</span>
-                                            <?php echo htmlspecialchars($customer['c_name']) ?>
-                                        </span>
-                                        <span class="badge bg-light text-dark fs-6 px-3 py-1">
-                                            <?php echo htmlspecialchars($customer['ranking']); ?>
-                                        </span>
-                                    </div>
-                                <?php } else { ?>
-                                    <div class="leader-entry d-flex justify-content-between align-items-center py-2 px-2 rounded-3 mb-2 bg-secondary bg-opacity-25">
-                                        <span class="fw-semibold fs-5 d-flex align-items-center">
-                                            <span class="fs-3">🏵️</span>
-                                            <?php echo htmlspecialchars($customer['c_name']) ?>
-                                        </span>
-                                        <span class="badge bg-light text-dark fs-6 px-3 py-1">
-                                            <?php echo htmlspecialchars($customer['ranking']); ?>
-                                        </span>
-                                    </div>
+                                    <?php } else if($customer["ranking"] == 2) { ?>
+                                        <div class="leader-entry d-flex justify-content-between align-items-center py-2 px-2 rounded-3 mb-2 bg-info bg-opacity-50">
+                                            <span class="fw-semibold fs-5 d-flex align-items-center">
+                                                <span class="fs-3">🥈</span>
+                                                <?php echo htmlspecialchars($customer['c_name']) ?>
+                                            </span>
+                                            <span class="badge bg-light text-dark fs-6 px-3 py-1">
+                                                <?php echo htmlspecialchars($customer['ranking']); ?>
+                                            </span>
+                                        </div>
+                                    <?php } else if($customer["ranking"] == 3) { ?>
+                                        <div class="leader-entry d-flex justify-content-between align-items-center py-2 px-2 rounded-3 mb-2 bg-light bg-opacity-25">
+                                            <span class="fw-semibold fs-5 d-flex align-items-center">
+                                                <span class="fs-3">🥉</span>
+                                                <?php echo htmlspecialchars($customer['c_name']) ?>
+                                            </span>
+                                            <span class="badge bg-light text-dark fs-6 px-3 py-1">
+                                                <?php echo htmlspecialchars($customer['ranking']); ?>
+                                            </span>
+                                        </div>
+                                    <?php } else { ?>
+                                        <div class="leader-entry d-flex justify-content-between align-items-center py-2 px-2 rounded-3 mb-2 bg-secondary bg-opacity-25">
+                                            <span class="fw-semibold fs-5 d-flex align-items-center">
+                                                <span class="fs-3">🏵️</span>
+                                                <?php echo htmlspecialchars($customer['c_name']) ?>
+                                            </span>
+                                            <span class="badge bg-light text-dark fs-6 px-3 py-1">
+                                                <?php echo htmlspecialchars($customer['ranking']); ?>
+                                            </span>
+                                        </div>
+                                    <?php } ?>
                                 <?php } ?>
-                            <?php } ?>
+                                </div>
 
+                            </div>
                         </div>
                     </div>
 
@@ -281,8 +282,21 @@
 
 
 </main>
-
-
+<!-- Tutorial -->
+<div class="position-relative">
+    <div class="position-absolute bottom-0 start-0 m-2">
+        <!-- Tutorial Button -->
+        <button
+            type="button"
+            class="btn btn-dark"
+            id="dash-tutorial-btn"
+        >
+            <span class="fs-5">
+            📙Tutorial
+            </span>
+        </button>
+    </div>
+</div>
 <?php 
     include("./layout/footer.php");
 ?>
