@@ -6,9 +6,6 @@
 require("../config/config.php");
 include("../api/auth.php");
 
-
-
-
 if ($_SERVER["REQUEST_METHOD"] == 'POST') {
 
     $product_id = $_POST["id"];
