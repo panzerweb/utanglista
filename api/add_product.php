@@ -43,9 +43,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     else {
         if (move_uploaded_file($_FILES["prod_image"]["tmp_name"], $target_file)) {
             $image_path = 'uploads/' . basename($_FILES["prod_image"]["name"]);
-            $insertQuery = "INSERT INTO products (category_id, prod_name, prod_price, prod_image, admin_id)
-                            VALUES ('$category', '$product_name', '$product_price', '$image_path', $admin_id); "
-                    ;
+            // $insertQuery = "INSERT INTO products (category_id, prod_name, prod_price, prod_image, admin_id)
+            //                 VALUES ('$category', '$product_name', '$product_price', '$image_path', $admin_id); "
+            //         ;
+            $insertQuery = "CALL sp_insertProduct('$category', '$product_name', '$product_price', '$image_path', $admin_id)";
             $result = mysqli_query($connection, $insertQuery);
 
             if ($result) {

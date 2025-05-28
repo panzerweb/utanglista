@@ -25,6 +25,7 @@
   <script src="../public/js/delete_product.js"></script>
   <script src="../public/js/stats_by_year-month.js"></script>
 
+
   <script src="../public/js/splide-4.1.3/dist/js/splide.min.js"></script>
 
   <!-- Bootstrap JavaScript Libraries -->

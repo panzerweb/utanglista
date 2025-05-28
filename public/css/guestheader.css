@@ -21,6 +21,10 @@ body > *:first-child {
     padding-top: 0 !important;
 }
 
+main{
+    background-color: var(--background) !important;
+}
+
 /* Navbar Styles */
 .navbar-glass {
     background: var(--secondary);
@@ -152,7 +156,7 @@ body > *:first-child {
     background: var(--background);
     color: var(--primary);
     border: 1.5px solid var(--primary);
-    box-shadow: 0 1px 4px var(--background);
+    /* box-shadow: 0 1px 4px var(--background); */
 }
 
 .nav-btn-outline:hover, .nav-btn-outline:focus {
@@ -160,21 +164,21 @@ body > *:first-child {
     color: var(--accent-second);
     border-color: var(--accent-second);
     transform: translateY(-1px) scale(1.03);
-    box-shadow: 0 2px 8px var(--accent-second);
+    /* box-shadow: 0 2px 8px var(--accent-second); */
 }
 
 .nav-btn-primary {
     background: linear-gradient(90deg, var(--accent-second) 60%, var(--primary) 100%);
     color: #fff;
     border: none;
-    box-shadow: 0 2px 12px 0 var(--accent-second);
+    /* box-shadow: 0 2px 12px 0 var(--accent-second); */
 }
 
 .nav-btn-primary:hover, .nav-btn-primary:focus {
     background: linear-gradient(90deg, var(--primary) 60%, var(--accent-second) 100%);
     color: #fff;
     transform: translateY(-1.5px) scale(1.04);
-    box-shadow: 0 4px 18px 0 var(--primary);
+    /* box-shadow: 0 4px 18px 0 var(--primary); */
 }
 
 /* Mobile Menu Button */
