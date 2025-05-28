@@ -52,6 +52,7 @@
                                 <span class="lead fw-bold fs-2 text-center text-warning">
                                     <!-- Displays total count of user -->
                                     <?php echo $_SESSION["admin_role"] ?>
+                                    <!-- <?php echo $_SESSION["user_id"] ?> -->
                                 </span>
                             </div>
                         </div>
