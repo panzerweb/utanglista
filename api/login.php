@@ -12,6 +12,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $result = mysqli_query($connection, $query);
     $row_count = mysqli_num_rows($result);
 
+    
+
     if ($row_count == 1) {
         $user = mysqli_fetch_assoc($result);
 
