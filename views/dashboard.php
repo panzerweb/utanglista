@@ -1,5 +1,6 @@
 <!-- Dashboard View -->
 <!-- place navbar here -->
+<link rel="stylesheet" href="../public/css/dashboard_habitica.css">
 <?php 
     //Header layout
     include("../api/auth.php");///aron d ma access if wala naka log-in
