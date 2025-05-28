@@ -2,7 +2,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header bg-success text-light">
-        <h1 class="modal-title fs-5" id="paymentModalLabel_<?php echo $customer['id']; ?>">Edit Customer</h1>
+        <h1 class="modal-title fs-5" id="paymentModalLabel_<?php echo $customer['id']; ?>">Payment</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
 

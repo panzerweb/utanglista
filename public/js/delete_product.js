@@ -27,9 +27,9 @@ function deleteProduct(id){
                         timer: 1000
                         });
                         console.log(data);
-                        // setTimeout(() => {
-                        //     window.location.href = '../views/products.php';
-                        // }, 1000);
+                        setTimeout(() => {
+                            window.location.href = '../views/products.php';
+                        }, 1000);
             
                     } else {
                         Swal.fire({

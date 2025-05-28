@@ -1,3 +1,5 @@
+<!-- Customer Page -->
+<link rel="stylesheet" href="../public/css/dashboard_habitica.css">
 <?php 
     include("../api/auth.php");///aron d ma access if wala naka log-in
     include("./layout/header.php");
@@ -117,7 +119,7 @@
                                         
                                     </div>
                                 </div>
-                                <table class="table table-sm table-hover table-striped table-bordered mb-0">
+                                <table class="table table-sm table-hover table-striped table-bordered mb-0 table-contain">
                                     <thead>
                                         <tr>
                                             <!-- <th>Id</th> -->

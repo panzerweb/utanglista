@@ -1,4 +1,6 @@
 <!-- place header here -->
+
+<link rel="stylesheet" href="../public/css/dashboard_habitica.css">
 <?php 
     
     include("../api/auth.php");///aron d ma access if wala naka log-in
@@ -20,6 +22,15 @@
 
         <!-- Row for Select dropdown filter by months -->
         <div class="row">
+
+            <!-- Authorization Message -->
+            <?php 
+                if ($_SESSION["admin_role"] !== 'super_admin') {
+                    include("./components/authorized.php");
+                    return;
+                }
+            ?>
+
             <!-- Select for year and month -->
             <div class="col-3">
                 <label for="month-year-select" class="form-label fw-semibold text-start">Year and Month</label>
@@ -253,40 +264,46 @@
                         </button>
                     </div>
                     <div class="card-body p-0" style="max-height: 300px; overflow-y: auto;">
-                        <?php foreach($product_logs as $product_log) { ?>
-                            <div class="px-3 py-2 border-bottom">
-                                <div class="fw-semibold text-dark">                                 
-                                    <span class="fw-bold">
-                                        <?php echo htmlspecialchars($product_log["admin_name"]); ?>
-                                    </span>
-                                    <span
-                                        class="badge bg-warning text-dark"
-                                    >
-                                    
-                                        <?php echo $_SESSION["admin_role"] ?>    
-                                    </span>
-                                    <span class="text-muted fst-italic">
-                                        <?php echo htmlspecialchars($product_log["message"]); ?>
-                                    </span>
-                                    
-                                </div>
-                                <div class="text-muted">
-                                    <span class="fw-semibold text-muted">
-                                        Name: 
-                                        <span class="fst-italic fw-normal">
-                                        <?php echo htmlspecialchars($product_log["prod_name"]); ?>
+                        <?php if(!empty($product_logs)) { ?>
+                            <?php foreach($product_logs as $product_log) { ?>
+                                <div class="px-3 py-2 border-bottom">
+                                    <div class="fw-semibold text-dark">                                 
+                                        <span class="fw-bold">
+                                            <?php echo htmlspecialchars($product_log["admin_name"]); ?>
                                         </span>
-                                    </span>
+                                        <span
+                                            class="badge bg-warning text-dark"
+                                        >
+                                        
+                                            <?php echo $_SESSION["admin_role"] ?>    
+                                        </span>
+                                        <span class="text-muted fst-italic">
+                                            <?php echo htmlspecialchars($product_log["message"]); ?>
+                                        </span>
+                                        
+                                    </div>
+                                    <div class="text-muted">
+                                        <span class="fw-semibold text-muted">
+                                            Name: 
+                                            <span class="fst-italic fw-normal">
+                                            <?php echo htmlspecialchars($product_log["prod_name"]); ?>
+                                            </span>
+                                        </span>
+                                    </div>
+                                    <div class="d-flex justify-content-between text-muted small mt-1">  
+                                        <span class="fst-italic">
+                                            <?php if($product_log["old_name"] !== null) { ?>
+                                                <span class="fw-semibold">From: </span>
+                                                <?php echo htmlspecialchars($product_log["old_name"]); ?>
+                                            <?php } ?>
+                                        </span>
+                                        Created at: <?php echo htmlspecialchars($product_log["created_at"]); ?>
+                                    </div>
                                 </div>
-                                <div class="d-flex justify-content-between text-muted small mt-1">  
-                                    <span class="fst-italic">
-                                        <?php if($product_log["old_name"] !== null) { ?>
-                                            <span class="fw-semibold">From: </span>
-                                            <?php echo htmlspecialchars($product_log["old_name"]); ?>
-                                        <?php } ?>
-                                    </span>
-                                    Created at: <?php echo htmlspecialchars($product_log["created_at"]); ?>
-                                </div>
+                            <?php } ?>
+                        <?php } else { ?>
+                            <div class="text-center text-muted p-3">
+                                No product logs available.
                             </div>
                         <?php } ?>
                     </div>
@@ -302,36 +319,42 @@
                         </button>
                     </div>
                     <div class="card-body p-0" style="max-height: 300px; overflow-y: auto;">
-                        <?php foreach($transact_logs as $transact_log) { ?>
-                        <div class="px-3 border-bottom py-2">
-                            <div class="fw-semibold text-dark">                                 
-                                    <span class="fw-bold">
-                                        <?php echo htmlspecialchars($transact_log["c_name"]); ?>
-                                    </span>
-                                    <span
-                                        class="badge bg-success"
-                                    >       
-                                        customer
-                                    </span>
-                                    <span class="text-muted fst-italic">
-                                        <?php echo htmlspecialchars($transact_log["message"]); ?>
-                                    </span>
+                        <?php if(!empty($transact_logs)) { ?>
+                            <?php foreach($transact_logs as $transact_log) { ?>
+                                <div class="px-3 border-bottom py-2">
+                                    <div class="fw-semibold text-dark">                                 
+                                            <span class="fw-bold">
+                                                <?php echo htmlspecialchars($transact_log["c_name"]); ?>
+                                            </span>
+                                            <span
+                                                class="badge bg-success"
+                                            >       
+                                                customer
+                                            </span>
+                                            <span class="text-muted fst-italic">
+                                                <?php echo htmlspecialchars($transact_log["message"]); ?>
+                                            </span>
+                                    </div>
+                                    <div class="text-muted">
+                                        <span class="fw-semibold text-muted">
+                                            Product: 
+                                            <span class="fst-italic fw-normal">
+                                            <?php echo htmlspecialchars($transact_log["prod_name"]); ?>
+                                            </span>
+                                        </span>
+                                    </div>
+                                    <div class="text-muted small d-flex justify-content-end">
+                                        Purchased at: 
+                                        <?php echo htmlspecialchars($transact_log["created_at"]) ?>
+                                    </div>
+                                </div>
+                                
+                            <?php } ?>
+                        <?php } else {?>
+                            <div class="text-center text-muted p-3">
+                                No transaction logs available.
                             </div>
-                            <div class="text-muted">
-                                <span class="fw-semibold text-muted">
-                                    Product: 
-                                    <span class="fst-italic fw-normal">
-                                    <?php echo htmlspecialchars($transact_log["prod_name"]); ?>
-                                    </span>
-                                </span>
-                            </div>
-                            <div class="text-muted small d-flex justify-content-end">
-                                Purchased at: 
-                                <?php echo htmlspecialchars($transact_log["created_at"]) ?>
-                            </div>
-                        </div>
-                        
-                        <?php } ?>
+                        <?php }?>
                     </div>
                 </div>
             </div>
@@ -345,33 +368,39 @@
                         </button>
                     </div>
                     <div class="card-body p-0" style="max-height: 300px; overflow-y: auto;">
-                        <?php foreach($payment_logs as $payment_log) { ?>
-                        <div class="px-3 border-bottom py-2">
-                            <div class="mb-2">
-                                <span class="fw-semibold text-dark fw-bold">
-                                    <?php echo htmlspecialchars($payment_log["c_name"]) ?>
-                                </span>
-                                <span
-                                        class="badge bg-success"
-                                >       
-                                    customer
-                                </span>
-                                <span class="text-muted">paid</span>
+                        <?php if(!empty($payment_logs)) { ?>
+                            <?php foreach($payment_logs as $payment_log) { ?>
+                                <div class="px-3 border-bottom py-2">
+                                    <div class="mb-2">
+                                        <span class="fw-semibold text-dark fw-bold">
+                                            <?php echo htmlspecialchars($payment_log["c_name"]) ?>
+                                        </span>
+                                        <span
+                                                class="badge bg-success"
+                                        >       
+                                            customer
+                                        </span>
+                                        <span class="text-muted">paid</span>
+                                    </div>
+                                    <div class="text-muted">
+                                        <span class="fw-semibold text-muted">
+                                            Amount: 
+                                            <span class="fst-italic fw-normal">
+                                                ₱ <?php echo htmlspecialchars($payment_log["payment_amount"]); ?>
+                                            </span>
+                                        </span>
+                                    </div>
+                                    <div class="text-muted small d-flex justify-content-end">
+                                        Paid at:
+                                        <?php echo htmlspecialchars($payment_log["created_at"]) ?>
+                                    </div>
+                                </div>
+                            <?php } ?>
+                        <?php } else {?>
+                            <div class="text-center text-muted p-3">
+                                No payment logs available.
                             </div>
-                            <div class="text-muted">
-                                <span class="fw-semibold text-muted">
-                                    Amount: 
-                                    <span class="fst-italic fw-normal">
-                                        ₱ <?php echo htmlspecialchars($payment_log["payment_amount"]); ?>
-                                    </span>
-                                </span>
-                            </div>
-                            <div class="text-muted small d-flex justify-content-end">
-                                Paid at:
-                                <?php echo htmlspecialchars($payment_log["created_at"]) ?>
-                            </div>
-                        </div>
-                        <?php } ?>
+                        <?php }?>
                     </div>
                 </div>
             </div>

@@ -14,9 +14,43 @@
                         <li class="nav-item">
                             <a class="nav-link fw-semibold text-light active" href="./dashboard.php">Dashboard</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link fw-semibold text-light" href="./logs.php">Logs</a>
-                        </li>
+                        <!-- Super Admin Access ONLY -->
+                        <?php if($_SESSION["admin_role"] === 'super_admin') { ?>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle fw-semibold text-light" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Super Admin
+                                </a>
+                                <ul class="dropdown-menu bg-success">
+                                    <!-- Super Admin Access -->
+                                    <?php if($_SESSION["admin_role"] === 'super_admin') { 
+                                    ?>
+                                        
+                                        <li class="nav-item">
+                                            <a class="nav-link fw-semibold text-light" href="./user_dashboard.php">Users</a>
+                                        </li>
+                                    <?php } ?>
+                                    
+                                    <!-- Super Admin Access -->
+                                    <?php if($_SESSION["admin_role"] === 'super_admin') { 
+                                    ?>
+                                        
+                                        <li class="nav-item">
+                                            <a class="nav-link fw-semibold text-light" href="./logs.php">Logs</a>
+                                        </li>
+                                    <?php } ?>
+                                    <!-- Super Admin Access -->
+                                    <?php if($_SESSION["admin_role"] === 'super_admin') { 
+                                    ?>
+                                        
+                                        <li class="nav-item">
+                                            <a class="nav-link fw-semibold text-light" href="./trash.php">Trash</a>
+                                        </li>
+                                    <?php } ?>
+                                </ul>
+                            </li>
+                        <?php } ?>
+
+
                         <li class="nav-item">
                             <a class="nav-link fw-semibold text-light" href="./transactions.php">Transactions</a>
                         </li>
@@ -25,12 +59,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link fw-semibold text-light" href="./customer.php">Customer</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link fw-semibold text-light" href="./trash.php">Trash</a>
-                        </li>
-                        
-                        
+                        </li>                          
                     </ul>
                     <div class="d-flex align-items-center justify-content-center" role="search">
                         <?php include("welcome_admin.php") ?>

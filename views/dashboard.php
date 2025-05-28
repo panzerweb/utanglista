@@ -206,7 +206,7 @@
 
             <!-- Row for table and calendar -->
             <div class="col-12 col-lg-12 table-and-calendar">
-                <div class="row justify-content-between">
+                <div class="row justify-content-around">
                     <div class="col-12 col-lg-7 my-1 px-0">
                         <div class="table-responsive rounded-4 overflow-x-hidden overflow-y-auto shadow border border-1">
                             <div class="leaderboard-wrapper position-sticky bg-success text-light top-0 z-1 py-2">
@@ -225,7 +225,7 @@
 
                             <!-- ====== Leaderboard: Table for highest to lowest balance -->
 
-                            <table class="table table-sm table-hover table-striped table-bordered mb-0 table-contain">
+                            <table class="table table-sm table-hover table-striped table-bordered mb-0 table-contain table-leaderboards">
                                 <thead class="table-light">
                                     <tr>
                                     <th scope="col">Ranking</th>
@@ -235,20 +235,28 @@
                                 </thead>
                                 <tbody class="table-group-divider" id="dash-live-result">
                                     <!-- ====== Dynamic data for greatest to least balance ====== -->
-                                    <?php foreach($sortByBalance as $customer) { ?>
+                                    <?php if(!empty($sortByBalance)) { ?>
+                                        <?php foreach($sortByBalance as $customer) { ?>
+                                            <tr>
+                                                <td class="fw-bold">
+                                                    <?php if($customer["ranking"] == 1) { ?>
+                                                        <span class="badge bg-warning text-dark fs-6"><?php echo htmlspecialchars($customer['ranking']); ?></span>
+                                                    <?php } else { ?>
+                                                        <span class="badge bg-secondary text-light fs-6"><?php echo htmlspecialchars($customer['ranking']); ?></span>
+                                                    <?php } ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo htmlspecialchars($customer['c_name'] ? $customer['c_name'] : '<td class="text-center">---</td>'); ?>
+                                                </td>
+                                                <td>
+                                                    ₱ <?php echo htmlspecialchars($customer['balance']); ?>
+                                                </td>
+                                            </tr>
+                                        <?php } ?>
+                                    <?php } else { ?>
                                         <tr>
-                                            <td class="fw-bold">
-                                                <?php if($customer["ranking"] == 1) { ?>
-                                                    <span class="badge bg-warning text-dark fs-6"><?php echo htmlspecialchars($customer['ranking']); ?></span>
-                                                <?php } else { ?>
-                                                    <span class="badge bg-secondary text-light fs-6"><?php echo htmlspecialchars($customer['ranking']); ?></span>
-                                                <?php } ?>
-                                            </td>
-                                            <td>
-                                                <?php echo htmlspecialchars($customer['c_name'] ? $customer['c_name'] : '<td class="text-center">---</td>'); ?>
-                                            </td>
-                                            <td>
-                                                ₱ <?php echo htmlspecialchars($customer['balance']); ?>
+                                            <td colspan="5" class="text-center">
+                                                No Results Found
                                             </td>
                                         </tr>
                                     <?php } ?>

@@ -12,7 +12,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $contact = htmlspecialchars($_POST["c_contact"]);
 
     // Insert query
-    $insertQuery = "INSERT INTO customers (c_name, c_contact, admin_id) VALUES ('$name', '$contact', '$admin_id')";
+    // $insertQuery = "INSERT INTO customers (c_name, c_contact, admin_id) 
+    //                 VALUES ('$name', '$contact', '$admin_id')";
+    $insertQuery = "CALL sp_insertCustomer('$name', '$contact', $admin_id);";
     // Executes a result
     $result = mysqli_query($connection, $insertQuery);
     // throws condition and message for fetch api to process
