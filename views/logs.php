@@ -218,7 +218,7 @@
                                         class="badge bg-warning text-dark"
                                     >
                                     
-                                        <?php echo $_SESSION["admin_role"] ?>    
+                                        <?php echo $customer_log["admin_role"] ?>    
                                     </span>
                                     <span class="text-muted fst-italic">
                                         <?php echo htmlspecialchars($customer_log["message"]); ?>

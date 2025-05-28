@@ -2,5 +2,9 @@
 
 /* Wrapper for Statistics */
 .statistic-wrapper{
-    background-color: var(--secondary) !important;
+    background-color: transparent !important;
+    margin: calc(var(--spacing-unit) * 2) 0;
+    padding: calc(var(--spacing-unit) * 1.5);
+    position: relative;
+    overflow: hidden;
 }

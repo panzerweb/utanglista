@@ -50,16 +50,6 @@ body::before {
 }
 
 /* Enhanced Statistic Wrapper */
-.statistic-wrapper {
-    background: linear-gradient(120deg, var(--primary) 60%, var(--accent-second) 100%);
-    box-shadow: var(--box-shadow);
-    border-radius: var(--border-radius);
-    margin: calc(var(--spacing-unit) * 2) 0;
-    padding: calc(var(--spacing-unit) * 1.5);
-    position: relative;
-    overflow: hidden;
-}
-
 .statistic-wrapper .row {
     margin: 0;
     align-items: stretch;
@@ -85,7 +75,7 @@ body::before {
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
-    height: 100%;
+    height: 100px;
     display: flex;
     align-items: center;
     padding: calc(var(--spacing-unit) * 1.2);
