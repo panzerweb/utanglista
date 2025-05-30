@@ -46,10 +46,9 @@
         </script>
 
     </head>
-
-        <!-- Navbar -->
-         <?php
-            include("./components/nav-link.php");
-         ?>
          
     <body>
+        <!-- Navbar -->
+        <?php
+        include("./components/nav-link.php");
+        ?>

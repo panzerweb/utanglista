@@ -1,0 +1,64 @@
+:root {
+  --background: #F7F6FE;
+  --primary: #13795b;
+  --secondary: #FFFFFF;
+  --accent: #ffc107;
+  --accent-second: #1aa179;
+  --fc-today-bg-color: #0ec06d;
+  --red-color: #dc3545;
+  --font-main: 'Segoe UI', 'Roboto', Arial, sans-serif;
+  --light-green: #e8f5e9;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.hero-section{
+  padding: 15rem 0;
+}
+
+
+.bg-green {
+  background: url("../images/background/grid_hakei.svg") !important;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.repository-btn{
+  outline: 2px solid #F7F6FE;
+  color: #F7F6FE;
+  transition: all 0.2s linear;
+}
+.repository-btn:hover{
+  background: #0ec06d;
+  outline: 2px solid #0ec06d;
+}
+
+.text-green {
+  color: var(--primary) !important;
+}
+
+.bg-light-green {
+  background-color: var(--light-green) !important;
+}
+
+.section-padding {
+  padding: 60px 0;
+}
+
+.feature-card {
+  transition: transform 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-10px);
+}
+
+.team-img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid var(--secondary);
+}

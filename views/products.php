@@ -1,4 +1,6 @@
 <!-- place header here -->
+
+<link rel="stylesheet" href="../public/css/dashboard_habitica.css">
 <?php 
     //Header layout
     include("../api/auth.php");//aron d ma access if wala naka log-in
@@ -8,11 +10,16 @@
     include("../api/get_stats_dashboard.php");
 
 ?>
+<script defer src="../public/js/tutorial/product_tutorial.js"></script>
 
 <main>
     <div class="container py-1 mb-5">
         <div class="row justify-content-center">
 
+            <!-- Authorization Access, category management is handled by superadmin -->
+            <?php 
+                if ($_SESSION["admin_role"] === 'super_admin') {
+            ?>
             <!-- Add Category modal -->
             <div class="shadow p-3 row justify-content-center border border-1 rounded-4">
                 <div class="d-flex gap-2 align-items-center mx-auto mb-3">
@@ -54,6 +61,39 @@
                 </div>
 
             </div>
+            <?php } ?>
+
+            <!-- If role is regular admin -->
+            <?php 
+                if ($_SESSION["admin_role"] === 'admin') {
+            ?>
+            <!-- Add Category modal -->
+            <div class="shadow p-3 row justify-content-center border border-1 rounded-4">
+                <!-- Display all categories -->
+                <!-- Allows to press the cards to show all products -->
+                <h1 class="mb-3">Category</h1>
+                <div class="d-flex flex-wrap gap-2 justify-content-start flex-wrap">
+                    <?php foreach($categories as $category) { 
+                        // Get products for this category
+                        $category_id = $category["id"];
+                        $productList = $productByCategory[$category_id] ?? [];
+                    ?>
+                        <div>
+                            <div class="bg-secondary rounded-pill px-4 py-2 text-white" 
+                                style="cursor: pointer;"
+                                data-bs-toggle="modal" 
+                                data-id="<?php echo htmlspecialchars($category_id); ?>"
+                                data-bs-target="#showProductsByCat<?php echo htmlspecialchars($category_id) ?>">
+                                <?php echo htmlspecialchars($category["category_name"]); ?>
+                            </div>
+                        </div>
+                        <!-- Include the modal for showing all products -->
+                        <?php include('./components/show_products_category.php') ?>
+                    <?php } ?>
+                </div>
+
+            </div>
+            <?php } ?>
             
             <!-- Interactive button sections -->
             <section class="shadow p-3 d-flex justify-content-between border border-1 rounded-4 mt-5 gap-3">
@@ -184,7 +224,7 @@
     //** Splide JS code block */
     document.addEventListener( 'DOMContentLoaded', function() {
     var splide = new Splide( '.splide', {
-        type   : 'loop',
+        //type   : 'loop',
         perPage: 4,
         perMove: 1,
         } );

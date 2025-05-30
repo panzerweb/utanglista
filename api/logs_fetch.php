@@ -6,7 +6,7 @@ require("../config/config.php");
 
 // FETCH CUSTOMER LOGS
 try {
-    $retrieveCustomerQuery = "SELECT users.admin_name, customer_logs.message, customers.c_name, customer_logs.old_name, customer_logs.new_name, customer_logs.created_at
+    $retrieveCustomerQuery = "SELECT users.admin_name,users.admin_role, customer_logs.message, customers.c_name, customer_logs.old_name, customer_logs.new_name, customer_logs.created_at
                             FROM customers
                             INNER JOIN customer_logs
                             ON customers.id=customer_logs.customer_id
@@ -25,7 +25,7 @@ try {
 
 //FETCH PRODUCT LOGS
 try {
-    $retrieveProductQuery = "SELECT users.admin_name, product_logs.message, products.prod_name, product_logs.old_name, product_logs.new_name, products.created_at
+    $retrieveProductQuery = "SELECT users.admin_name, users.admin_role, product_logs.message, products.prod_name, product_logs.old_name, product_logs.new_name, products.created_at
                             FROM products
                             INNER JOIN product_logs
                             ON products.id = product_logs.product_id

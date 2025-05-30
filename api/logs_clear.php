@@ -1,6 +1,7 @@
 <?php 
 include("../config/config.php");
 
+// Customer Logs clearing
 if (isset($_GET["customer_logs"])) {
     $customerLogs = $_GET["customer_logs"];
     
@@ -15,10 +16,13 @@ if (isset($_GET["customer_logs"])) {
     }
 }
 
+// Product Logs clearing
 if (isset($_GET["product_logs"])) {
     $productLogs = $_GET["product_logs"];
+    $clearProductLogs = "DELETE FROM product_logs";
+    $result = mysqli_query($connection, $clearProductLogs);
 
-    if(isset($productLogs)){
+    if($result){
         echo "success";
     }
     else{
@@ -28,8 +32,10 @@ if (isset($_GET["product_logs"])) {
 
 if (isset($_GET["transaction_logs"])) {
     $transactLogs = $_GET["transaction_logs"];
+    $clearTransactionLogs = "DELETE FROM transaction_logs";
+    $result = mysqli_query($connection, $clearTransactionLogs);
 
-    if(isset($transactLogs)){
+    if($result){
         echo "success";
     }
     else{
@@ -39,8 +45,10 @@ if (isset($_GET["transaction_logs"])) {
 
 if (isset($_GET["payment_logs"])) {
     $paymentLogs = $_GET["payment_logs"];
+    $clearPaymentLogs = "DELETE FROM payment_logs";
+    $result = mysqli_query($connection, $clearPaymentLogs);
 
-    if(isset($paymentLogs)){
+    if($result){
         echo "success";
     }
     else{

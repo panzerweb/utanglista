@@ -15,7 +15,7 @@ if (isset($_GET["page"])) {
 }
 
 // Define how many results to show per page
-$limitPerPage = 5;
+$limitPerPage = 10;
 
 // Calculate where to start fetching results
 $startFrom = ($page_number - 1) * $limitPerPage;

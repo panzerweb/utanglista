@@ -24,7 +24,8 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
         echo "Customer's balance is 0";
     }
     else{
-        $insertPayment = "INSERT INTO payment(c_id, payment_amount) VALUES ('$customer_id', '$paymentAmount')";
+        // $insertPayment = "INSERT INTO payment(c_id, payment_amount) VALUES ('$customer_id', '$paymentAmount')";
+        $insertPayment = "CALL sp_insertPayment('$customer_id', '$paymentAmount');";
         $result = mysqli_query($connection, $insertPayment);
     
         // If successful, throw message

@@ -6,15 +6,20 @@
 require("../config/config.php");
 include("../api/auth.php");
 
-
-
-
 if ($_SERVER["REQUEST_METHOD"] == 'POST') {
 
     $product_id = $_POST["id"];
     $product_name = htmlspecialchars($_POST["prod_name"]);
     $product_price = htmlspecialchars($_POST["prod_price"]);
     $product_category = htmlspecialchars($_POST["category_id"]);
+
+    if(isset($_SESSION["user_id"])){
+        $adminId = $_SESSION["user_id"];
+
+        $setQuery = "SET @user_id = " . intval($adminId);
+        $setQueryResult = mysqli_query($connection, $setQuery);
+    }
+
 
     // if image is included to be updated
     if (isset($_FILES['prod_image']) && $_FILES['prod_image']['error'] === UPLOAD_ERR_OK) {

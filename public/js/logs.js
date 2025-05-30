@@ -52,6 +52,9 @@ function clearProductLogs(){
                 showConfirmButton: false,
                 timer: 1000
             });
+            setTimeout(() => {
+                window.location.href = '../views/logs.php';
+            }, 1000);
             console.log(data);
         } else {
             Swal.fire({
@@ -85,6 +88,9 @@ function clearTransactionLogs(){
                 showConfirmButton: false,
                 timer: 1000
             });
+            setTimeout(() => {
+                window.location.href = '../views/logs.php';
+            }, 1000);
             console.log(data);
         } else {
             Swal.fire({
@@ -118,6 +124,9 @@ function clearPaymentLogs(){
                 showConfirmButton: false,
                 timer: 1000
             });
+            setTimeout(() => {
+                window.location.href = '../views/logs.php';
+            }, 1000);
             console.log(data);
         } else {
             Swal.fire({
