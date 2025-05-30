@@ -26,14 +26,24 @@ CREATE TABLE IF NOT EXISTS `category` (
   `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `category_name` (`category_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table utanglista_db.category: ~2 rows (approximately)
+-- Dumping data for table utanglista_db.category: ~6 rows (approximately)
 INSERT INTO `category` (`id`, `category_name`, `created_at`) VALUES
-	(1, 'Powdered Drink', '2025-04-29 18:20:45'),
-	(2, 'Biscuits', '2025-04-29 18:20:57'),
-	(3, 'Junk Foods', '2025-04-29 18:33:14'),
-	(4, 'Beverages', '2025-05-02 15:17:11');
+	(1, 'Powdered Drink', '2025-05-28 12:21:48'),
+	(2, 'Biscuits', '2025-05-28 12:21:50'),
+	(3, 'Junk Foods', '2025-05-28 12:21:53'),
+	(4, 'Beverages', '2025-05-28 12:21:56'),
+	(5, 'Canned Goods', '2025-05-28 12:22:01'),
+	(6, 'Noodles', '2025-05-28 12:29:07');
+
+-- Dumping structure for view utanglista_db.customerbybalance
+-- Creating temporary table to overcome VIEW dependency errors
+CREATE TABLE `customerbybalance` (
+	`c_name` VARCHAR(255) NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`balance` DECIMAL(10,2) NULL,
+	`ranking` BIGINT(20) UNSIGNED NOT NULL
+) ENGINE=MyISAM;
 
 -- Dumping structure for procedure utanglista_db.customerByBalance
 DELIMITER //
@@ -46,14 +56,6 @@ BEGIN
 	WHERE is_deleted = 0 AND balance > 0;
 END//
 DELIMITER ;
-
--- Dumping structure for view utanglista_db.customerbybalance
--- Creating temporary table to overcome VIEW dependency errors
-CREATE TABLE `customerbybalance` (
-	`c_name` VARCHAR(255) NULL COLLATE 'utf8mb4_0900_ai_ci',
-	`balance` DECIMAL(10,2) NULL,
-	`ranking` BIGINT(20) UNSIGNED NOT NULL
-) ENGINE=MyISAM;
 
 -- Dumping structure for table utanglista_db.customers
 CREATE TABLE IF NOT EXISTS `customers` (
@@ -72,9 +74,14 @@ CREATE TABLE IF NOT EXISTS `customers` (
   PRIMARY KEY (`id`),
   KEY `admin_to_customer` (`admin_id`),
   CONSTRAINT `admin_to_customer` FOREIGN KEY (`admin_id`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE SET NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table utanglista_db.customers: ~8 rows (approximately)
+-- Dumping data for table utanglista_db.customers: ~4 rows (approximately)
+INSERT INTO `customers` (`id`, `c_name`, `c_contact`, `balance`, `monthly_interest`, `status`, `created_at`, `updated_at`, `admin_id`, `is_deleted`, `interest_rate`, `last_transaction_date`) VALUES
+	(1, 'Jerry', '', 42.00, 2.10, 'PENDING', '2025-05-28 12:29:32', '2025-05-28 12:29:32', 1, 0, 0.0500, '2025-05-28'),
+	(2, 'Taktak', '', 43.00, 2.15, 'PENDING', '2025-05-28 12:29:40', '2025-05-28 12:29:40', 1, 0, 0.0500, '2025-05-28'),
+	(3, 'Selwyn Villar', '', 0.00, 0.00, 'PENDING', '2025-05-28 14:44:11', '2025-05-28 14:44:11', 2, 1, 0.0500, '2025-05-28'),
+	(4, 'John Lloyd Cruz', '', 0.00, 0.00, 'PENDING', '2025-05-28 17:17:57', '2025-05-28 17:17:57', 2, 0, 0.0500, '2025-05-28');
 
 -- Dumping structure for table utanglista_db.customer_logs
 CREATE TABLE IF NOT EXISTS `customer_logs` (
@@ -90,9 +97,18 @@ CREATE TABLE IF NOT EXISTS `customer_logs` (
   KEY `customer_id_log` (`customer_id`),
   CONSTRAINT `customer_id_log` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `log_of_customers_from_admin` FOREIGN KEY (`admin_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table utanglista_db.customer_logs: ~4 rows (approximately)
+-- Dumping data for table utanglista_db.customer_logs: ~8 rows (approximately)
+INSERT INTO `customer_logs` (`id`, `message`, `created_at`, `admin_id`, `customer_id`, `old_name`, `new_name`) VALUES
+	(1, 'Has added a customer!', '2025-05-28 12:29:32', 1, 1, NULL, 'Jerry'),
+	(2, 'Has added a customer!', '2025-05-28 12:29:40', 1, 2, NULL, 'Taktak'),
+	(3, 'Has added a customer!', '2025-05-28 14:44:11', 2, 3, NULL, 'Selwyn Villar'),
+	(4, 'Has deleted a customer!', '2025-05-28 17:02:33', 2, 3, NULL, NULL),
+	(5, 'Has deleted a customer!', '2025-05-28 17:03:47', 1, 3, NULL, NULL),
+	(6, 'Has added a customer!', '2025-05-28 17:17:57', 2, 4, NULL, 'John Doe'),
+	(7, 'Has deleted a customer!', '2025-05-28 17:18:15', 1, 4, NULL, NULL),
+	(8, 'Has updated a customer!', '2025-05-28 17:21:09', 1, 4, 'John Doe', 'John Lloyd Cruz');
 
 -- Dumping structure for procedure utanglista_db.getCount
 DELIMITER //
@@ -186,11 +202,14 @@ CREATE TABLE IF NOT EXISTS `products` (
   KEY `admin_create_product` (`admin_id`),
   CONSTRAINT `admin_create_product` FOREIGN KEY (`admin_id`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE SET NULL,
   CONSTRAINT `category_id` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table utanglista_db.products: ~5 rows (approximately)
+-- Dumping data for table utanglista_db.products: ~4 rows (approximately)
 INSERT INTO `products` (`id`, `category_id`, `prod_name`, `prod_price`, `prod_image`, `created_at`, `updated_at`, `admin_id`, `is_deleted`) VALUES
-	(1, 3, 'Mang Juan', 10.00, 'uploads/mang_juan.jpg', '2025-05-10 15:47:34', '2025-05-10 15:47:34', 1, 0);
+	(1, 1, 'Family - Canned Sardines', 27.00, NULL, '2025-05-28 12:26:37', '2025-05-28 12:26:37', 1, 0),
+	(2, 4, 'Pepsi Cola', 30.00, NULL, '2025-05-28 12:26:55', '2025-05-28 12:26:55', 1, 0),
+	(3, 3, 'Super Crunch - Hot Chili', 13.00, NULL, '2025-05-28 12:28:11', '2025-05-28 12:28:11', 1, 0),
+	(4, 6, 'Pancit Canton - Green', 15.00, NULL, '2025-05-28 12:28:36', '2025-05-28 12:28:36', 1, 0);
 
 -- Dumping structure for table utanglista_db.product_logs
 CREATE TABLE IF NOT EXISTS `product_logs` (
@@ -206,19 +225,17 @@ CREATE TABLE IF NOT EXISTS `product_logs` (
   KEY `product_inserted` (`product_id`),
   CONSTRAINT `admin_insert_product` FOREIGN KEY (`admin_id`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE SET NULL,
   CONSTRAINT `product_inserted` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE SET NULL ON UPDATE SET NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table utanglista_db.product_logs: ~0 rows (approximately)
-
--- Dumping structure for procedure utanglista_db.selectAllCustomer
-DELIMITER //
-CREATE PROCEDURE `selectAllCustomer`()
-BEGIN
-	SELECT * FROM customers
-	WHERE is_deleted = 0
-	ORDER BY created_at DESC;
-END//
-DELIMITER ;
+-- Dumping data for table utanglista_db.product_logs: ~7 rows (approximately)
+INSERT INTO `product_logs` (`id`, `message`, `created_at`, `admin_id`, `product_id`, `old_name`, `new_name`) VALUES
+	(1, 'Product Added!', '2025-05-28 12:26:37', 1, 1, NULL, NULL),
+	(2, 'Product Added!', '2025-05-28 12:26:55', 1, 2, NULL, NULL),
+	(3, 'Product Added!', '2025-05-28 12:28:11', 1, 3, NULL, NULL),
+	(4, 'Product Added!', '2025-05-28 12:28:36', 1, 4, NULL, NULL),
+	(5, 'Has updated a product!', '2025-05-28 12:29:18', 1, 4, 'Pancit Canton - Green', 'Pancit Canton - Green'),
+	(6, 'Has updated a product!', '2025-05-28 17:24:31', 2, 1, 'Family Sardines', 'Family-Sardines'),
+	(7, 'Has updated a product!', '2025-05-28 17:25:05', 2, 1, 'Family-Sardines', 'Family - Canned Sardines');
 
 -- Dumping structure for view utanglista_db.selectallcustomer
 -- Creating temporary table to overcome VIEW dependency errors
@@ -236,6 +253,55 @@ CREATE TABLE `selectallcustomer` (
 	`interest_rate` DECIMAL(5,4) NULL
 ) ENGINE=MyISAM;
 
+-- Dumping structure for procedure utanglista_db.selectAllCustomer
+DELIMITER //
+CREATE PROCEDURE `selectAllCustomer`()
+BEGIN
+	SELECT * FROM customers
+	WHERE is_deleted = 0
+	ORDER BY created_at DESC;
+END//
+DELIMITER ;
+
+-- Dumping structure for procedure utanglista_db.sp_insertCustomer
+DELIMITER //
+CREATE PROCEDURE `sp_insertCustomer`(
+	IN `name` VARCHAR(100),
+	IN `contact` VARCHAR(50),
+	IN `admin` INT
+)
+BEGIN
+	INSERT INTO customers (c_name, c_contact, admin_id) 
+                    VALUES (name, contact, admin);
+END//
+DELIMITER ;
+
+-- Dumping structure for procedure utanglista_db.sp_insertPayment
+DELIMITER //
+CREATE PROCEDURE `sp_insertPayment`(
+	IN `customer_id` INT,
+	IN `paymentAmount` DECIMAL(5,2)
+)
+BEGIN
+	INSERT INTO payment(c_id, payment_amount) VALUES (customer_id, paymentAmount);
+END//
+DELIMITER ;
+
+-- Dumping structure for procedure utanglista_db.sp_insertProduct
+DELIMITER //
+CREATE PROCEDURE `sp_insertProduct`(
+	IN `category` INT,
+	IN `product_name` VARCHAR(100),
+	IN `product_price` DECIMAL(5,2),
+	IN `image_path` VARCHAR(255),
+	IN `admin_id` INT
+)
+BEGIN
+	INSERT INTO products (category_id, prod_name, prod_price, prod_image, admin_id)
+                            VALUES (category, product_name, product_price, image_path, admin_id);
+END//
+DELIMITER ;
+
 -- Dumping structure for table utanglista_db.transaction
 CREATE TABLE IF NOT EXISTS `transaction` (
   `id` int NOT NULL AUTO_INCREMENT,
@@ -251,9 +317,14 @@ CREATE TABLE IF NOT EXISTS `transaction` (
   KEY `customer_id` (`c_id`),
   CONSTRAINT `customer_id` FOREIGN KEY (`c_id`) REFERENCES `customers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `product_id` FOREIGN KEY (`prod_id`) REFERENCES `products` (`id`) ON DELETE SET NULL ON UPDATE SET NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table utanglista_db.transaction: ~0 rows (approximately)
+-- Dumping data for table utanglista_db.transaction: ~4 rows (approximately)
+INSERT INTO `transaction` (`id`, `prod_id`, `c_id`, `qty`, `amount`, `is_paid`, `created_at`, `updated_at`) VALUES
+	(1, 2, 2, 1, 30.00, 0, '2025-05-28 12:30:06', '2025-05-28 12:30:06'),
+	(2, 3, 2, 1, 13.00, 0, '2025-05-28 12:30:13', '2025-05-28 12:30:13'),
+	(3, 1, 1, 1, 27.00, 0, '2025-05-28 12:30:21', '2025-05-28 12:30:21'),
+	(4, 4, 1, 1, 15.00, 0, '2025-05-28 12:30:35', '2025-05-28 12:30:35');
 
 -- Dumping structure for procedure utanglista_db.transaction_insert
 DELIMITER //
@@ -281,9 +352,14 @@ CREATE TABLE IF NOT EXISTS `transaction_logs` (
   KEY `product_purchased` (`product_id`),
   CONSTRAINT `customer_transaction` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`) ON DELETE SET NULL ON UPDATE SET NULL,
   CONSTRAINT `product_purchased` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE SET NULL ON UPDATE SET NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table utanglista_db.transaction_logs: ~0 rows (approximately)
+-- Dumping data for table utanglista_db.transaction_logs: ~4 rows (approximately)
+INSERT INTO `transaction_logs` (`id`, `message`, `created_at`, `customer_id`, `product_id`) VALUES
+	(1, 'Purchased!', '2025-05-28 12:30:06', 2, 2),
+	(2, 'Purchased!', '2025-05-28 12:30:13', 2, 3),
+	(3, 'Purchased!', '2025-05-28 12:30:21', 1, 1),
+	(4, 'Purchased!', '2025-05-28 12:30:35', 1, 4);
 
 -- Dumping structure for view utanglista_db.transaction_view
 -- Creating temporary table to overcome VIEW dependency errors
@@ -321,6 +397,14 @@ BEGIN
 END//
 DELIMITER ;
 
+-- Dumping structure for procedure utanglista_db.userCount
+DELIMITER //
+CREATE PROCEDURE `userCount`()
+BEGIN
+	SELECT COUNT(*) AS totalUser FROM users;
+END//
+DELIMITER ;
+
 -- Dumping structure for table utanglista_db.users
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int NOT NULL AUTO_INCREMENT,
@@ -329,28 +413,29 @@ CREATE TABLE IF NOT EXISTS `users` (
   `admin_password` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `admin_role` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT 'admin',
+  `is_deleted` tinyint DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `admin_email` (`admin_email`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table utanglista_db.users: ~1 rows (approximately)
-INSERT INTO `users` (`id`, `admin_name`, `admin_email`, `admin_password`, `created_at`, `admin_role`) VALUES
-	(1, 'Panzerweb', 'panzerweb@gmail.com', '$2y$10$MU5OpKWhECLAzF9VvIPtPOEKjOrCpKumEIKloLyMofi8jcQA8uJDi', '2025-04-17 12:30:05', 'super_admin'),
-	(3, 'Selwyn', 'selwyn@gmail.com', '$2y$10$zaQwYBTYLhNVluJ1hTMjtePB0AlI7phzazn7nHjKMrixrSzHtzIJq', '2025-04-30 01:04:33', 'admin');
+-- Dumping data for table utanglista_db.users: ~2 rows (approximately)
+INSERT INTO `users` (`id`, `admin_name`, `admin_email`, `admin_password`, `created_at`, `admin_role`, `is_deleted`) VALUES
+	(1, 'Panzerweb', 'panzerweb@gmail.com', '$2y$10$dagvMosKDfQBs.90G1GCueVvfDnfd6ZBWVSI.Y9J7NQaIU4.mPF0y', '2025-05-28 03:17:37', 'super_admin', 0),
+	(2, 'Selwyn Villar', 'selwynvillar@gmail.com', '$2y$10$UTFe1obSoP7Mw4GDV9t1a.qFSTUmtNgGh2GgMpFsPSLWxuZcw8DL2', '2025-05-28 04:20:56', 'admin', 0);
 
 -- Dumping structure for trigger utanglista_db.customers__log_after_update
 SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 DELIMITER //
 CREATE TRIGGER `customers__log_after_update` AFTER UPDATE ON `customers` FOR EACH ROW BEGIN
-    -- Log only when customer is marked as deleted
+	    -- Log only when customer is marked as deleted
     IF OLD.is_deleted = 0 AND NEW.is_deleted = 1 THEN
         INSERT INTO customer_logs(message, admin_id, customer_id, old_name, new_name)
-        VALUES ('Has deleted a customer!', OLD.admin_id, OLD.id, NULL, NULL);
+        VALUES ('Has deleted a customer!', @user_id, OLD.id, NULL, NULL);
     
     -- Log only when the name actually changes (and it's not a deletion)
     ELSEIF OLD.c_name != NEW.c_name THEN
         INSERT INTO customer_logs(message, admin_id, customer_id, old_name, new_name)
-        VALUES ('Has updated a customer!', NEW.admin_id, NEW.id, OLD.c_name, NEW.c_name);
+        VALUES ('Has updated a customer!', @user_id, NEW.id, OLD.c_name, NEW.c_name);
     END IF;
 END//
 DELIMITER ;
@@ -360,8 +445,9 @@ SET SQL_MODE=@OLDTMP_SQL_MODE;
 SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 DELIMITER //
 CREATE TRIGGER `customer_log_after_insert` AFTER INSERT ON `customers` FOR EACH ROW BEGIN
-	  INSERT INTO customer_logs(message, admin_id, customer_id, old_name, new_name)
-    VALUES ('Has added a customer!', NEW.admin_id, NEW.id, NULL, NEW.c_name);END//
+	INSERT INTO customer_logs(message, admin_id, customer_id, old_name, new_name)
+   VALUES ('Has added a customer!', NEW.admin_id, NEW.id, NULL, NEW.c_name);
+END//
 DELIMITER ;
 SET SQL_MODE=@OLDTMP_SQL_MODE;
 
@@ -369,7 +455,7 @@ SET SQL_MODE=@OLDTMP_SQL_MODE;
 SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 DELIMITER //
 CREATE TRIGGER `payment_log_after_insert` AFTER INSERT ON `payment` FOR EACH ROW BEGIN
-	INSERT INTO payment_logs(message, customer_id) VALUES ("Payment added!", NEW.c_id);
+	INSERT INTO payment_logs(message, customer_id, payment_id) VALUES ("Payment added!", NEW.c_id, NEW.id);
 END//
 DELIMITER ;
 SET SQL_MODE=@OLDTMP_SQL_MODE;
@@ -389,10 +475,10 @@ DELIMITER //
 CREATE TRIGGER `products_log_after_update` AFTER UPDATE ON `products` FOR EACH ROW BEGIN
 	IF OLD.is_deleted = 0 AND NEW.is_deleted = 1 THEN
 		INSERT INTO product_logs(message, admin_id, product_id, old_name, new_name)
-		VALUES ('Has deleted a product!', OLD.admin_id, OLD.id, NULL, NULL);
+		VALUES ('Has deleted a product!', @user_id, OLD.id, NULL, NULL);
 	ELSE
 		INSERT INTO product_logs(message, admin_id, product_id, old_name, new_name) 
-		VALUES ('Has updated a product!', NEW.admin_id, NEW.id, OLD.prod_name, NEW.prod_name);
+		VALUES ('Has updated a product!', @user_id, NEW.id, OLD.prod_name, NEW.prod_name);
 	END IF;
 END//
 DELIMITER ;
@@ -436,7 +522,7 @@ CREATE TRIGGER `update_balance_after_transaction` AFTER INSERT ON `transaction` 
 	-- Only add to balance if the transaction is unpaid
   IF NEW.is_paid = 0 THEN
     UPDATE customers
-    SET balance = balance + NEW.amount, monthly_interest = balance * interest_rate
+    SET balance = balance + NEW.amount
     WHERE id = NEW.c_id;
   END IF;
   
@@ -447,9 +533,8 @@ CREATE TRIGGER `update_balance_after_transaction` AFTER INSERT ON `transaction` 
 	END IF;
 	
 	UPDATE customers
-	SET last_transaction_date = CURDATE()
+	SET last_transaction_date = CURDATE(), monthly_interest = balance * interest_rate
 	WHERE id = NEW.c_id;
-	
 	
 END//
 DELIMITER ;
